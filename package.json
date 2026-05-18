@@ -1,0 +1,15 @@
+{
+  "name": "intive-sdd-agents-kit",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Kit SDD/DDD: workflows, plantillas y skills para Cursor",
+  "scripts": {
+    "bootstrap": "node kit/bootstrap/bootstrap.mjs",
+    "validate-workflows": "node kit/scripts/validate-workflows.mjs"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "yaml": "^2.6.1"
+  }
+}

@@ -1,0 +1,5 @@
+locale: es
+workflowFile: kit/workflows/green-field.v1.yaml
+artifactsDir: docs/sdd
+skillsTargetDir: .cursor/skills
+kitVersion: 1.0.0
