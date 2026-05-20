@@ -11,6 +11,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parse as parseYaml, stringify as stringifyYaml } from "yaml";
 import { resolveRoleSkills, copyDocSkills } from "./resolve-role-skills.mjs";
+import { resolveWorkflow, workflowForBootstrap } from "./resolve-workflow-steps.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -101,15 +102,34 @@ function renderIndex({ config, workflow, workflowFile }) {
   lines.push(`- **Artefactos humanos**: \`${config.artifactsDir}\``);
   lines.push(`- **Agent-ready**: \`${config.agentReadyDir}\``);
   lines.push("");
+  if (workflow.stages?.length) {
+    lines.push("## Etapas del workflow");
+    lines.push("");
+    for (const stage of workflow.stages) {
+      const parallelLabel = stage.parallel ? "sí (paralelo)" : "no";
+      lines.push(`### Etapa \`${stage.id}\` (paralelo: ${parallelLabel})`);
+      lines.push("");
+      lines.push("| Orden | Step ID | Rol principal | Artefacto | Doc skill |");
+      lines.push("|------:|---------|---------------|-----------|-----------|");
+      for (const s of stage.steps || []) {
+        lines.push(
+          `| ${s.order} | \`${s.id}\` | \`${s.primary_role_skill || "—"}\` | \`${s.artifact_path || ""}\` | \`${s.doc_skill}\` |`
+        );
+      }
+      lines.push("");
+    }
+  }
+
   lines.push("## Pasos y artefactos");
   lines.push("");
-  lines.push("| Orden | Step ID | Título | Artefacto principal | Skill de documento |");
-  lines.push("|------:|---------|--------|---------------------|--------------------|");
-  let order = 1;
+  lines.push("| Orden | Step ID | Título | Rol principal | Artefacto principal | Skill de documento |");
+  lines.push("|------:|---------|--------|---------------|---------------------|--------------------|");
   for (const step of workflow.steps || []) {
-    const mainOut = (step.outputs && step.outputs[0] && step.outputs[0].path) || "";
-    lines.push(`| ${order} | \`${step.id}\` | ${step.title} | \`${mainOut}\` | \`${step.doc_skill}\` |`);
-    order++;
+    const mainOut = step.outputs?.[0]?.path || "";
+    const role = step.primary_role_skill || "—";
+    lines.push(
+      `| ${step.order} | \`${step.id}\` | ${step.title} | \`${role}\` | \`${mainOut}\` | \`${step.doc_skill}\` |`
+    );
   }
   lines.push("");
   lines.push("## Criterios de completitud (resumen)");
@@ -146,17 +166,27 @@ function renderAgentReadyIndex({ config, workflow, workflowFile }) {
       version: workflow.version,
       title: workflow.title,
       file: workflowFile.replace(/\\/g, "/"),
+      format: workflow.format || "legacy",
     };
-    doc.steps = (workflow.steps || []).map((step, i) => ({
-      order: i + 1,
+    if (workflow.stages?.length) {
+      doc.stages = workflow.stages;
+    }
+    doc.steps = (workflow.steps || []).map((step) => ({
+      order: step.order,
       id: step.id,
       title: step.title,
+      stage_id: step.stage_id || null,
+      stage_parallel: step.stage_parallel ?? false,
+      primary_role_skill: step.primary_role_skill || null,
       artifact_path: step.outputs?.[0]?.path || null,
-      agent_ready_path: step.outputs?.[0]?.path
-        ? `${config.agentReadyDir}/${path.basename(step.outputs[0].path, ".md")}.agent.yaml`
-        : null,
+      agent_ready_path:
+        step.outputs?.[0]?.agent_ready_path ||
+        (step.outputs?.[0]?.path
+          ? `${config.agentReadyDir}/${path.basename(step.outputs[0].path, ".md")}.agent.yaml`
+          : null),
       doc_skill: step.doc_skill,
       suggested_role_skills: step.suggested_role_skills,
+      inputs: step.inputs || [],
     }));
   } else {
     doc.workflow = { status: "pending", hint: "Invoke id2s-role-project-manager (Sebastian)" };
@@ -282,8 +312,12 @@ async function main() {
     if (!(await pathExists(workflowPath))) {
       console.warn(`Workflow configurado no encontrado: ${workflowPath} — continuando sin workflow.`);
     } else {
-      workflow = await readYamlFile(workflowPath);
+      const rawWorkflow = await readYamlFile(workflowPath);
+      const { resolved, stages, format } = await resolveWorkflow(kitRoot, rawWorkflow);
+      workflow = workflowForBootstrap(rawWorkflow, resolved, stages);
+      workflow.format = format;
       workflowPathRel = path.relative(repoRoot, workflowPath).replace(/\\/g, "/");
+      console.log(`Workflow resolved (${format}): ${workflow.steps.length} step(s)`);
     }
   } else {
     console.log("Sin workflowFile en config — índice stub; usá id2s-role-project-manager (Sebastian).");
@@ -316,8 +350,12 @@ async function main() {
           console.log(`Skip existing artifact ${path.relative(repoRoot, destPath)} (use --force)`);
         }
 
-        const agentName = `${path.basename(out.path, ".md")}.agent.yaml`;
-        const agentDest = path.join(agentReadyDir, agentName);
+        const agentRel =
+          out.agent_ready_path ||
+          `${config.agentReadyDir}/${path.basename(out.path, ".md")}.agent.yaml`;
+        const agentDest = path.isAbsolute(agentRel)
+          ? agentRel
+          : path.join(repoRoot, agentRel);
         if (!force && (await pathExists(agentDest))) continue;
         await createAgentReadyStub(
           agentDest,

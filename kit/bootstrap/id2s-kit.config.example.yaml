@@ -4,7 +4,9 @@
 locale: es
 
 # Workflow activo (opcional hasta que Sebastian lo defina con id2s-role-project-manager)
-# workflowFile: kit/workflows/green-field.v1.yaml
+# Recomendado (3 artefactos): kit/workflows/green-field-minimal.v2.yaml
+# Legacy (6 artefactos): kit/workflows/green-field.v1.yaml
+# workflowFile: kit/workflows/green-field-minimal.v2.yaml
 
 # Carpeta donde viven los artefactos humanos ID2S
 artifactsDir: docs/id2s

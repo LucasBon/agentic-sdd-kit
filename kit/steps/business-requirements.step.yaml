@@ -1,0 +1,28 @@
+id: business-requirements
+version: 1.0.0
+title: Requisitos de negocio
+objective: Formalizar reglas, FR/NFR de negocio, glosario mínimo y criterios verificables anclados al product-intent.
+
+primary_role_skill: id2s-role-business-analyst
+doc_skill: id2s-doc-business-requirements
+
+inputs:
+  - kind: artifact
+    path: docs/id2s/product-intent.md
+    required: true
+    description: Intención de producto acordada como insumo.
+
+outputs:
+  - path: docs/id2s/business-requirements.md
+    template: kit/templates/id2s/business-requirements.md.template
+    agent_ready_path: agent-ready-docs/id2s/business-requirements.agent.yaml
+
+suggested_role_skills:
+  - id2s-role-quality-specialist
+
+completion_criteria:
+  - Problema y alcance referenciados sin contradicción con product-intent.
+  - FR-xxx con criterio de aceptación testeable por capability P0.
+  - BR-xxx con términos del glosario definidos.
+  - Capacidades P0/P1 listadas con valor esperado.
+  - Handoff pack listo para system-design.

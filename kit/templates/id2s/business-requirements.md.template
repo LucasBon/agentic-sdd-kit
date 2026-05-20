@@ -1,0 +1,74 @@
+---
+id2s_document: business-requirements
+workflow_step: business-requirements
+locale: es
+current_version: 1
+versions:
+  - version: 1
+    date: "2026-05-20"
+    author: bootstrap
+    summary: Inicial desde plantilla
+---
+
+# Requisitos de negocio
+
+## Alcance de este documento
+
+- **Referencia product-intent**: (enlace o resumen de 2 líneas)
+- **Release / hito objetivo**:
+
+## Supuestos validados
+
+| Supuesto | Estado (validado / pendiente) | Evidencia |
+|----------|-------------------------------|-----------|
+|          |                               |           |
+
+## Capacidades (priorizadas)
+
+| ID | Capacidad | Valor esperado | Prioridad (P0/P1) |
+|----|-----------|----------------|-------------------|
+| CAP-001 |           |                | P0                |
+
+## Glosario ubicuo (mínimo)
+
+| Término | Definición | Sinónimos a evitar |
+|---------|------------|--------------------|
+|         |            |                    |
+
+## Requisitos funcionales
+
+| ID | Requisito | Capability | Prioridad | Criterio de aceptación (testeable) |
+|----|-----------|------------|-----------|-------------------------------------|
+| FR-001 |           |            | P0        |                                     |
+
+## Reglas de negocio
+
+| ID | Regla | Términos (glosario) | Fuente / dueño negocio |
+|----|-------|---------------------|-------------------------|
+| BR-001 |       |                     |                         |
+
+## Requisitos no funcionales (negocio)
+
+| ID | Categoría | Requisito | Métrica / verificación | Prioridad |
+|----|-----------|-----------|-------------------------|-----------|
+| NFR-001 | Seguridad / rendimiento / disponibilidad / etc. |           |                         | P0        |
+
+## Casos límite y excepciones
+
+| Escenario | Comportamiento esperado | Regla / FR relacionado |
+|-----------|-------------------------|-------------------------|
+|           |                         |                         |
+
+## Ambigüedades abiertas
+
+| # | Tema | Pregunta pendiente | Dueño |
+|---|------|--------------------|-------|
+|   |      |                    |       |
+
+## Handoff pack (para Diseño de sistema)
+
+- **NFRs arquitectónicamente tensores** (top 3):
+- **Integraciones candidatas**:
+- **Datos sensibles o límites de confianza**:
+- **Volúmenes / picos relevantes** (si se conocen):
+- **Decisiones de producto que acotan diseño**:

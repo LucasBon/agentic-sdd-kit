@@ -93,7 +93,42 @@ function normalizeAgent(agent, skill) {
       "_Sin `owned_artifacts` explícitos: confirmá con el usuario qué documentos persistir (ver `id2s-kit.config.yaml` → `artifactsDir` / `agentReadyDir`)._",
     ];
   }
+  const ownedList = Array.isArray(a.owned_artifacts)
+    ? a.owned_artifacts
+    : String(a.owned_artifacts)
+        .split("\n")
+        .map((l) => l.replace(/^-\s*/, "").trim())
+        .filter(Boolean);
+  const humanWritePaths = ownedList.filter(
+    (p) => p.endsWith(".md") && !p.includes(".agent.yaml")
+  );
+  if (humanWritePaths.length > 2) {
+    console.warn(
+      `[id2s-role] ${data.skill?.name || "role"}: owned_artifacts tiene ${humanWritePaths.length} documentos .md; se recomienda 1–2.`
+    );
+  }
   a.owned_artifacts = asMarkdownBlock(a.owned_artifacts);
+
+  const defaultTriggers = `Update artifacts only when:
+- The user explicitly requests documentation.
+- A decision has been clearly made and validated.
+- A section has been sufficiently explored and confirmed.
+
+Do NOT update artifacts during early exploration or ambiguous discussions.`;
+
+  if (a.write_triggers != null && String(a.write_triggers).trim()) {
+    const lines = String(a.write_triggers)
+      .trim()
+      .split(/\n|[;]/)
+      .map((l) => l.trim())
+      .filter(Boolean);
+    const bullets = lines.map((l) => `- ${l.replace(/^-\s*/, "")}`).join("\n");
+    a.write_triggers_block = `${bullets}
+
+Do NOT update artifacts during early exploration or ambiguous discussions.`;
+  } else {
+    a.write_triggers_block = defaultTriggers;
+  }
 
   if (a.additional_comments === undefined || a.additional_comments === null) {
     const parts = [];

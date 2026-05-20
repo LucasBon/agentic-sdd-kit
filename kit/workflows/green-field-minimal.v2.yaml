@@ -1,0 +1,20 @@
+id: green-field-minimal
+version: 2.0.0
+title: Green-field mínimo (3 artefactos)
+description: Secuencia mínima para agentes IA desde intención de producto hasta diseño de sistema.
+
+stages:
+  - id: intent
+    parallel: false
+    steps:
+      - product-intent
+
+  - id: specify
+    parallel: false
+    steps:
+      - business-requirements
+
+  - id: design
+    parallel: false
+    steps:
+      - system-design

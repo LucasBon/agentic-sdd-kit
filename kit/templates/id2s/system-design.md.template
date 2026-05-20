@@ -1,0 +1,72 @@
+---
+id2s_document: system-design
+workflow_step: system-design
+locale: es
+current_version: 1
+versions:
+  - version: 1
+    date: "2026-05-20"
+    author: bootstrap
+    summary: Inicial desde plantilla
+---
+
+# Diseño de sistema
+
+## Resumen de arquitectura (para equipos nuevos)
+
+<!-- 6–12 líneas: estilo, drivers, límites principales. -->
+
+## Referencia a requisitos
+
+- **Documento fuente**: `business-requirements.md`
+- **Capabilities P0 cubiertas**:
+
+## C4 — Contexto del sistema
+
+- **Usuarios / actores principales**:
+- **Sistemas externos**:
+- **Límites de confianza (trust boundaries)**:
+
+## C4 — Contenedores
+
+| Contenedor | Responsabilidad | Tecnología (si ya está decidida) | Interfaces expuestas |
+|------------|-----------------|----------------------------------|----------------------|
+|            |                 |                                  |                      |
+
+## Diagramas o enlaces
+
+- **Ubicación de diagramas** (repo / herramienta):
+- **Notas de consistencia**:
+
+## Integraciones y contratos (alto nivel)
+
+| Sistema | Dirección | Protocolo / estilo | Dueño técnico | Estado |
+|---------|-----------|--------------------|---------------|--------|
+|         |           |                    |               |        |
+
+## Decisiones (ADRs)
+
+| ADR | Título | Estado | Resumen de decisión | Consecuencias |
+|-----|--------|--------|---------------------|---------------|
+| ADR-001 |        | propuesto / aceptado / deprecado |                     |               |
+
+### ADR-001 — <!-- título -->
+
+- **Contexto**:
+- **Decisión**:
+- **Consecuencias**:
+- **Alternativas descartadas**:
+
+## Riesgos técnicos y deuda inicial
+
+| Riesgo | Mitigación | Owner |
+|--------|------------|-------|
+|        |            |       |
+
+## Handoff pack (para implementación)
+
+- **Módulos o servicios a implementar primero**:
+- **Contratos/APIs a definir**:
+- **Datos y persistencia (borrador)**:
+- **Pruebas de humo sugeridas**:
+- **NFRs técnicos derivados de negocio**:

@@ -1,0 +1,81 @@
+---
+id2s_document: product-intent
+workflow_step: product-intent
+locale: es
+current_version: 1
+versions:
+  - version: 1
+    date: "2026-05-20"
+    author: bootstrap
+    summary: Inicial desde plantilla
+---
+
+# Intención de producto
+
+## Resumen (máx. 8 líneas)
+
+<!-- Problema, usuario principal, outcome deseado y por qué ahora. Sin solución técnica. -->
+
+## Problema y contexto
+
+- **Problema central**:
+- **Por qué ahora** (trigger):
+- **Estado actual** (as-is breve):
+
+## Usuarios y segmentos
+
+| Segmento | Necesidad principal | Evidencia o hipótesis |
+|----------|---------------------|------------------------|
+|          |                     |                        |
+
+## Visión del producto (una frase)
+
+<!-- Resultado deseado para el usuario y el negocio. -->
+
+## Objetivos de negocio (priorizados)
+
+| # | Objetivo | Métrica sugerida | Meta / umbral |
+|---|----------|------------------|---------------|
+| 1 |          |                  |               |
+| 2 |          |                  |               |
+| 3 |          |                  |               |
+
+## No-objetivos (explícitos)
+
+1.
+2.
+3.
+
+## Stakeholders
+
+| Rol / área | Interés | Influencia (baja/media/alta) |
+|------------|-----------|------------------------------|
+|            |           |                              |
+
+## Restricciones y políticas
+
+- **Negocio / regulatorio**:
+- **Tiempo / hitos**:
+- **Presupuesto / capacidad** (si aplica):
+- **Tecnología impuesta** (si aplica):
+
+## Supuestos (explícitos)
+
+1.
+2.
+3.
+
+## Riesgos iniciales
+
+| Riesgo | Impacto | Mitigación tentativa |
+|--------|-----------|----------------------|
+|        |           |                      |
+
+## Handoff pack (para Requisitos de negocio)
+
+- **Usuario principal acordado**:
+- **Problema medible**:
+- **Top 3 métricas de éxito**:
+- **Top 3 restricciones**:
+- **Supuestos que debe validar negocio**:
+- **No-objetivos que acotan el alcance funcional**:

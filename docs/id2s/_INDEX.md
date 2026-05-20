@@ -20,14 +20,14 @@ Este archivo es la **fuente de verdad operativa** para humanos y agentes: resume
 
 ## Pasos y artefactos
 
-| Orden | Step ID | Título | Artefacto principal | Skill de documento |
-|------:|---------|--------|---------------------|--------------------|
-| 1 | `project-brief` | Brief del proyecto | `docs/id2s/01-project-brief.md` | `id2s-doc-project-brief` |
-| 2 | `vision-scope` | Visión y alcance | `docs/id2s/02-vision-and-scope.md` | `id2s-doc-vision-scope` |
-| 3 | `capability-discovery` | Descubrimiento de capacidades | `docs/id2s/03-capability-discovery.md` | `id2s-doc-capability-discovery` |
-| 4 | `domain-model` | Modelo de dominio (estrategia liviana) | `docs/id2s/04-domain-model.md` | `id2s-doc-domain-model` |
-| 5 | `requirements` | Requisitos ejecutables-lite | `docs/id2s/05-requirements.md` | `id2s-doc-requirements` |
-| 6 | `architecture-adrs` | Arquitectura y ADRs | `docs/id2s/06-architecture-adrs.md` | `id2s-doc-architecture-adrs` |
+| Orden | Step ID | Título | Rol principal | Artefacto principal | Skill de documento |
+|------:|---------|--------|---------------|---------------------|--------------------|
+| 1 | `project-brief` | Brief del proyecto | `id2s-role-product-manager` | `docs/id2s/01-project-brief.md` | `id2s-doc-project-brief` |
+| 2 | `vision-scope` | Visión y alcance | `id2s-role-product-manager` | `docs/id2s/02-vision-and-scope.md` | `id2s-doc-vision-scope` |
+| 3 | `capability-discovery` | Descubrimiento de capacidades | `id2s-role-business-analyst` | `docs/id2s/03-capability-discovery.md` | `id2s-doc-capability-discovery` |
+| 4 | `domain-model` | Modelo de dominio (estrategia liviana) | `id2s-role-business-analyst` | `docs/id2s/04-domain-model.md` | `id2s-doc-domain-model` |
+| 5 | `requirements` | Requisitos ejecutables-lite | `id2s-role-business-analyst` | `docs/id2s/05-requirements.md` | `id2s-doc-requirements` |
+| 6 | `architecture-adrs` | Arquitectura y ADRs | `id2s-role-architect` | `docs/id2s/06-architecture-adrs.md` | `id2s-doc-architecture-adrs` |
 
 ## Criterios de completitud (resumen)
 

@@ -102,12 +102,7 @@ Before writing to artifacts:
 - Do not attempt to synchronize or propagate changes between human-oriented and agent-ready artifacts. This process is handled externally.
 
 ### Writing Triggers
-Update artifacts only when:
-- The user explicitly requests documentation.
-- A decision has been clearly made and validated.
-- A section has been sufficiently explored and confirmed.
-
-Do NOT update artifacts during early exploration or ambiguous discussions.
+{{agent.write_triggers_block}}
 
 ### Owned Artifacts
 You are responsible for the following documents:
@@ -129,7 +124,6 @@ Your role is to support thinking and guide decisions — not to prematurely form
 
 - Adjust your level of challenge to: {{agent.challenge_level}}.
 {{/if}}
-
 
 {{#if agent.additional_comments}}
 ## Additional comments:

@@ -8,10 +8,14 @@ workflow:
   version: 1.0.0
   title: Workflow green-field (producto + DDD liviano)
   file: kit/workflows/green-field.v1.yaml
+  format: legacy
 steps:
   - order: 1
     id: project-brief
     title: Brief del proyecto
+    stage_id: null
+    stage_parallel: false
+    primary_role_skill: id2s-role-product-manager
     artifact_path: docs/id2s/01-project-brief.md
     agent_ready_path: agent-ready-docs/id2s/01-project-brief.agent.yaml
     doc_skill: id2s-doc-project-brief
@@ -19,9 +23,13 @@ steps:
       - id2s-role-product-manager
       - id2s-role-business-analyst
       - id2s-role-project-leader
+    inputs: []
   - order: 2
     id: vision-scope
     title: Visión y alcance
+    stage_id: null
+    stage_parallel: false
+    primary_role_skill: id2s-role-product-manager
     artifact_path: docs/id2s/02-vision-and-scope.md
     agent_ready_path: agent-ready-docs/id2s/02-vision-and-scope.agent.yaml
     doc_skill: id2s-doc-vision-scope
@@ -29,9 +37,13 @@ steps:
       - id2s-role-product-manager
       - id2s-role-project-leader
       - id2s-role-business-analyst
+    inputs: []
   - order: 3
     id: capability-discovery
     title: Descubrimiento de capacidades
+    stage_id: null
+    stage_parallel: false
+    primary_role_skill: id2s-role-business-analyst
     artifact_path: docs/id2s/03-capability-discovery.md
     agent_ready_path: agent-ready-docs/id2s/03-capability-discovery.agent.yaml
     doc_skill: id2s-doc-capability-discovery
@@ -39,9 +51,13 @@ steps:
       - id2s-role-business-analyst
       - id2s-role-product-manager
       - id2s-role-architect
+    inputs: []
   - order: 4
     id: domain-model
     title: Modelo de dominio (estrategia liviana)
+    stage_id: null
+    stage_parallel: false
+    primary_role_skill: id2s-role-business-analyst
     artifact_path: docs/id2s/04-domain-model.md
     agent_ready_path: agent-ready-docs/id2s/04-domain-model.agent.yaml
     doc_skill: id2s-doc-domain-model
@@ -49,9 +65,13 @@ steps:
       - id2s-role-business-analyst
       - id2s-role-architect
       - id2s-role-technical-leader
+    inputs: []
   - order: 5
     id: requirements
     title: Requisitos ejecutables-lite
+    stage_id: null
+    stage_parallel: false
+    primary_role_skill: id2s-role-business-analyst
     artifact_path: docs/id2s/05-requirements.md
     agent_ready_path: agent-ready-docs/id2s/05-requirements.agent.yaml
     doc_skill: id2s-doc-requirements
@@ -59,9 +79,13 @@ steps:
       - id2s-role-business-analyst
       - id2s-role-quality-specialist
       - id2s-role-developer
+    inputs: []
   - order: 6
     id: architecture-adrs
     title: Arquitectura y ADRs
+    stage_id: null
+    stage_parallel: false
+    primary_role_skill: id2s-role-architect
     artifact_path: docs/id2s/06-architecture-adrs.md
     agent_ready_path: agent-ready-docs/id2s/06-architecture-adrs.agent.yaml
     doc_skill: id2s-doc-architecture-adrs
@@ -70,3 +94,4 @@ steps:
       - id2s-role-technical-leader
       - id2s-role-devops
       - id2s-role-developer
+    inputs: []
