@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://intive.local/schemas/id2s-agent-ready-document.schema.json",
+  "title": "ID2S Agent-Ready Document",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["meta", "content"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "source_path", "source_version", "locale", "updated_at"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "source_path": { "type": "string", "minLength": 1 },
+        "source_version": { "type": "integer", "minimum": 1 },
+        "locale": { "type": "string", "minLength": 2 },
+        "workflow_step": { "type": "string" },
+        "updated_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "content": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "handoff": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "open_questions": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

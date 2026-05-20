@@ -1,0 +1,66 @@
+---
+id2s_document: project-brief
+workflow_step: project-brief
+locale: es
+current_version: 1
+versions:
+  - version: 1
+    date: "2026-05-19"
+    author: bootstrap
+    summary: Inicial desde plantilla
+---
+
+# Brief del proyecto
+
+## Resumen ejecutivo (máx. 8 líneas)
+
+<!-- Problema, oportunidad, usuario principal, resultado esperado en alto nivel. -->
+
+## Problema y contexto
+
+- **Problema central**:
+- **Por qué ahora** (trigger):
+- **Estado actual** (as-is breve):
+
+## Usuarios y segmentos
+
+| Segmento | Necesidad principal | Evidencia o hipótesis |
+|----------|---------------------|------------------------|
+|          |                     |                        |
+
+## Stakeholders
+
+| Rol / área | Interés | Influencia (baja/media/alta) |
+|------------|-----------|------------------------------|
+|            |           |                              |
+
+## Restricciones y políticas
+
+- **Negocio / regulatorio**:
+- **Tiempo / hitos**:
+- **Presupuesto / capacidad** (si aplica):
+- **Tecnología impuesta** (si aplica):
+
+## Riesgos iniciales
+
+| Riesgo | Impacto | Mitigación tentativa |
+|--------|-----------|----------------------|
+|        |           |                      |
+
+## Supuestos (explícitos)
+
+1.
+2.
+3.
+
+## Fuera de alcance en esta fase (si ya se conoce)
+
+-
+
+## Handoff pack (para Visión y alcance)
+
+- **Usuario principal acordado**:
+- **Problema medible**:
+- **Top 3 restricciones**:
+- **Supuestos que deben validarse**:
+- **Stakeholder decisor para visión**:

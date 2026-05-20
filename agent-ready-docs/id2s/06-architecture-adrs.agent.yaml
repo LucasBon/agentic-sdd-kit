@@ -1,0 +1,57 @@
+meta:
+  id: architecture-adrs
+  source_path: docs/id2s/06-architecture-adrs.md
+  source_version: 1
+  locale: es
+  workflow_step: architecture-adrs
+  updated_at: 2026-05-20T00:50:10.927Z
+content:
+  _preamble: "# Arquitectura y ADRs"
+  resumen_de_arquitectura_para_equipos_nuevos: "<!-- 6–12 líneas: estilo, drivers, límites principales. -->"
+  c4_contexto_del_sistema: |-
+    - **Usuarios / actores principales**:
+    - **Sistemas externos**:
+    - **Límites de confianza (trust boundaries)**:
+  c4_contenedores: |-
+    | Contenedor | Responsabilidad | Tecnología (si ya está decidida) | Interfaces expuestas |
+    |------------|-----------------|----------------------------------|----------------------|
+    |            |                 |                                  |                      |
+  diagramas_o_enlaces: |-
+    - **Ubicación de diagramas** (repo / herramienta):
+    - **Notas de consistencia** (qué diagrama es fuente de verdad):
+  integraciones_y_contratos_alto_nivel: |-
+    | Sistema | Dirección | Protocolo / estilo | Dueño técnico | Estado |
+    |---------|-----------|--------------------|---------------|--------|
+    |         |           |                    |               |        |
+  decisiones_adrs: >-
+    | ADR | Título | Estado | Resumen de decisión | Consecuencias |
+
+    |-----|--------|--------|---------------------|---------------|
+
+    | ADR-001 |        | propuesto / aceptado / deprecado
+    |                     |               |
+
+
+    ### ADR-001 — <!-- título -->
+
+
+    - **Contexto**:
+
+    - **Decisión**:
+
+    - **Consecuencias**:
+
+    - **Alternativas descartadas**:
+  riesgos_tcnicos_y_deuda_inicial: |-
+    | Riesgo | Mitigación | Owner |
+    |--------|------------|-------|
+    |        |            |       |
+  handoff_pack_para_implementacin: |-
+    - **Contenedores a crear primero**:
+    - **Pruebas de humo técnicas** (lista corta):
+    - **Feature flags / migraciones** pendientes:
+    - **Observabilidad mínima** (logs/métricas/trazas) requerida:
+    - **Referencias cruzadas a FR/NFR** que anclan el diseño:
+handoff:
+  contenedores_a_crear_primero: null
+open_questions: []

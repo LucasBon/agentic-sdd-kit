@@ -1,0 +1,50 @@
+meta:
+  id: project-brief
+  source_path: docs/id2s/01-project-brief.md
+  source_version: 1
+  locale: es
+  workflow_step: project-brief
+  updated_at: 2026-05-20T00:50:10.908Z
+content:
+  _preamble: "# Brief del proyecto"
+  resumen_ejecutivo_mx_8_lneas: <!-- Problema, oportunidad, usuario principal,
+    resultado esperado en alto nivel. -->
+  problema_y_contexto: |-
+    - **Problema central**:
+    - **Por qué ahora** (trigger):
+    - **Estado actual** (as-is breve):
+  usuarios_y_segmentos: |-
+    | Segmento | Necesidad principal | Evidencia o hipótesis |
+    |----------|---------------------|------------------------|
+    |          |                     |                        |
+  stakeholders: |-
+    | Rol / área | Interés | Influencia (baja/media/alta) |
+    |------------|-----------|------------------------------|
+    |            |           |                              |
+  restricciones_y_polticas: |-
+    - **Negocio / regulatorio**:
+    - **Tiempo / hitos**:
+    - **Presupuesto / capacidad** (si aplica):
+    - **Tecnología impuesta** (si aplica):
+  riesgos_iniciales: |-
+    | Riesgo | Impacto | Mitigación tentativa |
+    |--------|-----------|----------------------|
+    |        |           |                      |
+  supuestos_explcitos: |-
+    1.
+    2.
+    3.
+  fuera_de_alcance_en_esta_fase_si_ya_se_conoce: "-"
+  handoff_pack_para_visin_y_alcance: |-
+    - **Usuario principal acordado**:
+    - **Problema medible**:
+    - **Top 3 restricciones**:
+    - **Supuestos que deben validarse**:
+    - **Stakeholder decisor para visión**:
+handoff:
+  usuario_principal_acordado: null
+  problema_medible: null
+  top_3_restricciones: null
+  supuestos_que_deben_validarse: null
+  stakeholder_decisor_para_visin: null
+open_questions: []

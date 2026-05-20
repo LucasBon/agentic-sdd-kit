@@ -8,15 +8,15 @@ steps:
     title: Brief del proyecto
     objective: Fijar problema, usuarios, restricciones, stakeholders y riesgos iniciales sin solución técnica.
     preconditions: []
-    primary_template: kit/templates/sdd/01-project-brief.md.template
+    primary_template: kit/templates/id2s/01-project-brief.md.template
     outputs:
-      - path: docs/sdd/01-project-brief.md
-        template: kit/templates/sdd/01-project-brief.md.template
-    doc_skill: sdd-doc-project-brief
+      - path: docs/id2s/01-project-brief.md
+        template: kit/templates/id2s/01-project-brief.md.template
+    doc_skill: id2s-doc-project-brief
     suggested_role_skills:
-      - sdd-role-product-manager
-      - sdd-role-business-analyst
-      - sdd-role-project-leader
+      - id2s-role-product-manager
+      - id2s-role-business-analyst
+      - id2s-role-project-leader
     completion_criteria:
       - El problema y el usuario principal están definidos en una o dos frases verificables.
       - Hay al menos 3 restricciones o supuestos explícitos (negocio, compliance, tiempo, presupuesto o políticas).
@@ -28,17 +28,17 @@ steps:
     objective: Alinear resultado deseado, métricas de éxito, no-objetivos y supuestos de producto.
     preconditions:
       - type: file_exists
-        path: docs/sdd/01-project-brief.md
+        path: docs/id2s/01-project-brief.md
         description: Debe existir el brief para anclar visión y alcance.
-    primary_template: kit/templates/sdd/02-vision-and-scope.md.template
+    primary_template: kit/templates/id2s/02-vision-and-scope.md.template
     outputs:
-      - path: docs/sdd/02-vision-and-scope.md
-        template: kit/templates/sdd/02-vision-and-scope.md.template
-    doc_skill: sdd-doc-vision-scope
+      - path: docs/id2s/02-vision-and-scope.md
+        template: kit/templates/id2s/02-vision-and-scope.md.template
+    doc_skill: id2s-doc-vision-scope
     suggested_role_skills:
-      - sdd-role-product-manager
-      - sdd-role-project-leader
-      - sdd-role-business-analyst
+      - id2s-role-product-manager
+      - id2s-role-project-leader
+      - id2s-role-business-analyst
     completion_criteria:
       - Objetivos de negocio y métricas de éxito están priorizados (top 3).
       - No-objetivos explícitos evitan deriva de alcance.
@@ -50,17 +50,17 @@ steps:
     objective: Traducir visión en capacidades priorizadas y journeys mínimos para guiar diseño y entrega.
     preconditions:
       - type: file_exists
-        path: docs/sdd/02-vision-and-scope.md
+        path: docs/id2s/02-vision-and-scope.md
         description: Visión y alcance acordados por escrito.
-    primary_template: kit/templates/sdd/03-capability-discovery.md.template
+    primary_template: kit/templates/id2s/03-capability-discovery.md.template
     outputs:
-      - path: docs/sdd/03-capability-discovery.md
-        template: kit/templates/sdd/03-capability-discovery.md.template
-    doc_skill: sdd-doc-capability-discovery
+      - path: docs/id2s/03-capability-discovery.md
+        template: kit/templates/id2s/03-capability-discovery.md.template
+    doc_skill: id2s-doc-capability-discovery
     suggested_role_skills:
-      - sdd-role-business-analyst
-      - sdd-role-product-manager
-      - sdd-role-architect
+      - id2s-role-business-analyst
+      - id2s-role-product-manager
+      - id2s-role-architect
     completion_criteria:
       - Capacidades priorizadas (P0/P1) con valor esperado cada una.
       - Al menos un journey end-to-end por capacidad P0.
@@ -72,17 +72,17 @@ steps:
     objective: Estabilizar lenguaje ubicuo, bounded contexts candidatos y relaciones sin diseño táctico exhaustivo.
     preconditions:
       - type: file_exists
-        path: docs/sdd/03-capability-discovery.md
+        path: docs/id2s/03-capability-discovery.md
         description: Capacidades y journeys como insumo de modelado.
-    primary_template: kit/templates/sdd/04-domain-model.md.template
+    primary_template: kit/templates/id2s/04-domain-model.md.template
     outputs:
-      - path: docs/sdd/04-domain-model.md
-        template: kit/templates/sdd/04-domain-model.md.template
-    doc_skill: sdd-doc-domain-model
+      - path: docs/id2s/04-domain-model.md
+        template: kit/templates/id2s/04-domain-model.md.template
+    doc_skill: id2s-doc-domain-model
     suggested_role_skills:
-      - sdd-role-business-analyst
-      - sdd-role-architect
-      - sdd-role-technical-leader
+      - id2s-role-business-analyst
+      - id2s-role-architect
+      - id2s-role-technical-leader
     completion_criteria:
       - Glosario con términos de negocio y definiciones sin ambigüedad crítica.
       - Contextos delimitados candidatos con responsabilidad en una frase cada uno.
@@ -94,17 +94,17 @@ steps:
     objective: FR/NFR priorizados, reglas de negocio citables y criterios de aceptación alineados a capacidades.
     preconditions:
       - type: file_exists
-        path: docs/sdd/04-domain-model.md
+        path: docs/id2s/04-domain-model.md
         description: Modelo de dominio liviano como fuente de términos y límites.
-    primary_template: kit/templates/sdd/05-requirements.md.template
+    primary_template: kit/templates/id2s/05-requirements.md.template
     outputs:
-      - path: docs/sdd/05-requirements.md
-        template: kit/templates/sdd/05-requirements.md.template
-    doc_skill: sdd-doc-requirements
+      - path: docs/id2s/05-requirements.md
+        template: kit/templates/id2s/05-requirements.md.template
+    doc_skill: id2s-doc-requirements
     suggested_role_skills:
-      - sdd-role-business-analyst
-      - sdd-role-quality-specialist
-      - sdd-role-developer
+      - id2s-role-business-analyst
+      - id2s-role-quality-specialist
+      - id2s-role-developer
     completion_criteria:
       - Requisitos funcionales priorizados con identificador estable (FR-xxx).
       - NFRs críticos (seguridad, rendimiento, disponibilidad, observabilidad) listados con umbral o método de verificación.
@@ -116,18 +116,18 @@ steps:
     objective: Decidir estructura del sistema (C4 contexto/contenedor), interfaces externas e índice de ADRs.
     preconditions:
       - type: file_exists
-        path: docs/sdd/05-requirements.md
+        path: docs/id2s/05-requirements.md
         description: Requisitos priorizados para fundamentar decisiones arquitectónicas.
-    primary_template: kit/templates/sdd/06-architecture-adrs.md.template
+    primary_template: kit/templates/id2s/06-architecture-adrs.md.template
     outputs:
-      - path: docs/sdd/06-architecture-adrs.md
-        template: kit/templates/sdd/06-architecture-adrs.md.template
-    doc_skill: sdd-doc-architecture-adrs
+      - path: docs/id2s/06-architecture-adrs.md
+        template: kit/templates/id2s/06-architecture-adrs.md.template
+    doc_skill: id2s-doc-architecture-adrs
     suggested_role_skills:
-      - sdd-role-architect
-      - sdd-role-technical-leader
-      - sdd-role-devops
-      - sdd-role-developer
+      - id2s-role-architect
+      - id2s-role-technical-leader
+      - id2s-role-devops
+      - id2s-role-developer
     completion_criteria:
       - Diagrama o descripción C4 nivel sistema y contenedores con responsabilidades.
       - Lista de integraciones externas con propósito y dueño técnico/nombre de servicio.

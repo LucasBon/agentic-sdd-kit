@@ -1,0 +1,26 @@
+---
+description: Al trabajar con ID2S/DDD del kit, respetar docs humanos y sincronizar agent-ready.
+globs:
+  - docs/id2s/**
+  - agent-ready-docs/id2s/**
+alwaysApply: false
+---
+
+# ID2S Kit (Intive Domain To Spec Driven Develop)
+
+## Artefactos humanos (`docs/id2s/`)
+
+1. Abrir y respetar `docs/id2s/_INDEX.md` como mapa del workflow y rutas canónicas.
+2. Al modificar sustancialmente un documento, incrementar `current_version` en frontmatter y añadir entrada en `versions` (solo metadatos: fecha, autor, resumen).
+3. No contradecir decisiones ya volcadas en artefactos previos; si cambian, actualizar el documento y el handoff.
+
+## Agent-ready (`agent-ready-docs/id2s/`)
+
+1. Tras editar un artefacto humano, ejecutar `npm run sync-agent-ready -- <ruta-del-md>` (o `--all`).
+2. Los agentes leen **agent-ready** para contexto; los humanos editan **docs/id2s** como fuente de verdad.
+3. Cada `.agent.yaml` debe referenciar `meta.source_version` alineado a `current_version` del documento fuente.
+
+## Skills
+
+- Documentos: `id2s-doc-*` para producir cada artefacto.
+- Roles: `id2s-role-*` para coaching; `id2s-role-project-manager` (Sebastian) para definir y navegar el workflow.

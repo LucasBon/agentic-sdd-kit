@@ -1,0 +1,50 @@
+meta:
+  id: domain-model
+  source_path: docs/id2s/04-domain-model.md
+  source_version: 1
+  locale: es
+  workflow_step: domain-model
+  updated_at: 2026-05-20T00:50:10.925Z
+content:
+  _preamble: "# Modelo de dominio (estrategia liviana)"
+  lenguaje_ubicuo_glosario: |-
+    | Término | Definición | Sinónimos prohibidos / aclaraciones |
+    |---------|------------|-------------------------------------|
+    |         |            |                                     |
+  bounded_contexts_candidatos: |-
+    | Contexto | Responsabilidad (una frase) | Equipo / dueño (si existe) |
+    |----------|-----------------------------|----------------------------|
+    |          |                             |                            |
+  mapa_de_contexto_lite: >-
+    <!-- Lista o diagrama textual: relaciones upstream/downstream,
+    anti-corruption layer, partnership, etc. -->
+
+
+    | Contexto A | Relación | Contexto B | Notas |
+
+    |------------|----------|------------|-------|
+
+    |            |          |            |       |
+  modelo_conceptual_no_tctico: >-
+    - **Agregados / entidades**: no listar a menos que haya consenso; preferir
+    **conceptos** y **ciclo de vida**:
+      - **Concepto**:
+        - **Ciclo de vida / estados**:
+        - **Invariantes de negocio conocidas**:
+  contextos_y_capacidades_trazabilidad: |-
+    | Capacidad (ID) | Contexto principal | Contextos colaboradores |
+    |------------------|--------------------|-------------------------|
+    |                  |                    |                         |
+  decisiones_pendientes_de_modelado: |-
+    | Tema | Impacto | Propuesta siguiente paso |
+    |------|-----------|--------------------------|
+    |      |           |                          |
+  handoff_pack_para_requisitos: |-
+    - **Términos que deben usarse en FR/NFR** (top 10):
+    - **Límites de contexto que afectan interfaces**:
+    - **Reglas de negocio ya conocidas** (referencia a secciones):
+    - **Ambigüedades que deben resolverse en requisitos**:
+handoff:
+  lmites_de_contexto_que_afectan_interfaces: null
+  ambigedades_que_deben_resolverse_en_requisitos: null
+open_questions: []

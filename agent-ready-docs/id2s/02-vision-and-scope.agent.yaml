@@ -1,0 +1,56 @@
+meta:
+  id: vision-scope
+  source_path: docs/id2s/02-vision-and-scope.md
+  source_version: 1
+  locale: es
+  workflow_step: vision-scope
+  updated_at: 2026-05-20T00:50:10.921Z
+content:
+  _preamble: "# Visión y alcance"
+  visin_del_producto_una_frase: <!-- Resultado deseado para el usuario y el negocio. -->
+  objetivos_de_negocio_priorizados: |-
+    | # | Objetivo | Métrica sugerida | Meta / umbral |
+    |---|----------|------------------|---------------|
+    | 1 |          |                  |               |
+    | 2 |          |                  |               |
+    | 3 |          |                  |               |
+  no-objetivos_explcitos: |-
+    1.
+    2.
+    3.
+  alcance_funcional_macro: |-
+    - **Incluido**:
+    - **Excluido** (por ahora):
+  personas_jobs-to-be-done_mnimo_viable: |-
+    | Persona | Job principal | Pains | Gains esperados |
+    |---------|---------------|-------|-----------------|
+    |         |               |       |                 |
+  supuestos_de_producto: |-
+    | Supuesto | Cómo validarlo | Dueño |
+    |----------|----------------|-------|
+    |          |                |       |
+  riesgos_de_producto: |-
+    | Riesgo | Probabilidad | Impacto | Mitigación |
+    |--------|--------------|---------|------------|
+    |        |              |         |            |
+  dependencias_externas_visin: |-
+    | Dependencia | Tipo (legal, datos, API, partner) | Estado |
+    |-------------|-----------------------------------|--------|
+    |             |                                   |        |
+  handoff_pack_para_descubrimiento_de_capacidades: >-
+    - **Resultado medible top 1**:
+
+    - **Segmento P0**:
+
+    - **No-objetivos que condicionan el diseño**:
+
+    - **Supuestos críticos a destrabar en discovery**:
+
+    - **Restricciones heredadas del brief** (referencia a secciones del
+    `01-project-brief.md`):
+handoff:
+  resultado_medible_top_1: null
+  segmento_p0: null
+  no-objetivos_que_condicionan_el_diseo: null
+  supuestos_crticos_a_destrabar_en_discovery: null
+open_questions: []

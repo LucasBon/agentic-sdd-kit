@@ -1,0 +1,49 @@
+meta:
+  id: requirements
+  source_path: docs/id2s/05-requirements.md
+  source_version: 1
+  locale: es
+  workflow_step: requirements
+  updated_at: 2026-05-20T00:50:10.926Z
+content:
+  _preamble: "# Requisitos ejecutables-lite"
+  alcance_de_este_documento: |-
+    - **Workflow / release target**:
+    - **Capabilities cubiertas** (IDs desde `03-capability-discovery.md`):
+  requisitos_funcionales: |-
+    | ID | Requisito | Capability | Prioridad | Criterio de aceptación (testeable) |
+    |----|-----------|------------|-----------|-------------------------------------|
+    | FR-001 |           |            | P0        |                                     |
+  reglas_de_negocio: |-
+    | ID | Regla | Términos (glosario) | Fuente / dueño negocio |
+    |----|-------|---------------------|-------------------------|
+    | BR-001 |       |                     |                         |
+  requisitos_no_funcionales: >-
+    | ID | Categoría | Requisito | Métrica / verificación | Prioridad |
+
+    |----|-------------|-----------|-------------------------|-----------|
+
+    | NFR-001 | Seguridad / rendimiento / disponibilidad / observabilidad /
+    accesibilidad / etc. |           |                         | P0        |
+  matriz_de_trazabilidad_mnima: |-
+    | FR / BR | Journey / paso | Caso de prueba sugerido (nombre) |
+    |---------|----------------|-------------------------------------|
+    |         |                |                                     |
+  supuestos_tcnicos_explcitos: |-
+    1.
+    2.
+  handoff_pack_para_arquitectura_y_adrs: >-
+    - **NFRs arquitectónicamente tensores** (top 3):
+
+    - **Integraciones con contratos a definir**:
+
+    - **Datos sensibles o límites de confianza**:
+
+    - **Volumenes / picos relevantes** (si se conocen):
+
+    - **Decisiones de producto que acotan diseño** (referencia a documentos
+    previos):
+handoff:
+  integraciones_con_contratos_a_definir: null
+  datos_sensibles_o_lmites_de_confianza: null
+open_questions: []

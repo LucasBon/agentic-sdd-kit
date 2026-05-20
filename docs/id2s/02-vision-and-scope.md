@@ -1,0 +1,68 @@
+---
+id2s_document: vision-scope
+workflow_step: vision-scope
+locale: es
+current_version: 1
+versions:
+  - version: 1
+    date: "2026-05-19"
+    author: bootstrap
+    summary: Inicial desde plantilla
+---
+
+# Visión y alcance
+
+## Visión del producto (una frase)
+
+<!-- Resultado deseado para el usuario y el negocio. -->
+
+## Objetivos de negocio (priorizados)
+
+| # | Objetivo | Métrica sugerida | Meta / umbral |
+|---|----------|------------------|---------------|
+| 1 |          |                  |               |
+| 2 |          |                  |               |
+| 3 |          |                  |               |
+
+## No-objetivos (explícitos)
+
+1.
+2.
+3.
+
+## Alcance funcional (macro)
+
+- **Incluido**:
+- **Excluido** (por ahora):
+
+## Personas / jobs-to-be-done (mínimo viable)
+
+| Persona | Job principal | Pains | Gains esperados |
+|---------|---------------|-------|-----------------|
+|         |               |       |                 |
+
+## Supuestos de producto
+
+| Supuesto | Cómo validarlo | Dueño |
+|----------|----------------|-------|
+|          |                |       |
+
+## Riesgos de producto
+
+| Riesgo | Probabilidad | Impacto | Mitigación |
+|--------|--------------|---------|------------|
+|        |              |         |            |
+
+## Dependencias externas (visión)
+
+| Dependencia | Tipo (legal, datos, API, partner) | Estado |
+|-------------|-----------------------------------|--------|
+|             |                                   |        |
+
+## Handoff pack (para Descubrimiento de capacidades)
+
+- **Resultado medible top 1**:
+- **Segmento P0**:
+- **No-objetivos que condicionan el diseño**:
+- **Supuestos críticos a destrabar en discovery**:
+- **Restricciones heredadas del brief** (referencia a secciones del `01-project-brief.md`):

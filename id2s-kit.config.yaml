@@ -1,0 +1,6 @@
+locale: es
+workflowFile: kit/workflows/green-field.v1.yaml
+artifactsDir: docs/id2s
+agentReadyDir: agent-ready-docs/id2s
+skillsTargetDir: .cursor/skills
+kitVersion: 2.0.0

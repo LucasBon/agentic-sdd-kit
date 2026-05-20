@@ -1,0 +1,39 @@
+meta:
+  id: capability-discovery
+  source_path: docs/id2s/03-capability-discovery.md
+  source_version: 1
+  locale: es
+  workflow_step: capability-discovery
+  updated_at: 2026-05-20T00:50:10.923Z
+content:
+  _preamble: "# Descubrimiento de capacidades"
+  mapa_de_capacidades_priorizado: |-
+    | ID | Capacidad | Valor esperado | Prioridad (P0/P1/P2) | Notas |
+    |----|-----------|----------------|------------------------|-------|
+    | C1 |           |                |                        |       |
+  journeys_p0_mnimo: |-
+    ### Journey: <!-- nombre -->
+
+    1. **Actor**:
+    2. **Trigger**:
+    3. **Pasos felices** (lista numerada corta):
+    4. **Excepciones relevantes**:
+    5. **Datos que entran / salen** (alto nivel):
+
+    ### Journey: <!-- repetir si aplica -->
+  integraciones_e_interfaces_candidatas: |-
+    | Integración | Propósito | Dueño negocio | Riesgo |
+    |-------------|-----------|---------------|--------|
+    |             |           |               |        |
+  reglas_de_priorizacin_acordadas: "-"
+  decisiones_abiertas: |-
+    | Tema | Opciones | Decisión pendiente hasta |
+    |------|----------|---------------------------|
+    |      |          |                           |
+  handoff_pack_para_modelo_de_dominio: |-
+    - **Términos de negocio que aparecen en journeys** (lista inicial):
+    - **Límites candidatos entre áreas temáticas** (si ya se intuyen):
+    - **Eventos o estados críticos del negocio** (si aplica):
+    - **Integraciones que cruzan límites de contexto** (referencia):
+handoff: {}
+open_questions: []
