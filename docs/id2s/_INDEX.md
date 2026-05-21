@@ -1,81 +1,93 @@
 ---
 id2s_kit_version: "2.0.0"
 workflow_id: "green-field"
-workflow_version: "1.0.0"
-workflow_file: "kit/workflows/green-field.v1.yaml"
-locale: "es"
+workflow_version: "2.0.0"
+workflow_file: "kit/workflows/green-field.v2.yaml"
+agent_conversation_language: "en"
+documentation_language: "en"
 generated_by: bootstrap
 ---
 
-# Índice ID2S (`_INDEX`)
+# ID2S workflow index (`_INDEX`)
 
-Este archivo es la **fuente de verdad operativa** para humanos y agentes: resume el workflow activo, rutas de artefactos y criterios de avance.
+Operational map for humans and agents. **Step definitions** live in the workflow file and `kit/steps/` catalog — this index tracks **runtime state** and **transitions** only.
 
-## Configuración
+## Configuration
 
-- **Locale**: es
-- **Workflow**: `kit/workflows/green-field.v1.yaml` (Workflow green-field (producto + DDD liviano))
-- **Artefactos humanos**: `docs/id2s`
+- **Agent conversation language**: en
+- **Documentation language**: en
+- **Workflow definition**: `kit/workflows/green-field.v2.yaml` (Green-field (product + lightweight DDD))
+- **Human artifacts**: `docs/id2s`
 - **Agent-ready**: `agent-ready-docs/id2s`
 
-## Pasos y artefactos
+## Workflow flow
 
-| Orden | Step ID | Título | Rol principal | Artefacto principal | Skill de documento |
-|------:|---------|--------|---------------|---------------------|--------------------|
-| 1 | `project-brief` | Brief del proyecto | `id2s-role-product-manager` | `docs/id2s/01-project-brief.md` | `id2s-doc-project-brief` |
-| 2 | `vision-scope` | Visión y alcance | `id2s-role-product-manager` | `docs/id2s/02-vision-and-scope.md` | `id2s-doc-vision-scope` |
-| 3 | `capability-discovery` | Descubrimiento de capacidades | `id2s-role-business-analyst` | `docs/id2s/03-capability-discovery.md` | `id2s-doc-capability-discovery` |
-| 4 | `domain-model` | Modelo de dominio (estrategia liviana) | `id2s-role-business-analyst` | `docs/id2s/04-domain-model.md` | `id2s-doc-domain-model` |
-| 5 | `requirements` | Requisitos ejecutables-lite | `id2s-role-business-analyst` | `docs/id2s/05-requirements.md` | `id2s-doc-requirements` |
-| 6 | `architecture-adrs` | Arquitectura y ADRs | `id2s-role-architect` | `docs/id2s/06-architecture-adrs.md` | `id2s-doc-architecture-adrs` |
+```mermaid
+flowchart TD
+  subgraph brief ["brief"]
+    project_brief["project-brief"]
+  end
+  subgraph vision ["vision"]
+    vision_scope["vision-scope"]
+  end
+  subgraph discovery ["discovery"]
+    capability_discovery["capability-discovery"]
+  end
+  subgraph domain ["domain"]
+    domain_model["domain-model"]
+  end
+  subgraph specify ["specify"]
+    requirements["requirements"]
+  end
+  subgraph design ["design"]
+    architecture_adrs["architecture-adrs"]
+  end
+  project_brief --> vision_scope
+  vision_scope --> capability_discovery
+  capability_discovery --> domain_model
+  domain_model --> requirements
+  requirements --> architecture_adrs
+```
 
-## Criterios de completitud (resumen)
+## Runtime state (Sebastian maintains)
 
-### project-brief
+- **Status**: `in_progress`
+- **Active step(s)**: `vision-scope`
+- **Completed**: `project-brief`
 
-- El problema y el usuario principal están definidos en una o dos frases verificables.
-- Hay al menos 3 restricciones o supuestos explícitos (negocio, compliance, tiempo, presupuesto o políticas).
-- Stakeholders y sus intereses están listados (aunque sea provisionalmente).
-- La sección Handoff pack está completa con entradas concretas para visión y alcance.
+## Step sequence (reference only)
 
-### vision-scope
+| Order | Step ID | Stage | Parallel stage | Primary role | Artifact |
+|------:|---------|-------|----------------|--------------|----------|
+| 1 | `project-brief` | `brief` | no | `id2s-role-product-manager` | `docs/id2s/01-project-brief.md` |
+| 2 | `vision-scope` | `vision` | no | `id2s-role-product-manager` | `docs/id2s/02-vision-and-scope.md` |
+| 3 | `capability-discovery` | `discovery` | no | `id2s-role-business-analyst` | `docs/id2s/03-capability-discovery.md` |
+| 4 | `domain-model` | `domain` | no | `id2s-role-business-analyst` | `docs/id2s/04-domain-model.md` |
+| 5 | `requirements` | `specify` | no | `id2s-role-business-analyst` | `docs/id2s/05-requirements.md` |
+| 6 | `architecture-adrs` | `design` | no | `id2s-role-architect` | `docs/id2s/06-architecture-adrs.md` |
 
-- Objetivos de negocio y métricas de éxito están priorizados (top 3).
-- No-objetivos explícitos evitan deriva de alcance.
-- Supuestos y riesgos de producto están visibles y son revisables.
-- Handoff pack conecta con capacidades priorizadas.
+## Transitions
 
-### capability-discovery
+Advance when Sebastian confirms a step meets completion criteria defined in the workflow/step catalog. Specialists produce artifacts; Sebastian updates this index.
 
-- Capacidades priorizadas (P0/P1) con valor esperado cada una.
-- Al menos un journey end-to-end por capacidad P0.
-- Dependencias externas o integraciones candidatas identificadas.
-- Handoff pack lista conceptos candidatos al modelo de dominio.
+```yaml
+# transitions (summary — full structure in agent-ready _INDEX.yaml)
+- stage brief (sequential): [project-brief] when: all_steps_completed
+- stage vision (sequential): [vision-scope] when: all_steps_completed
+- stage discovery (sequential): [capability-discovery] when: all_steps_completed
+- stage domain (sequential): [domain-model] when: all_steps_completed
+- stage specify (sequential): [requirements] when: all_steps_completed
+- stage design (sequential): [architecture-adrs] when: all_steps_completed
+```
 
-### domain-model
+## Where to read step details
 
-- Glosario con términos de negocio y definiciones sin ambigüedad crítica.
-- Contextos delimitados candidatos con responsabilidad en una frase cada uno.
-- Mapa de contexto lite (relaciones principales) o lista de integraciones contexto-a-contexto.
-- Decisiones pendientes explícitas para requisitos y arquitectura.
+- Composed workflow: `kit/workflows/*.yaml` + per-step `kit/steps/<step-id>.step.yaml`
+- Agent mirror: `agent-ready-docs/id2s/_INDEX.yaml` (same state and transitions)
 
-### requirements
-
-- Requisitos funcionales priorizados con identificador estable (FR-xxx).
-- NFRs críticos (seguridad, rendimiento, disponibilidad, observabilidad) listados con umbral o método de verificación.
-- Reglas de negocio referencian términos del glosario.
-- Criterios de aceptación testeables por capability P0.
-
-### architecture-adrs
-
-- Diagrama o descripción C4 nivel sistema y contenedores con responsabilidades.
-- Lista de integraciones externas con propósito y dueño técnico/nombre de servicio.
-- ADRs propuestos con estado (propuesto/aceptado) y consecuencias resumidas.
-- Handoff pack prepara implementación (módulos, riesgos técnicos, pruebas de humo).
-
-## Decisiones globales (rellenar)
+## Global decisions (fill in)
 
 - **Stack / runtime**:
-- **Entornos** (dev/stage/prod):
-- **Compliance / datos personales**:
-- **Enlaces** (board, designs, contratos):
+- **Environments** (dev/stage/prod):
+- **Compliance / personal data**:
+- **Links** (board, designs, contracts):

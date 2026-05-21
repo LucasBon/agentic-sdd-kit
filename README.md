@@ -23,11 +23,14 @@ npm run bootstrap
 npm run sync-agent-ready -- --all
 ```
 
+**Path B** (compose a custom workflow): `npm run list-catalog` → `npm run compose-workflow` → `npm run scaffold-step` (optional) → validate + bootstrap. Advance steps: `npm run advance-workflow -- --complete <step-id>`.
+
 ## Configuración (`id2s-kit.config.yaml`)
 
 | Campo | Descripción |
 |-------|-------------|
-| `locale` | Idioma de trabajo (plantillas v1 en ES). |
+| `agentConversationLanguage` | ISO 639-1 language for specialist coaching dialogue (e.g. `en`). |
+| `documentationLanguage` | ISO 639-1 language for human artifacts under `artifactsDir`. |
 | `workflowFile` | **Opcional.** Ruta al YAML del workflow (ej. `kit/workflows/green-field.v1.yaml`). |
 | `artifactsDir` | Documentos humanos (default `docs/id2s/`). |
 | `agentReadyDir` | Documentos agent-ready (default `agent-ready-docs/id2s/`). |

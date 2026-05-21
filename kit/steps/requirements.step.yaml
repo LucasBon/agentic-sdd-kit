@@ -1,0 +1,23 @@
+id: requirements
+version: 1.0.0
+title: Executable-lite requirements
+objective: Prioritized FR/NFR, citable business rules, and acceptance criteria aligned to capabilities.
+
+primary_role_skill: id2s-role-business-analyst
+doc_skill: id2s-doc-requirements
+
+inputs:
+  - kind: artifact
+    path: docs/id2s/04-domain-model.md
+    required: true
+    description: Lightweight domain model as source of terms and boundaries.
+
+outputs:
+  - path: docs/id2s/05-requirements.md
+    template: kit/templates/id2s/05-requirements.md.template
+
+completion_criteria:
+  - Prioritized functional requirements with stable identifiers (FR-xxx).
+  - Critical NFRs (security, performance, availability, observability) with threshold or verification method.
+  - Business rules reference glossary terms.
+  - Testable acceptance criteria per P0 capability.

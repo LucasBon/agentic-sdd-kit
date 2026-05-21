@@ -1,0 +1,13 @@
+id: demo-flow
+version: 1.0.0
+title: Demo flow
+description: Composed workflow (product-intent → business-requirements)
+stages:
+  - id: stage-1
+    parallel: false
+    steps:
+      - product-intent
+  - id: stage-2
+    parallel: false
+    steps:
+      - business-requirements

@@ -1,7 +1,7 @@
 ---
 id2s_document: system-design
 workflow_step: system-design
-locale: es
+locale: en
 current_version: 1
 versions:
   - version: 1

@@ -98,7 +98,11 @@ function extractOpenQuestions(sections) {
 async function loadConfig(repoRoot) {
   const cfgPath = path.join(repoRoot, "id2s-kit.config.yaml");
   if (!(await pathExists(cfgPath))) {
-    return { artifactsDir: "docs/id2s", agentReadyDir: "agent-ready-docs/id2s", locale: "es" };
+    return {
+      artifactsDir: "docs/id2s",
+      agentReadyDir: "agent-ready-docs/id2s",
+      documentationLanguage: "en",
+    };
   }
   return parseYaml(await fs.readFile(cfgPath, "utf8"));
 }
@@ -115,7 +119,7 @@ export async function syncOne(mdPath, { repoRoot, config }) {
       id: meta.id2s_document || meta.sdd_document || base.replace(/^\d+-/, ""),
       source_path: path.relative(repoRoot, mdPath).replace(/\\/g, "/"),
       source_version: meta.current_version ?? 1,
-      locale: meta.locale ?? config.locale ?? "es",
+      locale: meta.locale ?? config.documentationLanguage ?? "en",
       workflow_step: meta.workflow_step || meta.id2s_document,
       updated_at: new Date().toISOString(),
     },

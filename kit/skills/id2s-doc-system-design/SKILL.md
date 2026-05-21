@@ -1,46 +1,47 @@
 ---
 name: id2s-doc-system-design
-description: Producir o actualizar `system-design.md` (diseño de sistema y ADRs) siguiendo el workflow ID2S activo.
+description: Produce or update `system-design.md` (system design and ADRs) following the active ID2S workflow step.
 ---
 
-# Skill: Documento — Diseño de sistema (`id2s-doc-system-design`)
+# Skill: Document — System design (`id2s-doc-system-design`)
 
-## Objetivo
+## Goal
 
-Completar `system-design.md` con C4 (contexto/contenedores), integraciones, ADRs indexados y **Handoff pack** para implementación.
+Complete `system-design.md` with C4 (context/containers), integrations, indexed ADRs, and **Handoff pack** for implementation.
 
-## Rutas (configurable)
+## Paths (from config)
 
-- **Escritura humana**: `{artifactsDir}/system-design.md`
-- **Lectura obligatoria**: `{artifactsDir}/business-requirements.md` y agent-ready
-- **Plantilla**: `kit/templates/id2s/system-design.md.template`
+- **Human write**: `{artifactsDir}/system-design.md`
+- **Required read**: `{artifactsDir}/business-requirements.md` and agent-ready
+- **Template**: `kit/templates/id2s/system-design.md.template`
 
-## Fuentes de verdad (orden)
+## Sources of truth (order)
 
-1. `business-requirements.md` — FR/NFR/BR y handoff de negocio
-2. `_INDEX.yaml` — paso `system-design`
-3. Decisiones técnicas: estado propuesto/aceptado en ADRs; no asumir stack sin validar
+1. `business-requirements.md` — FR/NFR/BR and business handoff
+2. `_INDEX.yaml` — `active_step_bindings` for `system-design`
+3. `kit/steps/system-design.step.yaml` — completion criteria
+4. Technical decisions: proposed/accepted ADR status; do not assume stack without validation
 
-## Versionado y sync
+## Versioning and sync
 
-- Bump `current_version` en cambios sustanciales.
+- Bump `current_version` on substantial changes.
 - `npm run sync-agent-ready -- docs/id2s/system-design.md`
 
-## Gate de precondiciones
+## Preconditions
 
-- Requiere `business-requirements.md` con handoff usable.
-- Si faltan NFRs críticos: devolvé al paso anterior con preguntas concretas.
+- Requires `business-requirements.md` with usable handoff.
+- If critical NFRs are missing, return to the prior step with concrete questions.
 
-## Procedimiento
+## Procedure
 
-1. Resumen arquitectura (6–12 líneas) anclado a drivers de negocio.
-2. **C4 contexto** y **contenedores** con responsabilidades.
-3. **Integraciones** y contratos alto nivel.
-4. **ADRs** con contexto, decisión, consecuencias.
-5. **Riesgos técnicos** y deuda inicial.
-6. **Handoff pack** (módulos, APIs, datos, smoke tests).
-7. Bump versión + sync.
+1. Architecture summary (6–12 lines) anchored to business drivers.
+2. **C4 context** and **containers** with responsibilities.
+3. **Integrations** and high-level contracts.
+4. **ADRs** with context, decision, consequences.
+5. **Technical risks** and initial debt.
+6. **Handoff pack** (modules, APIs, data, smoke tests).
+7. Bump version + sync.
 
-## Criterios de completitud
+## Completion criteria
 
-Step `system-design` en `kit/steps/` o checklist en `_INDEX`.
+Use `kit/steps/system-design.step.yaml` when that step is active in `workflow_state`.

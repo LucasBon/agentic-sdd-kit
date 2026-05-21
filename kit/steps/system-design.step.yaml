@@ -1,7 +1,7 @@
 id: system-design
 version: 1.0.0
-title: Diseño de sistema
-objective: Decidir estructura del sistema (C4), integraciones externas e índice de ADRs fundamentados en requisitos.
+title: System design
+objective: C4 views, integrations, ADRs, and technical handoff from business requirements.
 
 primary_role_skill: id2s-role-architect
 doc_skill: id2s-doc-system-design
@@ -10,20 +10,14 @@ inputs:
   - kind: artifact
     path: docs/id2s/business-requirements.md
     required: true
-    description: Requisitos de negocio priorizados como insumo.
+    description: Business requirements as input.
 
 outputs:
   - path: docs/id2s/system-design.md
     template: kit/templates/id2s/system-design.md.template
-    agent_ready_path: agent-ready-docs/id2s/system-design.agent.yaml
-
-suggested_role_skills:
-  - id2s-role-technical-leader
-  - id2s-role-devops
-  - id2s-role-developer
 
 completion_criteria:
-  - Diagrama o descripción C4 nivel sistema y contenedores con responsabilidades.
-  - Lista de integraciones externas con propósito y dueño.
-  - ADRs propuestos con estado y consecuencias resumidas.
-  - Handoff pack prepara implementación (módulos, riesgos técnicos, pruebas de humo).
+  - Context and container views with responsibilities.
+  - External integrations and contracts at a high level.
+  - ADRs indexed with status and consequences.
+  - Handoff pack lists modules, APIs, data, and smoke tests.

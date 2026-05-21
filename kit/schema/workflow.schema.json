@@ -113,8 +113,7 @@
         "template": {
           "type": "string",
           "description": "Path relative to repository root"
-        },
-        "agent_ready_path": { "type": "string", "minLength": 1 }
+        }
       }
     },
     "inlineStep": {
@@ -126,8 +125,8 @@
         "objective",
         "preconditions",
         "outputs",
+        "primary_role_skill",
         "doc_skill",
-        "suggested_role_skills",
         "completion_criteria"
       ],
       "properties": {
@@ -147,16 +146,13 @@
           "items": { "$ref": "#/$defs/output" }
         },
         "primary_template": { "type": "string" },
+        "primary_role_skill": {
+          "type": "string",
+          "pattern": "^id2s-role-[a-z][a-z0-9-]*$"
+        },
         "doc_skill": {
           "type": "string",
           "pattern": "^id2s-doc-[a-z][a-z0-9-]*$"
-        },
-        "suggested_role_skills": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "pattern": "^id2s-role-[a-z][a-z0-9-]*$"
-          }
         },
         "completion_criteria": {
           "type": "array",

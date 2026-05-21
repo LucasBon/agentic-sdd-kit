@@ -1,0 +1,35 @@
+id: green-field
+version: 2.0.0
+title: Green-field (product + lightweight DDD)
+description: Full artifact sequence from project brief through architecture ADRs with explicit handoffs.
+
+stages:
+  - id: brief
+    parallel: false
+    steps:
+      - project-brief
+
+  - id: vision
+    parallel: false
+    steps:
+      - vision-scope
+
+  - id: discovery
+    parallel: false
+    steps:
+      - capability-discovery
+
+  - id: domain
+    parallel: false
+    steps:
+      - domain-model
+
+  - id: specify
+    parallel: false
+    steps:
+      - requirements
+
+  - id: design
+    parallel: false
+    steps:
+      - architecture-adrs

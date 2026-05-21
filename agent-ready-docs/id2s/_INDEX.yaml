@@ -1,97 +1,175 @@
 id2s_kit_version: 2.0.0
-locale: es
+agent_conversation_language: en
+documentation_language: en
 artifacts_dir: docs/id2s
 agent_ready_dir: agent-ready-docs/id2s
 generated_by: bootstrap
 workflow:
+  ref: kit/workflows/green-field.v2.yaml
   id: green-field
-  version: 1.0.0
-  title: Workflow green-field (producto + DDD liviano)
-  file: kit/workflows/green-field.v1.yaml
-  format: legacy
-steps:
-  - order: 1
-    id: project-brief
-    title: Brief del proyecto
-    stage_id: null
+  version: 2.0.0
+  title: Green-field (product + lightweight DDD)
+  format: composed
+  stages:
+    - id: brief
+      parallel: false
+      steps:
+        - id: project-brief
+          order: 1
+          primary_role_skill: id2s-role-product-manager
+          artifact_path: docs/id2s/01-project-brief.md
+          doc_skill: id2s-doc-project-brief
+    - id: vision
+      parallel: false
+      steps:
+        - id: vision-scope
+          order: 2
+          primary_role_skill: id2s-role-product-manager
+          artifact_path: docs/id2s/02-vision-and-scope.md
+          doc_skill: id2s-doc-vision-scope
+    - id: discovery
+      parallel: false
+      steps:
+        - id: capability-discovery
+          order: 3
+          primary_role_skill: id2s-role-business-analyst
+          artifact_path: docs/id2s/03-capability-discovery.md
+          doc_skill: id2s-doc-capability-discovery
+    - id: domain
+      parallel: false
+      steps:
+        - id: domain-model
+          order: 4
+          primary_role_skill: id2s-role-business-analyst
+          artifact_path: docs/id2s/04-domain-model.md
+          doc_skill: id2s-doc-domain-model
+    - id: specify
+      parallel: false
+      steps:
+        - id: requirements
+          order: 5
+          primary_role_skill: id2s-role-business-analyst
+          artifact_path: docs/id2s/05-requirements.md
+          doc_skill: id2s-doc-requirements
+    - id: design
+      parallel: false
+      steps:
+        - id: architecture-adrs
+          order: 6
+          primary_role_skill: id2s-role-architect
+          artifact_path: docs/id2s/06-architecture-adrs.md
+          doc_skill: id2s-doc-architecture-adrs
+step_sequence:
+  - id: project-brief
+    order: 1
+    stage_id: brief
     stage_parallel: false
     primary_role_skill: id2s-role-product-manager
     artifact_path: docs/id2s/01-project-brief.md
-    agent_ready_path: agent-ready-docs/id2s/01-project-brief.agent.yaml
     doc_skill: id2s-doc-project-brief
-    suggested_role_skills:
-      - id2s-role-product-manager
-      - id2s-role-business-analyst
-      - id2s-role-project-leader
-    inputs: []
-  - order: 2
-    id: vision-scope
-    title: Visión y alcance
-    stage_id: null
+  - id: vision-scope
+    order: 2
+    stage_id: vision
     stage_parallel: false
+    primary_role_skill: id2s-role-product-manager
+    artifact_path: docs/id2s/02-vision-and-scope.md
+    doc_skill: id2s-doc-vision-scope
+  - id: capability-discovery
+    order: 3
+    stage_id: discovery
+    stage_parallel: false
+    primary_role_skill: id2s-role-business-analyst
+    artifact_path: docs/id2s/03-capability-discovery.md
+    doc_skill: id2s-doc-capability-discovery
+  - id: domain-model
+    order: 4
+    stage_id: domain
+    stage_parallel: false
+    primary_role_skill: id2s-role-business-analyst
+    artifact_path: docs/id2s/04-domain-model.md
+    doc_skill: id2s-doc-domain-model
+  - id: requirements
+    order: 5
+    stage_id: specify
+    stage_parallel: false
+    primary_role_skill: id2s-role-business-analyst
+    artifact_path: docs/id2s/05-requirements.md
+    doc_skill: id2s-doc-requirements
+  - id: architecture-adrs
+    order: 6
+    stage_id: design
+    stage_parallel: false
+    primary_role_skill: id2s-role-architect
+    artifact_path: docs/id2s/06-architecture-adrs.md
+    doc_skill: id2s-doc-architecture-adrs
+transitions:
+  - type: stage
+    stage_id: brief
+    parallel: false
+    step_ids:
+      - project-brief
+    advance_when: all_steps_completed
+    next:
+      stage_id: vision
+      activate: first_step_of_stage
+  - type: stage
+    stage_id: vision
+    parallel: false
+    step_ids:
+      - vision-scope
+    advance_when: all_steps_completed
+    next:
+      stage_id: discovery
+      activate: first_step_of_stage
+  - type: stage
+    stage_id: discovery
+    parallel: false
+    step_ids:
+      - capability-discovery
+    advance_when: all_steps_completed
+    next:
+      stage_id: domain
+      activate: first_step_of_stage
+  - type: stage
+    stage_id: domain
+    parallel: false
+    step_ids:
+      - domain-model
+    advance_when: all_steps_completed
+    next:
+      stage_id: specify
+      activate: first_step_of_stage
+  - type: stage
+    stage_id: specify
+    parallel: false
+    step_ids:
+      - requirements
+    advance_when: all_steps_completed
+    next:
+      stage_id: design
+      activate: first_step_of_stage
+  - type: stage
+    stage_id: design
+    parallel: false
+    step_ids:
+      - architecture-adrs
+    advance_when: all_steps_completed
+    next:
+      workflow_status: completed
+workflow_state:
+  status: in_progress
+  active_stage_id: vision
+  active_step_ids:
+    - vision-scope
+  completed_step_ids:
+    - project-brief
+  notes: Advanced past project-brief at 2026-05-21T16:47:33.215Z
+active_step_bindings:
+  - step_id: vision-scope
+    title: Vision and scope
     primary_role_skill: id2s-role-product-manager
     artifact_path: docs/id2s/02-vision-and-scope.md
     agent_ready_path: agent-ready-docs/id2s/02-vision-and-scope.agent.yaml
     doc_skill: id2s-doc-vision-scope
-    suggested_role_skills:
-      - id2s-role-product-manager
-      - id2s-role-project-leader
-      - id2s-role-business-analyst
-    inputs: []
-  - order: 3
-    id: capability-discovery
-    title: Descubrimiento de capacidades
-    stage_id: null
-    stage_parallel: false
-    primary_role_skill: id2s-role-business-analyst
-    artifact_path: docs/id2s/03-capability-discovery.md
-    agent_ready_path: agent-ready-docs/id2s/03-capability-discovery.agent.yaml
-    doc_skill: id2s-doc-capability-discovery
-    suggested_role_skills:
-      - id2s-role-business-analyst
-      - id2s-role-product-manager
-      - id2s-role-architect
-    inputs: []
-  - order: 4
-    id: domain-model
-    title: Modelo de dominio (estrategia liviana)
-    stage_id: null
-    stage_parallel: false
-    primary_role_skill: id2s-role-business-analyst
-    artifact_path: docs/id2s/04-domain-model.md
-    agent_ready_path: agent-ready-docs/id2s/04-domain-model.agent.yaml
-    doc_skill: id2s-doc-domain-model
-    suggested_role_skills:
-      - id2s-role-business-analyst
-      - id2s-role-architect
-      - id2s-role-technical-leader
-    inputs: []
-  - order: 5
-    id: requirements
-    title: Requisitos ejecutables-lite
-    stage_id: null
-    stage_parallel: false
-    primary_role_skill: id2s-role-business-analyst
-    artifact_path: docs/id2s/05-requirements.md
-    agent_ready_path: agent-ready-docs/id2s/05-requirements.agent.yaml
-    doc_skill: id2s-doc-requirements
-    suggested_role_skills:
-      - id2s-role-business-analyst
-      - id2s-role-quality-specialist
-      - id2s-role-developer
-    inputs: []
-  - order: 6
-    id: architecture-adrs
-    title: Arquitectura y ADRs
-    stage_id: null
-    stage_parallel: false
-    primary_role_skill: id2s-role-architect
-    artifact_path: docs/id2s/06-architecture-adrs.md
-    agent_ready_path: agent-ready-docs/id2s/06-architecture-adrs.agent.yaml
-    doc_skill: id2s-doc-architecture-adrs
-    suggested_role_skills:
-      - id2s-role-architect
-      - id2s-role-technical-leader
-      - id2s-role-devops
-      - id2s-role-developer
-    inputs: []
+    definition_ref: kit/steps/vision-scope.step.yaml
+orchestrator_skill: id2s-role-project-manager

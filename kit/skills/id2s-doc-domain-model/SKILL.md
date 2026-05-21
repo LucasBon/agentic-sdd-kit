@@ -1,44 +1,45 @@
 ---
 name: id2s-doc-domain-model
-description: Producir o actualizar `04-domain-model.md` (lenguaje ubicuo y bounded contexts livianos) basado en capacidades y journeys.
+description: Produce or update `04-domain-model.md` (ubiquitous language and lightweight bounded contexts).
 ---
 
-# Skill: Documento — Modelo de dominio (`id2s-doc-domain-model`)
+# Skill: Document — Domain model (`id2s-doc-domain-model`)
 
-## Objetivo
+## Goal
 
-Estabilizar **lenguaje ubicuo** y **bounded contexts** candidatos con mapa lite.
+Stabilize **ubiquitous language** and candidate **bounded contexts** with a lite context map.
 
-## Rutas
+## Paths
 
-- Escritura: `{artifactsDir}/04-domain-model.md`
-- Lectura: `{agentReadyDir}/04-domain-model.agent.yaml`
-- Plantilla: `kit/templates/id2s/04-domain-model.md.template`
+- Write: `{artifactsDir}/04-domain-model.md`
+- Read: `{agentReadyDir}/04-domain-model.agent.yaml`, `_INDEX.yaml`
+- Template: `kit/templates/id2s/04-domain-model.md.template`
 
-## Gate de precondiciones
+## Preconditions
 
-- Debe existir `{artifactsDir}/03-capability-discovery.md`.
+- `{artifactsDir}/03-capability-discovery.md` must exist.
 
-## Fuentes de verdad (orden)
+## Sources of truth (order)
 
-1. Agent-ready de capability discovery y artefactos previos.
-2. Humanos `03`, `02`, `01`.
-3. Índices ID2S.
+1. Agent-ready for capability discovery and prior artifacts.
+2. Human artifacts `01`–`03`.
+3. `_INDEX.yaml` / `_INDEX.md`
+4. Workflow step `domain-model` for completion criteria
 
-## Versionado y sync
+## Versioning and sync
 
-- Bump versión + `npm run sync-agent-ready -- docs/id2s/04-domain-model.md`
+- Bump version + `npm run sync-agent-ready -- docs/id2s/04-domain-model.md`
 
-## Procedimiento
+## Procedure
 
-1. **Glosario** desde journeys.
-2. **Bounded contexts** candidatos (3–7).
-3. **Mapa de contexto lite**.
-4. **Modelo conceptual** o PENDIENTE.
-5. **Trazabilidad** capability → contexto.
-6. **Handoff pack** hacia requisitos.
+1. **Glossary** from journeys.
+2. Candidate **bounded contexts** (3–7).
+3. **Lite context map**.
+4. **Conceptual model** or PENDING.
+5. **Traceability** capability → context.
+6. **Handoff pack** toward requirements.
 7. Sync agent-ready.
 
-## Criterios de completitud
+## Completion criteria
 
-Step `domain-model` del workflow activo.
+Active workflow step `domain-model` in `workflow_state`.

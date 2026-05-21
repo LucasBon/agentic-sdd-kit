@@ -1,44 +1,45 @@
 ---
 name: id2s-doc-architecture-adrs
-description: Producir o actualizar `06-architecture-adrs.md` (C4 + ADRs) alineado a requisitos y riesgos técnicos.
+description: Produce or update `06-architecture-adrs.md` (C4 + ADRs) aligned to requirements and technical risks.
 ---
 
-# Skill: Documento — Arquitectura y ADRs (`id2s-doc-architecture-adrs`)
+# Skill: Document — Architecture and ADRs (`id2s-doc-architecture-adrs`)
 
-## Objetivo
+## Goal
 
-Documentar **C4**, **integraciones** y **ADRs** con handoff ejecutable.
+Document **C4**, **integrations**, and **ADRs** with an executable handoff.
 
-## Rutas
+## Paths
 
-- Escritura: `{artifactsDir}/06-architecture-adrs.md`
-- Lectura: `{agentReadyDir}/06-architecture-adrs.agent.yaml`
-- Plantilla: `kit/templates/id2s/06-architecture-adrs.md.template`
+- Write: `{artifactsDir}/06-architecture-adrs.md`
+- Read: `{agentReadyDir}/06-architecture-adrs.agent.yaml`, `_INDEX.yaml`
+- Template: `kit/templates/id2s/06-architecture-adrs.md.template`
 
-## Gate de precondiciones
+## Preconditions
 
-- Debe existir `{artifactsDir}/05-requirements.md`.
+- `{artifactsDir}/05-requirements.md` must exist.
 
-## Fuentes de verdad (orden)
+## Sources of truth (order)
 
-1. Agent-ready de requisitos, dominio, capabilities.
-2. Humanos `05`–`03`.
-3. Índices ID2S.
+1. Agent-ready for requirements, domain, capabilities.
+2. Human artifacts `03`–`05` as needed.
+3. `_INDEX.yaml` — `active_step_bindings` for `architecture-adrs`
+4. Workflow step definition for completion criteria
 
-## Versionado y sync
+## Versioning and sync
 
-- Bump versión + `npm run sync-agent-ready -- docs/id2s/06-architecture-adrs.md`
+- Bump version + `npm run sync-agent-ready -- docs/id2s/06-architecture-adrs.md`
 
-## Procedimiento
+## Procedure
 
-1. Resumen con **drivers** NFR.
-2. **C4 Contexto** y **Contenedores**.
-3. **Integraciones** con dueño y riesgo.
-4. **ADRs** con alternativas.
-5. **Riesgos técnicos**.
-6. **Handoff pack** a implementación.
+1. Summary with NFR **drivers**.
+2. **C4 context** and **containers**.
+3. **Integrations** with owner and risk.
+4. **ADRs** with alternatives.
+5. **Technical risks**.
+6. **Handoff pack** to implementation.
 7. Sync agent-ready.
 
-## Criterios de completitud
+## Completion criteria
 
-Step `architecture-adrs` del workflow activo.
+Active workflow step `architecture-adrs` in `workflow_state`.

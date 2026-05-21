@@ -1,48 +1,48 @@
 ---
 name: id2s-doc-vision-scope
-description: Producir o actualizar `02-vision-and-scope.md` (Visión y alcance) anclado al brief del proyecto.
+description: Produce or update `02-vision-and-scope.md` anchored to the project brief.
 ---
 
-# Skill: Documento — Visión y alcance (`id2s-doc-vision-scope`)
+# Skill: Document — Vision and scope (`id2s-doc-vision-scope`)
 
-## Objetivo
+## Goal
 
-Definir **visión**, **objetivos medibles**, **no-objetivos** y **supuestos** alineados al brief, con Handoff para discovery de capacidades.
+Define **vision**, **measurable objectives**, **non-goals**, and **assumptions** aligned to the brief, with Handoff for capability discovery.
 
-## Rutas
+## Paths
 
-- Escritura: `{artifactsDir}/02-vision-and-scope.md` (ver `id2s-kit.config.yaml`)
-- Lectura: `{agentReadyDir}/02-vision-and-scope.agent.yaml`
-- Plantilla: `kit/templates/id2s/02-vision-and-scope.md.template`
+- Write: `{artifactsDir}/02-vision-and-scope.md` (see `id2s-kit.config.yaml`)
+- Read: `{agentReadyDir}/02-vision-and-scope.agent.yaml`, `_INDEX.yaml`
+- Template: `kit/templates/id2s/02-vision-and-scope.md.template`
 
-## Gate de precondiciones
+## Preconditions
 
-- Debe existir `{artifactsDir}/01-project-brief.md`.
-- Si el brief está incompleto: pedí completar `id2s-doc-project-brief` primero.
+- `{artifactsDir}/01-project-brief.md` must exist.
+- If the brief is incomplete, complete `id2s-doc-project-brief` first.
 
-## Fuentes de verdad (orden)
+## Sources of truth (order)
 
-1. Agent-ready del brief y visión si existen.
+1. Agent-ready for brief and vision if present.
 2. `{artifactsDir}/01-project-brief.md`
-3. `docs/id2s/_INDEX.md` y `agent-ready-docs/id2s/_INDEX.yaml`
-4. Preguntas al usuario para cerrar métricas y no-objetivos.
+3. `_INDEX.yaml` / `_INDEX.md` — runtime state
+4. Workflow step `vision-scope` in `kit/workflows/` (completion criteria)
 
-## Versionado y sync
+## Versioning and sync
 
-- Incrementá `current_version` + `versions` al cambiar sustancialmente.
+- Increment `current_version` + `versions` on substantial changes.
 - `npm run sync-agent-ready -- docs/id2s/02-vision-and-scope.md`
 
-## Procedimiento
+## Procedure
 
-1. Copiá/actualizá el archivo desde plantilla si hace falta.
-2. **Visión en una frase**: resultado para usuario + negocio.
-3. **Objetivos top 3** con métrica sugerida y umbral.
-4. **No-objetivos**: mínimo 3 bullets.
-5. **Personas/JTBD**: mínimo 1 persona P0.
-6. **Supuestos y riesgos de producto** con método de validación.
-7. **Handoff pack** hacia capacidades.
-8. Bump versión + sync agent-ready.
+1. Copy or update from template using `documentationLanguage`.
+2. **One-sentence vision**: outcome for user and business.
+3. **Top 3 objectives** with suggested metric and threshold.
+4. **Non-goals**: at least 3 bullets.
+5. **Personas/JTBD**: at least one P0 persona.
+6. **Product assumptions and risks** with validation method.
+7. **Handoff pack** toward capabilities.
+8. Bump version + sync agent-ready.
 
-## Criterios de completitud
+## Completion criteria
 
-Step `vision-scope` del workflow activo en `id2s-kit.config.yaml`.
+Active workflow step `vision-scope` (see `workflow.ref` and `workflow_state` in `_INDEX.yaml`).

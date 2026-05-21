@@ -1,7 +1,7 @@
 ---
 id2s_document: capability-discovery
 workflow_step: capability-discovery
-locale: es
+locale: en
 current_version: 1
 versions:
   - version: 1

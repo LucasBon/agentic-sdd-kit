@@ -1,40 +1,53 @@
 # ID2S Kit
 
-Kit para **Intive Domain To Spec Driven Develop**: workflows, catálogo de steps, plantillas, agent-ready y skills para Cursor.
+Kit for **Intive Domain To Spec Driven Develop**: workflows, step catalog, templates, agent-ready layer, and Cursor skills.
 
-## Capas
+## Layers
 
-| Capa | Ubicación | Uso |
-|------|-----------|-----|
-| **Steps** | `kit/steps/*.step.yaml` | Definición canónica reutilizable (objetivo, rol, inputs, outputs) |
-| **Workflows** | `kit/workflows/*.yaml` | Composición: legacy (`steps` inline) o v2 (`stages` + refs) |
-| **Artefactos** | `docs/id2s/*.md` | Fuente de verdad humana |
-| **Agent-ready** | `agent-ready-docs/id2s/*.agent.yaml` | Contexto estructurado para agentes |
+| Layer | Location | Purpose |
+|-------|----------|---------|
+| **Steps** | `kit/steps/*.step.yaml` | Canonical reusable step (objective, role, inputs, outputs) |
+| **Workflows** | `kit/workflows/*.yaml` | Composition: legacy (`steps` inline) or v2 (`stages` + refs) |
+| **Artifacts** | `docs/id2s/*.md` | Human source of truth |
+| **Agent-ready** | `agent-ready-docs/id2s/*.agent.yaml` | Structured context for agents |
+| **Indices** | `_INDEX.md` / `_INDEX.yaml` | Runtime workflow state (Sebastian); definitions stay in workflow/steps |
 
-## Workflow mínimo (v2)
+## Minimal workflow (v2)
 
-`kit/workflows/green-field-minimal.v2.yaml` — 3 documentos:
+`kit/workflows/green-field-minimal.v2.yaml` — 3 documents:
 
-1. `product-intent.md` (PM)
-2. `business-requirements.md` (BA)
+1. `product-intent.md` (Product Manager)
+2. `business-requirements.md` (Business Analyst)
 3. `system-design.md` (Architect)
 
-## Comandos
+## Commands
 
 ```bash
 npm run validate-workflows   # steps + workflows
-npm run bootstrap            # skills, plantillas, _INDEX
-npm run sync-agent-ready -- docs/id2s/<archivo>.md
+npm run bootstrap            # skills, templates, indices
+npm run sync-agent-ready -- docs/id2s/<file>.md
 ```
 
-## Configuración del proyecto
+## Project configuration
 
-En la raíz del repo, `id2s-kit.config.yaml`:
+At repo root, `id2s-kit.config.yaml`:
 
 ```yaml
+agentConversationLanguage: en
+documentationLanguage: en
 workflowFile: kit/workflows/green-field-minimal.v2.yaml
 artifactsDir: docs/id2s
 agentReadyDir: agent-ready-docs/id2s
 ```
 
-Legacy: `kit/workflows/green-field.v1.yaml` (6 artefactos numerados 01–06).
+- **Orchestrator**: `id2s-role-project-manager` (Sebastian) — static `SKILL.md`, updates indices.
+- **Domain specialists**: other `id2s-role-*` — generated from `role-agent.SKILL.md.template`.
+
+| Script | Purpose |
+|--------|---------|
+| `npm run list-catalog` | List kit + project workflows and steps |
+| `npm run compose-workflow` | Path B — compose `workflows/<id>.yaml` from step ids |
+| `npm run scaffold-step` | Path B — new project step + template + doc skill stub |
+| `npm run advance-workflow` | Advance `_INDEX` after a step is completed |
+
+Legacy: `kit/workflows/green-field.v1.yaml` (inline steps). Prefer `green-field.v2.yaml`.

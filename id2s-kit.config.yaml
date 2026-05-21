@@ -1,6 +1,10 @@
-locale: es
-workflowFile: kit/workflows/green-field.v1.yaml
+agentConversationLanguage: en
+documentationLanguage: en
+workflowFile: kit/workflows/green-field.v2.yaml
 artifactsDir: docs/id2s
 agentReadyDir: agent-ready-docs/id2s
 skillsTargetDir: .cursor/skills
+projectWorkflowsDir: workflows
+projectStepsDir: steps
+projectTemplatesDir: templates/id2s
 kitVersion: 2.0.0

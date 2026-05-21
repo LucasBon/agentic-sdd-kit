@@ -1,7 +1,7 @@
 ---
 id2s_document: business-requirements
 workflow_step: business-requirements
-locale: es
+locale: en
 current_version: 1
 versions:
   - version: 1

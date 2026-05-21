@@ -1,44 +1,45 @@
 ---
 name: id2s-doc-requirements
-description: Producir o actualizar `05-requirements.md` (FR/NFR/reglas) trazables a capacidades y al glosario.
+description: Produce or update `05-requirements.md` (FR/NFR/rules) traceable to capabilities and glossary.
 ---
 
-# Skill: Documento — Requisitos (`id2s-doc-requirements`)
+# Skill: Document — Requirements (`id2s-doc-requirements`)
 
-## Objetivo
+## Goal
 
-Requisitos **priorizados**, **testeables** y **trazables** a capacidades y glosario.
+**Prioritized**, **testable**, **traceable** requirements linked to capabilities and glossary.
 
-## Rutas
+## Paths
 
-- Escritura: `{artifactsDir}/05-requirements.md`
-- Lectura: `{agentReadyDir}/05-requirements.agent.yaml`
-- Plantilla: `kit/templates/id2s/05-requirements.md.template`
+- Write: `{artifactsDir}/05-requirements.md`
+- Read: `{agentReadyDir}/05-requirements.agent.yaml`, `_INDEX.yaml`
+- Template: `kit/templates/id2s/05-requirements.md.template`
 
-## Gate de precondiciones
+## Preconditions
 
-- Debe existir `{artifactsDir}/04-domain-model.md`.
+- `{artifactsDir}/04-domain-model.md` must exist.
 
-## Fuentes de verdad (orden)
+## Sources of truth (order)
 
-1. Agent-ready de dominio, capabilities, visión.
-2. Humanos `04`–`02`.
-3. Índices ID2S.
+1. Agent-ready for domain, capabilities, vision.
+2. Human artifacts `02`–`04`.
+3. `_INDEX.yaml` / `_INDEX.md`
+4. Workflow step `requirements` for completion criteria
 
-## Versionado y sync
+## Versioning and sync
 
-- Bump versión + `npm run sync-agent-ready -- docs/id2s/05-requirements.md`
+- Bump version + `npm run sync-agent-ready -- docs/id2s/05-requirements.md`
 
-## Procedimiento
+## Procedure
 
-1. Alcance del documento.
-2. **FR-xxx** con criterio de aceptación testeable.
-3. **BR-xxx** con términos del glosario.
-4. **NFR-xxx** con umbral o método de verificación.
-5. **Trazabilidad** mínima.
-6. **Handoff pack** hacia arquitectura.
+1. Document scope section.
+2. **FR-xxx** with testable acceptance criteria.
+3. **BR-xxx** using glossary terms.
+4. **NFR-xxx** with threshold or verification method.
+5. Minimal **traceability** matrix.
+6. **Handoff pack** toward architecture.
 7. Sync agent-ready.
 
-## Criterios de completitud
+## Completion criteria
 
-Step `requirements` del workflow activo.
+Active workflow step `requirements` in `workflow_state`.

@@ -1,21 +1,18 @@
-# Copia este archivo a la raíz del repo consumidor como `id2s-kit.config.yaml` y ajusta valores.
-# El bootstrap también puede generarlo si no existe (ver README).
+agentConversationLanguage: en
+documentationLanguage: en
 
-locale: es
-
-# Workflow activo (opcional hasta que Sebastian lo defina con id2s-role-project-manager)
-# Recomendado (3 artefactos): kit/workflows/green-field-minimal.v2.yaml
-# Legacy (6 artefactos): kit/workflows/green-field.v1.yaml
+# Path A — pick a predefined workflow:
+# workflowFile: kit/workflows/green-field.v2.yaml
 # workflowFile: kit/workflows/green-field-minimal.v2.yaml
+#
+# Path B — leave unset until Sebastian helps compose workflows/<id>.yaml
 
-# Carpeta donde viven los artefactos humanos ID2S
 artifactsDir: docs/id2s
-
-# Carpeta de documentos agent-ready (versión mínima para agentes)
 agentReadyDir: agent-ready-docs/id2s
-
-# Destino de skills de Cursor relativas al root del repositorio
 skillsTargetDir: .cursor/skills
 
-# Versión del kit (informativo; el bootstrap la escribe en `_INDEX.md`)
+projectWorkflowsDir: workflows
+projectStepsDir: steps
+projectTemplatesDir: templates/id2s
+
 kitVersion: 2.0.0

@@ -1,47 +1,48 @@
 ---
 name: id2s-doc-product-intent
-description: Producir o actualizar `product-intent.md` (intención de producto) siguiendo el workflow ID2S activo.
+description: Produce or update `product-intent.md` following the active ID2S workflow step.
 ---
 
-# Skill: Documento — Intención de producto (`id2s-doc-product-intent`)
+# Skill: Document — Product intent (`id2s-doc-product-intent`)
 
-## Objetivo
+## Goal
 
-Completar `product-intent.md` de forma **minimalista pero completa**, fusionando brief y visión/alcance en un solo artefacto con **Handoff pack** accionable para `business-requirements.md`.
+Complete `product-intent.md` in a **minimal but complete** way, with an actionable **Handoff pack** for `business-requirements.md`.
 
-## Rutas (configurable)
+## Paths (from config)
 
-- Leé `id2s-kit.config.yaml`: `artifactsDir` (default `docs/id2s/`), `agentReadyDir` (default `agent-ready-docs/id2s/`).
-- **Escritura humana**: `{artifactsDir}/product-intent.md`
-- **Lectura**: `{agentReadyDir}/product-intent.agent.yaml`, `_INDEX.yaml`
-- **Plantilla**: `kit/templates/id2s/product-intent.md.template`
+- Read `id2s-kit.config.yaml`: `artifactsDir`, `agentReadyDir`, `documentationLanguage`.
+- **Human write**: `{artifactsDir}/product-intent.md`
+- **Read**: `{agentReadyDir}/product-intent.agent.yaml`, `_INDEX.yaml` (`active_step_bindings`, `workflow_state`)
+- **Template**: `kit/templates/id2s/product-intent.md.template`
 
-## Fuentes de verdad (orden)
+## Sources of truth (order)
 
-1. `agent-ready-docs/id2s/_INDEX.yaml` y `product-intent.agent.yaml`
-2. `docs/id2s/_INDEX.md` para workflow/paso activo
-3. Entrevista al usuario; marcá **TBD** con pregunta explícita si falta dato
+1. `agent-ready-docs/id2s/_INDEX.yaml` and `product-intent.agent.yaml`
+2. `docs/id2s/_INDEX.md` — aligned runtime state
+3. `kit/steps/product-intent.step.yaml` — completion criteria (not duplicated in the index)
+4. User interview; mark **TBD** with an explicit question when data is missing
 
-## Versionado y sync
+## Versioning and sync
 
-- Al modificar sustancialmente, incrementá `current_version` y añadí entrada en `versions`.
-- Ejecutá `npm run sync-agent-ready -- docs/id2s/product-intent.md`
+- On substantial edits, increment `current_version` and add a `versions` entry.
+- Run `npm run sync-agent-ready -- docs/id2s/product-intent.md`
 
-## Gate de precondiciones
+## Preconditions
 
-- No requiere artefactos previos.
-- Si piden requisitos sin product-intent: advertí y ofrecé completar Handoff mínimo.
+- No prior artifacts required.
+- If asked for requirements without product-intent, warn and offer a minimal Handoff first.
 
-## Procedimiento
+## Procedure
 
-1. Confirmá rutas y abrí/creá el destino desde plantilla.
-2. **Resumen + problema**: problema, usuario, trigger, as-is breve (sin solución técnica).
-3. **Visión + objetivos**: una frase de visión; tabla top 3 objetivos con métrica.
-4. **No-objetivos + stakeholders + restricciones + riesgos + supuestos**.
-5. **Handoff pack**: bullets concretos para el paso `business-requirements`.
-6. Chequeo: oraciones **observables** o **accionables** por negocio.
-7. Preguntas abiertas (máx. 7); bump versión + sync agent-ready.
+1. Confirm paths; open or create the destination from the template (use `documentationLanguage`).
+2. **Summary + problem**: problem, user, trigger, brief as-is (no technical solution).
+3. **Vision + objectives**: one vision sentence; top 3 objectives with metrics.
+4. **Non-goals + stakeholders + constraints + risks + assumptions**.
+5. **Handoff pack**: concrete bullets for step `business-requirements`.
+6. Check: sentences are **observable** or **actionable** for the business.
+7. Open questions (max 7); bump version + sync agent-ready.
 
-## Criterios de completitud
+## Completion criteria
 
-Tomá el step `product-intent` del workflow activo (`kit/steps/product-intent.step.yaml` o `_INDEX`) como checklist final.
+Use `kit/steps/product-intent.step.yaml` for the final checklist when that step is active in `workflow_state`.

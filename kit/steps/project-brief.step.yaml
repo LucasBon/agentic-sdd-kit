@@ -1,0 +1,19 @@
+id: project-brief
+version: 1.0.0
+title: Project brief
+objective: Capture problem, users, constraints, stakeholders, and initial risks without a technical solution.
+
+primary_role_skill: id2s-role-product-manager
+doc_skill: id2s-doc-project-brief
+
+inputs: []
+
+outputs:
+  - path: docs/id2s/01-project-brief.md
+    template: kit/templates/id2s/01-project-brief.md.template
+
+completion_criteria:
+  - Problem and primary user are defined in one or two verifiable sentences.
+  - At least 3 explicit constraints or assumptions (business, compliance, time, budget, or policy).
+  - Stakeholders and their interests are listed (even provisionally).
+  - Handoff pack section is complete with concrete entries for vision and scope.

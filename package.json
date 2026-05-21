@@ -7,7 +7,11 @@
   "scripts": {
     "bootstrap": "node kit/bootstrap/bootstrap.mjs",
     "validate-workflows": "node kit/scripts/validate-workflows.mjs",
-    "sync-agent-ready": "node kit/scripts/sync-agent-ready.mjs"
+    "sync-agent-ready": "node kit/scripts/sync-agent-ready.mjs",
+    "list-catalog": "node kit/scripts/list-catalog.mjs",
+    "compose-workflow": "node kit/scripts/compose-workflow.mjs",
+    "scaffold-step": "node kit/scripts/scaffold-step.mjs",
+    "advance-workflow": "node kit/scripts/advance-workflow.mjs"
   },
   "dependencies": {
     "ajv": "^8.17.1",

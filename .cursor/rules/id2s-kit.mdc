@@ -1,5 +1,5 @@
 ---
-description: Al trabajar con ID2S/DDD del kit, respetar docs humanos y sincronizar agent-ready.
+description: When working with ID2S kit artifacts, respect human docs and sync agent-ready.
 globs:
   - docs/id2s/**
   - agent-ready-docs/id2s/**
@@ -8,19 +8,26 @@ alwaysApply: false
 
 # ID2S Kit (Intive Domain To Spec Driven Develop)
 
-## Artefactos humanos (`docs/id2s/`)
+## Human artifacts (`docs/id2s/`)
 
-1. Abrir y respetar `docs/id2s/_INDEX.md` como mapa del workflow y rutas canónicas.
-2. Al modificar sustancialmente un documento, incrementar `current_version` en frontmatter y añadir entrada en `versions` (solo metadatos: fecha, autor, resumen).
-3. No contradecir decisiones ya volcadas en artefactos previos; si cambian, actualizar el documento y el handoff.
+1. Use `docs/id2s/_INDEX.md` for workflow **runtime state** (aligned with agent-ready index).
+2. Step definitions live in `kit/workflows/` and `kit/steps/` — not duplicated in the index.
+3. On substantial edits, bump `current_version` in frontmatter and add a `versions` entry.
+4. Do not contradict prior documented decisions; update artifacts and handoff when they change.
 
 ## Agent-ready (`agent-ready-docs/id2s/`)
 
-1. Tras editar un artefacto humano, ejecutar `npm run sync-agent-ready -- <ruta-del-md>` (o `--all`).
-2. Los agentes leen **agent-ready** para contexto; los humanos editan **docs/id2s** como fuente de verdad.
-3. Cada `.agent.yaml` debe referenciar `meta.source_version` alineado a `current_version` del documento fuente.
+1. After editing a human artifact, run `npm run sync-agent-ready -- <path-to-md>` (or `--all`).
+2. Agents read **agent-ready** for context; humans edit **docs/id2s** as source of truth.
+3. Each `.agent.yaml` should reference `meta.source_version` aligned to the source `current_version`.
 
 ## Skills
 
-- Documentos: `id2s-doc-*` para producir cada artefacto.
-- Roles: `id2s-role-*` para coaching; `id2s-role-project-manager` (Sebastian) para definir y navegar el workflow.
+- Documents: `id2s-doc-*` to produce each artifact (domain specialists).
+- Orchestrator: `id2s-role-project-manager` (Sebastian) — workflow config and index state only.
+- Domain specialists: other `id2s-role-*` skills generated from `role-agent.SKILL.md.template`.
+
+## Languages (`id2s-kit.config.yaml`)
+
+- `agentConversationLanguage` — coaching dialogue.
+- `documentationLanguage` — human artifact content.

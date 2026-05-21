@@ -1,48 +1,49 @@
 ---
 name: id2s-doc-business-requirements
-description: Producir o actualizar `business-requirements.md` (requisitos de negocio) siguiendo el workflow ID2S activo.
+description: Produce or update `business-requirements.md` following the active ID2S workflow step.
 ---
 
-# Skill: Documento — Requisitos de negocio (`id2s-doc-business-requirements`)
+# Skill: Document — Business requirements (`id2s-doc-business-requirements`)
 
-## Objetivo
+## Goal
 
-Completar `business-requirements.md` con reglas BR-xxx, FR-xxx testeables, glosario mínimo, capacidades P0/P1 y **Handoff pack** para `system-design.md`.
+Complete `business-requirements.md` with BR-xxx, testable FR-xxx, minimal glossary, P0/P1 capabilities, and **Handoff pack** for `system-design.md`.
 
-## Rutas (configurable)
+## Paths (from config)
 
-- **Escritura humana**: `{artifactsDir}/business-requirements.md`
-- **Lectura obligatoria**: `{artifactsDir}/product-intent.md` y su `.agent.yaml`
-- **Plantilla**: `kit/templates/id2s/business-requirements.md.template`
+- **Human write**: `{artifactsDir}/business-requirements.md`
+- **Required read**: `{artifactsDir}/product-intent.md` and its `.agent.yaml`
+- **Template**: `kit/templates/id2s/business-requirements.md.template`
 
-## Fuentes de verdad (orden)
+## Sources of truth (order)
 
-1. `product-intent.md` / agent-ready (sin contradecir)
-2. `_INDEX.yaml` — paso `business-requirements`
-3. Entrevista; no inventes reglas — marcá ambigüedades en tabla dedicada
+1. `product-intent.md` / agent-ready (no contradictions)
+2. `_INDEX.yaml` — `active_step_bindings` for `business-requirements`
+3. `kit/steps/business-requirements.step.yaml` — completion criteria
+4. User interview; do not invent rules — record ambiguities explicitly
 
-## Versionado y sync
+## Versioning and sync
 
-- Bump `current_version` en cambios sustanciales.
+- Bump `current_version` on substantial changes.
 - `npm run sync-agent-ready -- docs/id2s/business-requirements.md`
 
-## Gate de precondiciones
+## Preconditions
 
-- Requiere `product-intent.md` existente y coherente.
-- Si falta: advertí y ofrecé completar insumos mínimos en product-intent primero.
+- Requires existing, coherent `product-intent.md`.
+- If missing, warn and complete minimal product-intent inputs first.
 
-## Procedimiento
+## Procedure
 
-1. Leé product-intent y validá alineación de problema/alcance.
-2. **Supuestos validados** y **capacidades** P0/P1.
-3. **Glosario** — términos críticos sin sinónimos ambiguos.
-4. **FR-xxx** con criterio de aceptación testeable por capability P0.
-5. **BR-xxx** referenciando glosario; separá regla de implementación.
-6. **NFR negocio** con umbral o método de verificación.
-7. **Casos límite** y **ambigüedades abiertas** (no resolver en silencio).
-8. **Handoff pack** para arquitectura.
-9. Bump versión + sync.
+1. Read product-intent; validate problem/scope alignment.
+2. **Validated assumptions** and **capabilities** P0/P1.
+3. **Glossary** — critical terms without ambiguous synonyms.
+4. **FR-xxx** with testable acceptance criteria per P0 capability.
+5. **BR-xxx** referencing glossary; separate rule from implementation.
+6. **Business NFRs** with threshold or verification method.
+7. **Edge cases** and **open ambiguities** (do not resolve silently).
+8. **Handoff pack** for architecture.
+9. Bump version + sync.
 
-## Criterios de completitud
+## Completion criteria
 
-Step `business-requirements` en catálogo `kit/steps/` o checklist en `_INDEX`.
+Use `kit/steps/business-requirements.step.yaml` when that step is active in `workflow_state`.

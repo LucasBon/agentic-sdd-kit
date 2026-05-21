@@ -13,10 +13,7 @@ steps:
       - path: docs/id2s/01-project-brief.md
         template: kit/templates/id2s/01-project-brief.md.template
     doc_skill: id2s-doc-project-brief
-    suggested_role_skills:
-      - id2s-role-product-manager
-      - id2s-role-business-analyst
-      - id2s-role-project-leader
+    primary_role_skill: id2s-role-product-manager
     completion_criteria:
       - El problema y el usuario principal están definidos en una o dos frases verificables.
       - Hay al menos 3 restricciones o supuestos explícitos (negocio, compliance, tiempo, presupuesto o políticas).
@@ -35,10 +32,7 @@ steps:
       - path: docs/id2s/02-vision-and-scope.md
         template: kit/templates/id2s/02-vision-and-scope.md.template
     doc_skill: id2s-doc-vision-scope
-    suggested_role_skills:
-      - id2s-role-product-manager
-      - id2s-role-project-leader
-      - id2s-role-business-analyst
+    primary_role_skill: id2s-role-product-manager
     completion_criteria:
       - Objetivos de negocio y métricas de éxito están priorizados (top 3).
       - No-objetivos explícitos evitan deriva de alcance.
@@ -57,10 +51,7 @@ steps:
       - path: docs/id2s/03-capability-discovery.md
         template: kit/templates/id2s/03-capability-discovery.md.template
     doc_skill: id2s-doc-capability-discovery
-    suggested_role_skills:
-      - id2s-role-business-analyst
-      - id2s-role-product-manager
-      - id2s-role-architect
+    primary_role_skill: id2s-role-business-analyst
     completion_criteria:
       - Capacidades priorizadas (P0/P1) con valor esperado cada una.
       - Al menos un journey end-to-end por capacidad P0.
@@ -79,10 +70,7 @@ steps:
       - path: docs/id2s/04-domain-model.md
         template: kit/templates/id2s/04-domain-model.md.template
     doc_skill: id2s-doc-domain-model
-    suggested_role_skills:
-      - id2s-role-business-analyst
-      - id2s-role-architect
-      - id2s-role-technical-leader
+    primary_role_skill: id2s-role-business-analyst
     completion_criteria:
       - Glosario con términos de negocio y definiciones sin ambigüedad crítica.
       - Contextos delimitados candidatos con responsabilidad en una frase cada uno.
@@ -101,10 +89,7 @@ steps:
       - path: docs/id2s/05-requirements.md
         template: kit/templates/id2s/05-requirements.md.template
     doc_skill: id2s-doc-requirements
-    suggested_role_skills:
-      - id2s-role-business-analyst
-      - id2s-role-quality-specialist
-      - id2s-role-developer
+    primary_role_skill: id2s-role-business-analyst
     completion_criteria:
       - Requisitos funcionales priorizados con identificador estable (FR-xxx).
       - NFRs críticos (seguridad, rendimiento, disponibilidad, observabilidad) listados con umbral o método de verificación.
@@ -123,11 +108,7 @@ steps:
       - path: docs/id2s/06-architecture-adrs.md
         template: kit/templates/id2s/06-architecture-adrs.md.template
     doc_skill: id2s-doc-architecture-adrs
-    suggested_role_skills:
-      - id2s-role-architect
-      - id2s-role-technical-leader
-      - id2s-role-devops
-      - id2s-role-developer
+    primary_role_skill: id2s-role-architect
     completion_criteria:
       - Diagrama o descripción C4 nivel sistema y contenedores con responsabilidades.
       - Lista de integraciones externas con propósito y dueño técnico/nombre de servicio.

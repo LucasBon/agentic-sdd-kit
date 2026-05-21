@@ -1,14 +1,17 @@
 #!/usr/bin/env node
 /**
- * Resuelve skills de rol ID2S: plantilla + config.yaml → SKILL.md en destino.
+ * Resolves ID2S role skills: domain specialists from template + config;
+ * project manager orchestrator from static SKILL.md.
  */
 
 import fs from "node:fs/promises";
 import path from "node:path";
 import { parse as parseYaml } from "yaml";
 
+const ORCHESTRATOR_ROLE = "id2s-role-project-manager";
+
 function renderBulletList(items, { prefix = "- " } = {}) {
-  if (!items || items.length === 0) return "_Sin entradas configuradas._";
+  if (!items || items.length === 0) return "_No entries configured._";
   return items.map((item) => `${prefix}${item}`).join("\n");
 }
 
@@ -20,7 +23,7 @@ function getByPath(obj, pathStr) {
 }
 
 /**
- * Soporta bloques `{{#if agent.field}} ... {{/if}}` (sin espacios extra en el cierre).
+ * Supports `{{#if agent.field}} ... {{/if}}` (no extra spaces in closing tag).
  */
 function processConditionals(template, flat) {
   const re = /\{\{#if\s+([\w.]+)\}\}([\s\S]*?)\{\{\/if\}\}/g;
@@ -33,81 +36,26 @@ function processConditionals(template, flat) {
   });
 }
 
-function renderTechniques(techniques) {
-  if (!techniques || typeof techniques !== "object") return "";
-  const lines = ["### Técnicas disponibles (ofrecelas cuando aporten)", ""];
-  for (const [group, items] of Object.entries(techniques)) {
-    const title = group.charAt(0).toUpperCase() + group.slice(1);
-    lines.push(`#### ${title}`, "");
-    lines.push(renderBulletList(items), "");
-  }
-  return lines.join("\n").trim();
-}
-
-/**
- * Convierte `focus_areas` / `out_of_scope_tasks` / `owned_artifacts` desde string o lista.
- */
 function asMarkdownBlock(value) {
   if (value == null) return "";
   if (Array.isArray(value)) return renderBulletList(value.map(String));
   return String(value).trimEnd();
 }
 
-/**
- * Deriva campos esperados por `role-agent.SKILL.md.template` y mantiene compatibilidad
- * con configs antiguos (`persona_intro`, `boundaries`, `priorities_text`, etc.).
- */
-function normalizeAgent(agent, skill) {
+function normalizeAgent(agent) {
   const a = { ...agent };
 
   if (!a.focus_areas) {
-    if (a.priorities_text) {
-      a.focus_areas = String(a.priorities_text).trim();
-    } else if (Array.isArray(a.priorities) && a.priorities.length) {
-      a.focus_areas = a.priorities.map(String).join(" ");
-    } else if (a.persona_intro) {
-      a.focus_areas = String(a.persona_intro)
-        .split(/\n\n+/)[0]
-        .replace(/\s+/g, " ")
-        .trim()
-        .slice(0, 400);
-    } else {
-      a.focus_areas = "_Completá `agent.focus_areas` en `kit/skills/<rol>/config.yaml`._";
-    }
+    a.focus_areas = "_Complete `agent.focus_areas` in `kit/skills/<role>/config.yaml`._";
   } else {
     a.focus_areas = asMarkdownBlock(a.focus_areas);
   }
 
   if (!a.out_of_scope_tasks) {
-    if (Array.isArray(a.boundaries) && a.boundaries.length) {
-      a.out_of_scope_tasks = renderBulletList(a.boundaries);
-    } else {
-      a.out_of_scope_tasks = "_Completá `agent.out_of_scope_tasks` o `agent.boundaries` en config._";
-    }
+    a.out_of_scope_tasks = "_Complete `agent.out_of_scope_tasks` in config._";
   } else {
     a.out_of_scope_tasks = asMarkdownBlock(a.out_of_scope_tasks);
   }
-
-  if (!a.owned_artifacts) {
-    a.owned_artifacts = [
-      "_Sin `owned_artifacts` explícitos: confirmá con el usuario qué documentos persistir (ver `id2s-kit.config.yaml` → `artifactsDir` / `agentReadyDir`)._",
-    ];
-  }
-  const ownedList = Array.isArray(a.owned_artifacts)
-    ? a.owned_artifacts
-    : String(a.owned_artifacts)
-        .split("\n")
-        .map((l) => l.replace(/^-\s*/, "").trim())
-        .filter(Boolean);
-  const humanWritePaths = ownedList.filter(
-    (p) => p.endsWith(".md") && !p.includes(".agent.yaml")
-  );
-  if (humanWritePaths.length > 2) {
-    console.warn(
-      `[id2s-role] ${data.skill?.name || "role"}: owned_artifacts tiene ${humanWritePaths.length} documentos .md; se recomienda 1–2.`
-    );
-  }
-  a.owned_artifacts = asMarkdownBlock(a.owned_artifacts);
 
   const defaultTriggers = `Update artifacts only when:
 - The user explicitly requests documentation.
@@ -130,22 +78,10 @@ Do NOT update artifacts during early exploration or ambiguous discussions.`;
     a.write_triggers_block = defaultTriggers;
   }
 
-  if (a.additional_comments === undefined || a.additional_comments === null) {
-    const parts = [];
-    if (Array.isArray(a.typical_questions) && a.typical_questions.length) {
-      parts.push("### Preguntas típicas (para destrabar)", "", renderBulletList(a.typical_questions), "");
-    }
-    if (Array.isArray(a.challenges) && a.challenges.length) {
-      parts.push("### Challenges (cuestioná al usuario)", "", renderBulletList(a.challenges), "");
-    }
-    const tech = renderTechniques(a.techniques);
-    if (tech) parts.push(tech, "");
-    if (Array.isArray(a.expected_output) && a.expected_output.length) {
-      parts.push("### Salida esperada en una sesión de coaching", "", renderBulletList(a.expected_output), "");
-    }
-    a.additional_comments = parts.join("\n").trimEnd();
-  } else {
+  if (a.additional_comments != null && String(a.additional_comments).trim()) {
     a.additional_comments = String(a.additional_comments).trimEnd();
+  } else {
+    a.additional_comments = "";
   }
 
   if (a.challenge_level !== undefined && a.challenge_level !== null) {
@@ -155,9 +91,13 @@ Do NOT update artifacts during early exploration or ambiguous discussions.`;
   return a;
 }
 
-function applyTemplate(template, data) {
-  const agent = normalizeAgent(data.agent || {}, data.skill || {});
-  const flat = { skill: data.skill || {}, agent };
+function applyTemplate(template, data, kitConfig) {
+  const agent = normalizeAgent(data.agent || {});
+  const kit = {
+    agentConversationLanguage: kitConfig.agentConversationLanguage ?? "en",
+    documentationLanguage: kitConfig.documentationLanguage ?? "en",
+  };
+  const flat = { skill: data.skill || {}, agent, kit };
   let out = processConditionals(template, flat);
   const walk = (obj, prefix) => {
     for (const [k, v] of Object.entries(obj)) {
@@ -170,13 +110,36 @@ function applyTemplate(template, data) {
   return out;
 }
 
-export async function resolveRoleSkills({ kitRoot, skillsSrc, skillsDest, dryRun }) {
+async function copyOrchestratorSkill({ skillsSrc, skillsDest, dryRun }) {
+  const srcFile = path.join(skillsSrc, ORCHESTRATOR_ROLE, "SKILL.md");
+  const destDir = path.join(skillsDest, ORCHESTRATOR_ROLE);
+  const destFile = path.join(destDir, "SKILL.md");
+  try {
+    await fs.access(srcFile);
+  } catch {
+    console.warn(`Missing orchestrator SKILL.md at ${srcFile}`);
+    return;
+  }
+  if (dryRun) {
+    console.log(`[dry-run] copy orchestrator ${ORCHESTRATOR_ROLE} -> ${destFile}`);
+    return;
+  }
+  await fs.mkdir(destDir, { recursive: true });
+  await fs.copyFile(srcFile, destFile);
+  console.log(`Copied orchestrator skill: ${ORCHESTRATOR_ROLE}`);
+}
+
+export async function resolveRoleSkills({ kitRoot, skillsSrc, skillsDest, dryRun, kitConfig = {} }) {
   const templatePath = path.join(kitRoot, "templates", "skills", "role-agent.SKILL.md.template");
   const template = await fs.readFile(templatePath, "utf8");
   const entries = await fs.readdir(skillsSrc, { withFileTypes: true });
   const roleDirs = entries.filter((e) => e.isDirectory() && e.name.startsWith("id2s-role-"));
 
+  await copyOrchestratorSkill({ skillsSrc, skillsDest, dryRun });
+
   for (const ent of roleDirs) {
+    if (ent.name === ORCHESTRATOR_ROLE) continue;
+
     const configPath = path.join(skillsSrc, ent.name, "config.yaml");
     try {
       await fs.access(configPath);
@@ -184,7 +147,7 @@ export async function resolveRoleSkills({ kitRoot, skillsSrc, skillsDest, dryRun
       continue;
     }
     const cfg = parseYaml(await fs.readFile(configPath, "utf8"));
-    const skillMd = applyTemplate(template, cfg);
+    const skillMd = applyTemplate(template, cfg, kitConfig);
     const destDir = path.join(skillsDest, ent.name);
     const destFile = path.join(destDir, "SKILL.md");
     if (dryRun) {
