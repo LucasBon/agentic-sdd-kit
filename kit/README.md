@@ -41,7 +41,8 @@ agentReadyDir: agent-ready-docs/id2s
 ```
 
 - **Orchestrator**: `id2s-role-project-manager` (Sebastian) — static `SKILL.md`, updates indices.
-- **Domain specialists**: other `id2s-role-*` — generated from `role-agent.SKILL.md.template`.
+- **Domain specialists**: `id2s-role-*` (coach) and `id2s-role-*-delivery` — from `role-agent.SKILL.md.template` and `role-agent-delivery.SKILL.md.template` (same `config.yaml` per role).
+- **Engagement profile**: each step sets `engagement_profile: coach | delivery` in `kit/steps/<id>.step.yaml` (default `coach`). Index exposes `assigned_role_skill` for the skill to invoke.
 
 | Script | Purpose |
 |--------|---------|
@@ -49,5 +50,6 @@ agentReadyDir: agent-ready-docs/id2s
 | `npm run compose-workflow` | Path B — compose `workflows/<id>.yaml` from step ids |
 | `npm run scaffold-step` | Path B — new project step + template + doc skill stub |
 | `npm run advance-workflow` | Advance `_INDEX` after a step is completed |
+| `npm run set-step-profile` | Switch active step to `coach` or `delivery` profile |
 
 Legacy: `kit/workflows/green-field.v1.yaml` (inline steps). Prefer `green-field.v2.yaml`.

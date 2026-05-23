@@ -54,17 +54,18 @@ flowchart TD
 - **Status**: `in_progress`
 - **Active step(s)**: `vision-scope`
 - **Completed**: `project-brief`
+- **Active stage**: `vision`
 
 ## Step sequence (reference only)
 
-| Order | Step ID | Stage | Parallel stage | Primary role | Artifact |
-|------:|---------|-------|----------------|--------------|----------|
-| 1 | `project-brief` | `brief` | no | `id2s-role-product-manager` | `docs/id2s/01-project-brief.md` |
-| 2 | `vision-scope` | `vision` | no | `id2s-role-product-manager` | `docs/id2s/02-vision-and-scope.md` |
-| 3 | `capability-discovery` | `discovery` | no | `id2s-role-business-analyst` | `docs/id2s/03-capability-discovery.md` |
-| 4 | `domain-model` | `domain` | no | `id2s-role-business-analyst` | `docs/id2s/04-domain-model.md` |
-| 5 | `requirements` | `specify` | no | `id2s-role-business-analyst` | `docs/id2s/05-requirements.md` |
-| 6 | `architecture-adrs` | `design` | no | `id2s-role-architect` | `docs/id2s/06-architecture-adrs.md` |
+| Order | Step ID | Stage | Parallel | Profile | Assigned skill | Artifact |
+|------:|---------|-------|----------|---------|----------------|----------|
+| 1 | `project-brief` | `brief` | no | `coach` | `id2s-role-product-manager` | `docs/id2s/01-project-brief.md` |
+| 2 | `vision-scope` | `vision` | no | `coach` | `id2s-role-product-manager` | `docs/id2s/02-vision-and-scope.md` |
+| 3 | `capability-discovery` | `discovery` | no | `coach` | `id2s-role-business-analyst` | `docs/id2s/03-capability-discovery.md` |
+| 4 | `domain-model` | `domain` | no | `coach` | `id2s-role-business-analyst` | `docs/id2s/04-domain-model.md` |
+| 5 | `requirements` | `specify` | no | `coach` | `id2s-role-business-analyst` | `docs/id2s/05-requirements.md` |
+| 6 | `architecture-adrs` | `design` | no | `coach` | `id2s-role-architect` | `docs/id2s/06-architecture-adrs.md` |
 
 ## Transitions
 

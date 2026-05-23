@@ -11,6 +11,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { stringify as stringifyYaml } from "yaml";
 import { loadKitConfig, pathExists } from "../bootstrap/load-kit-config.mjs";
+import { normalizeEngagementProfile } from "../bootstrap/role-skill-ids.mjs";
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 
@@ -26,7 +27,7 @@ function parseArgs(argv) {
     else if (a === "--input") {
       out.inputs = out.inputs || [];
       out.inputs.push(argv[++i]);
-    }
+    } else if (a === "--profile") out.profile = argv[++i];
   }
   return out;
 }
@@ -39,7 +40,7 @@ async function main() {
   const args = parseArgs(process.argv);
   if (!args.id || !args.title || !args.role || !args.artifact) {
     console.error(
-      "Usage: scaffold-step --id <kebab-id> --title <title> --role id2s-role-* --artifact docs/id2s/<file>.md [--objective <text>] [--input path]"
+      "Usage: scaffold-step --id <kebab-id> --title <title> --role id2s-role-* --artifact docs/id2s/<file>.md [--profile coach|delivery] [--objective <text>] [--input path]"
     );
     process.exit(1);
   }
@@ -72,6 +73,7 @@ async function main() {
     title: args.title,
     objective: args.objective || `Complete ${args.title} for the project.`,
     primary_role_skill: args.role,
+    engagement_profile: normalizeEngagementProfile(args.profile),
     doc_skill: docSkillId(args.id),
     inputs,
     outputs: [{ path: args.artifact.replace(/\\/g, "/"), template: templateRel }],

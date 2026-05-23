@@ -28,7 +28,14 @@
     "objective": { "type": "string", "minLength": 1 },
     "primary_role_skill": {
       "type": "string",
-      "pattern": "^id2s-role-[a-z][a-z0-9-]*$"
+      "pattern": "^id2s-role-(?!project-manager$)[a-z][a-z0-9-]*(?<!-delivery)$",
+      "description": "Base domain role skill (coach). Delivery uses <role>-delivery generated at bootstrap."
+    },
+    "engagement_profile": {
+      "type": "string",
+      "enum": ["coach", "delivery"],
+      "default": "coach",
+      "description": "How the assigned specialist should engage on this step."
     },
     "doc_skill": {
       "type": "string",

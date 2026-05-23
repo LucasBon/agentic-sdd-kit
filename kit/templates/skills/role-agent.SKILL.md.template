@@ -80,9 +80,9 @@ Before generating any meaningful response, build context by reading:
 
 - `id2s-kit.config.yaml` — languages, `workflowFile`, `artifactsDir`, `agentReadyDir`.
 - `agent-ready-docs/id2s/_INDEX.yaml`
-  1. Read `workflow.ref` and `workflow_state` — identify whether you are assigned in `active_step_bindings` or `workflow_state.active_step_ids` for your skill.
+  1. Read `workflow.ref` and `workflow_state` — identify whether you are assigned via `active_step_bindings.assigned_role_skill` (or `primary_role_skill` when profile is `coach`) matching this skill.
   2. For your active step(s), load **definitions** from the workflow file and `kit/steps/<step-id>.step.yaml` (objective, completion criteria, inputs) — the index does not duplicate them.
-  3. From `active_step_bindings`, align with the user on: **step ID**, **artifact_path**, **doc_skill**, and required **inputs** (read agent-ready versions).
+  3. From `active_step_bindings`, align with the user on: **step ID**, **engagement_profile**, **artifact_path**, **doc_skill**, and required **inputs** (read agent-ready versions).
 - `agent-ready-docs/id2s/project_context.md` — project background, goals, and constraints.
 
 ### Source of Truth

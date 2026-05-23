@@ -11,7 +11,8 @@
     "list-catalog": "node kit/scripts/list-catalog.mjs",
     "compose-workflow": "node kit/scripts/compose-workflow.mjs",
     "scaffold-step": "node kit/scripts/scaffold-step.mjs",
-    "advance-workflow": "node kit/scripts/advance-workflow.mjs"
+    "advance-workflow": "node kit/scripts/advance-workflow.mjs",
+    "set-step-profile": "node kit/scripts/set-step-profile.mjs"
   },
   "dependencies": {
     "ajv": "^8.17.1",

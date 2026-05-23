@@ -28,7 +28,10 @@ async function main() {
   const steps = await listCatalogSteps(ctx);
   for (const s of steps) {
     const doc = parseYaml(await fs.readFile(s.path, "utf8"));
-    console.log(`- [${s.scope}] ${s.id} — ${doc.title} → ${doc.primary_role_skill}`);
+    const profile = doc.engagement_profile || "coach";
+    console.log(
+      `- [${s.scope}] ${s.id} — ${doc.title} → ${doc.primary_role_skill} (${profile})`
+    );
   }
 
   console.log("\nSet active workflow in id2s-kit.config.yaml:");

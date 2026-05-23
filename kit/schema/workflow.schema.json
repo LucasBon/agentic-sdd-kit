@@ -148,7 +148,12 @@
         "primary_template": { "type": "string" },
         "primary_role_skill": {
           "type": "string",
-          "pattern": "^id2s-role-[a-z][a-z0-9-]*$"
+          "pattern": "^id2s-role-(?!project-manager$)[a-z][a-z0-9-]*(?<!-delivery)$"
+        },
+        "engagement_profile": {
+          "type": "string",
+          "enum": ["coach", "delivery"],
+          "default": "coach"
         },
         "doc_skill": {
           "type": "string",

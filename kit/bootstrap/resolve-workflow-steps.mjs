@@ -5,6 +5,7 @@
  */
 
 import { loadStepFromCatalog } from "./step-catalog.mjs";
+import { engagementProfileFromStep } from "./role-skill-ids.mjs";
 
 /**
  * @typedef {object} ResolvedStep
@@ -12,6 +13,7 @@ import { loadStepFromCatalog } from "./step-catalog.mjs";
  * @property {string} title
  * @property {string} objective
  * @property {string} primary_role_skill
+ * @property {"coach" | "delivery"} engagement_profile
  * @property {string} doc_skill
  * @property {object[]} inputs
  * @property {object[]} outputs
@@ -57,6 +59,7 @@ export function normalizeCatalogStep(catalogStep, meta) {
     title: catalogStep.title,
     objective: catalogStep.objective,
     primary_role_skill: catalogStep.primary_role_skill,
+    engagement_profile: engagementProfileFromStep(catalogStep),
     doc_skill: catalogStep.doc_skill,
     inputs: catalogStep.inputs || [],
     outputs,
@@ -102,6 +105,7 @@ export async function resolveWorkflow(ctx, workflow) {
           id: step.id,
           order: step.order,
           primary_role_skill: step.primary_role_skill,
+          engagement_profile: step.engagement_profile,
           artifact_path: step.outputs?.[0]?.path ?? null,
           doc_skill: step.doc_skill,
         });
@@ -118,6 +122,7 @@ export async function resolveWorkflow(ctx, workflow) {
     return {
       ...rest,
       primary_role_skill: step.primary_role_skill || null,
+      engagement_profile: engagementProfileFromStep(step),
       order: i + 1,
       stage_id: null,
       stage_parallel: false,

@@ -13,6 +13,7 @@ import {
   buildStepSequence,
   buildTransitions,
   activeStepBindings,
+  mergeActiveBindings,
   initialWorkflowState,
 } from "../bootstrap/render-workflow-index.mjs";
 
@@ -140,7 +141,10 @@ async function main() {
     completed_step_ids: completed,
     notes: `Advanced past ${complete} at ${new Date().toISOString()}`,
   };
-  index.active_step_bindings = activeStepBindings(resolved, next.active_step_ids, config);
+  index.active_step_bindings = mergeActiveBindings(
+    activeStepBindings(resolved, next.active_step_ids, config),
+    index.active_step_bindings
+  );
 
   await fs.writeFile(agentIndexPath, stringifyYaml(index), "utf8");
 
@@ -152,7 +156,9 @@ async function main() {
   console.log(`Status: ${next.status}`);
   if (index.active_step_bindings?.[0]) {
     const b = index.active_step_bindings[0];
-    console.log(`Next role: ${b.primary_role_skill}, doc: ${b.doc_skill}`);
+    console.log(
+      `Next: profile=${b.engagement_profile}, skill=${b.assigned_role_skill}, doc=${b.doc_skill}`
+    );
   }
 }
 

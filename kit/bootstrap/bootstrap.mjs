@@ -22,6 +22,7 @@ import {
   mergeWorkflowState,
   buildMermaidDiagram,
   activeStepBindings,
+  mergeActiveBindings,
   renderHumanIndex,
   renderAgentReadyIndex,
 } from "./render-workflow-index.mjs";
@@ -130,7 +131,8 @@ alwaysApply: false
 
 - Documents: \`id2s-doc-*\` to produce each artifact (domain specialists).
 - Orchestrator: \`id2s-role-project-manager\` (Sebastian) — workflow config and index state only.
-- Domain specialists: other \`id2s-role-*\` skills generated from \`role-agent.SKILL.md.template\`.
+- Domain specialists: \`id2s-role-*\` (coach) and \`id2s-role-*-delivery\` from \`role-agent.SKILL.md.template\` / \`role-agent-delivery.SKILL.md.template\`.
+- Step \`engagement_profile\` in \`kit/steps/*.step.yaml\` (\`coach\` | \`delivery\`); runtime override via \`npm run set-step-profile\`.
 
 ## Languages (\`id2s-kit.config.yaml\`)
 
@@ -263,9 +265,12 @@ async function main() {
     existingIndex?.workflow?.id,
     freshState
   );
-  const activeBindings = workflow
+  let activeBindings = workflow
     ? activeStepBindings(workflow.steps, workflowState.active_step_ids, config)
     : [];
+  if (workflow && existingIndex?.active_step_bindings?.length) {
+    activeBindings = mergeActiveBindings(activeBindings, existingIndex.active_step_bindings);
+  }
   const mermaid = workflow ? buildMermaidDiagram(workflow.steps, workflow.stages) : buildMermaidDiagram([], null);
 
   const catalogCtx = buildCatalogContext(kitRoot, repoRoot, config);

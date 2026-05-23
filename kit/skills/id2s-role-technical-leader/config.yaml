@@ -3,6 +3,9 @@ skill:
   description: >-
     Activates Alex as Tech Lead for the ID2S Kit. Use for team standards, executable
     decomposition, delivery risks, and engineering quality.
+  description_delivery: >-
+    Activates Alex in delivery mode as Tech Lead — drives the active ID2S step
+    to completion criteria (engineering plan, standards, risks) with validated updates.
 
 agent:
   display_name: Alex
@@ -20,3 +23,7 @@ agent:
     When technical milestones and engineering standards are agreed;
     when the user requests capturing delivery plan or technical risks in the artifact;
     when ADR validation experiments are ready to document.
+  write_triggers_delivery: >-
+    When engineering milestones or standards close a criterion with user validation;
+    when technical risks or plans are confirmed for the artifact;
+    when the user approves persisting tech-lead content to the artifact.

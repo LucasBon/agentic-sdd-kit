@@ -25,7 +25,8 @@ alwaysApply: false
 
 - Documents: `id2s-doc-*` to produce each artifact (domain specialists).
 - Orchestrator: `id2s-role-project-manager` (Sebastian) — workflow config and index state only.
-- Domain specialists: other `id2s-role-*` skills generated from `role-agent.SKILL.md.template`.
+- Domain specialists: `id2s-role-*` (coach) and `id2s-role-*-delivery` from `role-agent.SKILL.md.template` / `role-agent-delivery.SKILL.md.template`.
+- Step `engagement_profile` in `kit/steps/*.step.yaml` (`coach` | `delivery`); runtime override via `npm run set-step-profile`.
 
 ## Languages (`id2s-kit.config.yaml`)
 

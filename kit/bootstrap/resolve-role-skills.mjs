@@ -1,14 +1,13 @@
 #!/usr/bin/env node
 /**
- * Resolves ID2S role skills: domain specialists from template + config;
+ * Resolves ID2S role skills: domain specialists (coach + delivery) from templates + config;
  * project manager orchestrator from static SKILL.md.
  */
 
 import fs from "node:fs/promises";
 import path from "node:path";
 import { parse as parseYaml } from "yaml";
-
-const ORCHESTRATOR_ROLE = "id2s-role-project-manager";
+import { ORCHESTRATOR_ROLE, deliverySkillId } from "./role-skill-ids.mjs";
 
 function renderBulletList(items, { prefix = "- " } = {}) {
   if (!items || items.length === 0) return "_No entries configured._";
@@ -42,7 +41,7 @@ function asMarkdownBlock(value) {
   return String(value).trimEnd();
 }
 
-function normalizeAgent(agent) {
+function normalizeAgent(agent, { mode = "coach" } = {}) {
   const a = { ...agent };
 
   if (!a.focus_areas) {
@@ -57,23 +56,39 @@ function normalizeAgent(agent) {
     a.out_of_scope_tasks = asMarkdownBlock(a.out_of_scope_tasks);
   }
 
-  const defaultTriggers = `Update artifacts only when:
+  const defaultCoachTriggers = `Update artifacts only when:
 - The user explicitly requests documentation.
 - A decision has been clearly made and validated.
 - A section has been sufficiently explored and confirmed.
 
 Do NOT update artifacts during early exploration or ambiguous discussions.`;
 
-  if (a.write_triggers != null && String(a.write_triggers).trim()) {
-    const lines = String(a.write_triggers)
+  const defaultDeliveryTriggers = `Update artifacts when:
+- A completion criterion can be closed with user-validated content.
+- The user confirms a proposed section or edit.
+- The user explicitly requests persisting progress to the artifact.
+
+Do NOT persist speculative or unvalidated content.`;
+
+  const triggersRaw =
+    mode === "delivery"
+      ? a.write_triggers_delivery ?? a.write_triggers
+      : a.write_triggers;
+
+  const defaultTriggers = mode === "delivery" ? defaultDeliveryTriggers : defaultCoachTriggers;
+
+  if (triggersRaw != null && String(triggersRaw).trim()) {
+    const lines = String(triggersRaw)
       .trim()
       .split(/\n|[;]/)
       .map((l) => l.trim())
       .filter(Boolean);
     const bullets = lines.map((l) => `- ${l.replace(/^-\s*/, "")}`).join("\n");
-    a.write_triggers_block = `${bullets}
-
-Do NOT update artifacts during early exploration or ambiguous discussions.`;
+    const coachGuard =
+      mode === "coach"
+        ? "\n\nDo NOT update artifacts during early exploration or ambiguous discussions."
+        : "\n\nDo NOT persist speculative or unvalidated content.";
+    a.write_triggers_block = `${bullets}${coachGuard}`;
   } else {
     a.write_triggers_block = defaultTriggers;
   }
@@ -91,8 +106,8 @@ Do NOT update artifacts during early exploration or ambiguous discussions.`;
   return a;
 }
 
-function applyTemplate(template, data, kitConfig) {
-  const agent = normalizeAgent(data.agent || {});
+function applyTemplate(template, data, kitConfig, { mode = "coach" } = {}) {
+  const agent = normalizeAgent(data.agent || {}, { mode });
   const kit = {
     agentConversationLanguage: kitConfig.agentConversationLanguage ?? "en",
     documentationLanguage: kitConfig.documentationLanguage ?? "en",
@@ -108,6 +123,29 @@ function applyTemplate(template, data, kitConfig) {
   };
   walk(flat, "");
   return out;
+}
+
+function defaultDeliveryDescription(cfg) {
+  const title = cfg.agent?.title || "specialist";
+  const name = cfg.agent?.display_name || "the specialist";
+  return `Activates ${name} in delivery mode as ${title} for the ID2S Kit — drives the active workflow step to completion criteria with validated artifact updates.`;
+}
+
+/**
+ * @param {object} cfg — parsed config.yaml
+ */
+function buildDeliveryConfig(cfg) {
+  const baseName = cfg.skill?.name;
+  if (!baseName) throw new Error("config.yaml missing skill.name");
+  return {
+    skill: {
+      name: deliverySkillId(baseName),
+      description:
+        cfg.skill?.description_delivery?.trim() ||
+        defaultDeliveryDescription(cfg),
+    },
+    agent: cfg.agent || {},
+  };
 }
 
 async function copyOrchestratorSkill({ skillsSrc, skillsDest, dryRun }) {
@@ -129,9 +167,27 @@ async function copyOrchestratorSkill({ skillsSrc, skillsDest, dryRun }) {
   console.log(`Copied orchestrator skill: ${ORCHESTRATOR_ROLE}`);
 }
 
+async function writeRoleSkill({ destDir, skillMd, dryRun, label }) {
+  const destFile = path.join(destDir, "SKILL.md");
+  if (dryRun) {
+    console.log(`[dry-run] resolve role ${label} -> ${destFile}`);
+    return;
+  }
+  await fs.mkdir(destDir, { recursive: true });
+  await fs.writeFile(destFile, skillMd, "utf8");
+  console.log(`Resolved role skill: ${label}`);
+}
+
 export async function resolveRoleSkills({ kitRoot, skillsSrc, skillsDest, dryRun, kitConfig = {} }) {
-  const templatePath = path.join(kitRoot, "templates", "skills", "role-agent.SKILL.md.template");
-  const template = await fs.readFile(templatePath, "utf8");
+  const coachTemplatePath = path.join(kitRoot, "templates", "skills", "role-agent.SKILL.md.template");
+  const deliveryTemplatePath = path.join(
+    kitRoot,
+    "templates",
+    "skills",
+    "role-agent-delivery.SKILL.md.template"
+  );
+  const coachTemplate = await fs.readFile(coachTemplatePath, "utf8");
+  const deliveryTemplate = await fs.readFile(deliveryTemplatePath, "utf8");
   const entries = await fs.readdir(skillsSrc, { withFileTypes: true });
   const roleDirs = entries.filter((e) => e.isDirectory() && e.name.startsWith("id2s-role-"));
 
@@ -147,16 +203,23 @@ export async function resolveRoleSkills({ kitRoot, skillsSrc, skillsDest, dryRun
       continue;
     }
     const cfg = parseYaml(await fs.readFile(configPath, "utf8"));
-    const skillMd = applyTemplate(template, cfg, kitConfig);
-    const destDir = path.join(skillsDest, ent.name);
-    const destFile = path.join(destDir, "SKILL.md");
-    if (dryRun) {
-      console.log(`[dry-run] resolve role ${ent.name} -> ${destFile}`);
-    } else {
-      await fs.mkdir(destDir, { recursive: true });
-      await fs.writeFile(destFile, skillMd, "utf8");
-      console.log(`Resolved role skill: ${ent.name}`);
-    }
+
+    const coachMd = applyTemplate(coachTemplate, cfg, kitConfig, { mode: "coach" });
+    await writeRoleSkill({
+      destDir: path.join(skillsDest, ent.name),
+      skillMd: coachMd,
+      dryRun,
+      label: ent.name,
+    });
+
+    const deliveryCfg = buildDeliveryConfig(cfg);
+    const deliveryMd = applyTemplate(deliveryTemplate, deliveryCfg, kitConfig, { mode: "delivery" });
+    await writeRoleSkill({
+      destDir: path.join(skillsDest, deliverySkillId(ent.name)),
+      skillMd: deliveryMd,
+      dryRun,
+      label: deliverySkillId(ent.name),
+    });
   }
 }
 

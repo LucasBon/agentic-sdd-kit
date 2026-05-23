@@ -3,6 +3,9 @@ skill:
   description: >-
     Activates Alex as QA/QE for the ID2S Kit. Use for testability, risks, verification
     strategy, and definition of done from requirements.
+  description_delivery: >-
+    Activates Alex in delivery mode as QA/QE — drives the active ID2S step
+    to completion criteria (verification, DoD, testability) with validated artifact updates.
 
 agent:
   display_name: Alex
@@ -20,3 +23,7 @@ agent:
     When test oracles and risk-based cases are agreed with the user;
     when quality blockers (data, environments) are explicitly documented;
     when the user requests formalizing verification strategy in the artifact.
+  write_triggers_delivery: >-
+    When test strategy or quality criteria meet step completion with user validation;
+    when oracles, risks, or DoD items are confirmed for the artifact;
+    when the user approves persisting verification content to the artifact.

@@ -5,20 +5,24 @@
  */
 
 import { agentReadyPathFromArtifact } from "./agent-ready-path.mjs";
+import { enrichRoleAssignment } from "./role-skill-ids.mjs";
 
 /**
  * @param {import("./resolve-workflow-steps.mjs").ResolvedStep[]} steps
  */
 export function buildStepSequence(steps) {
-  return (steps || []).map((s) => ({
-    id: s.id,
-    order: s.order,
-    stage_id: s.stage_id ?? null,
-    stage_parallel: !!s.stage_parallel,
-    primary_role_skill: s.primary_role_skill ?? null,
-    artifact_path: s.outputs?.[0]?.path ?? null,
-    doc_skill: s.doc_skill ?? null,
-  }));
+  return (steps || []).map((s) =>
+    enrichRoleAssignment({
+      id: s.id,
+      order: s.order,
+      stage_id: s.stage_id ?? null,
+      stage_parallel: !!s.stage_parallel,
+      primary_role_skill: s.primary_role_skill ?? null,
+      engagement_profile: s.engagement_profile,
+      artifact_path: s.outputs?.[0]?.path ?? null,
+      doc_skill: s.doc_skill ?? null,
+    })
+  );
 }
 
 /**
@@ -200,10 +204,11 @@ export function activeStepBindings(steps, activeStepIds, config) {
     .map((id) => {
       const s = byId[id];
       const artifactPath = s.outputs?.[0]?.path ?? null;
-      return {
+      return enrichRoleAssignment({
         step_id: id,
         title: s.title,
         primary_role_skill: s.primary_role_skill ?? null,
+        engagement_profile: s.engagement_profile,
         artifact_path: artifactPath,
         agent_ready_path: artifactPath
           ? agentReadyPathFromArtifact(artifactPath, config.agentReadyDir)
@@ -213,9 +218,11 @@ export function activeStepBindings(steps, activeStepIds, config) {
           s.stage_id != null
             ? `kit/steps/${id}.step.yaml`
             : `workflow step inline or kit/steps/${id}.step.yaml`,
-      };
+      });
     });
 }
+
+export { mergeActiveBindings } from "./role-skill-ids.mjs";
 
 /**
  * @param {object} params
@@ -309,11 +316,11 @@ export function renderHumanIndex({
   lines.push("");
   lines.push("## Step sequence (reference only)");
   lines.push("");
-  lines.push("| Order | Step ID | Stage | Parallel stage | Primary role | Artifact |");
-  lines.push("|------:|---------|-------|----------------|--------------|----------|");
+  lines.push("| Order | Step ID | Stage | Parallel | Profile | Assigned skill | Artifact |");
+  lines.push("|------:|---------|-------|----------|---------|----------------|----------|");
   for (const s of stepSequence || []) {
     lines.push(
-      `| ${s.order} | \`${s.id}\` | ${s.stage_id ? `\`${s.stage_id}\`` : "—"} | ${s.stage_parallel ? "yes" : "no"} | \`${s.primary_role_skill || "—"}\` | \`${s.artifact_path || ""}\` |`
+      `| ${s.order} | \`${s.id}\` | ${s.stage_id ? `\`${s.stage_id}\`` : "—"} | ${s.stage_parallel ? "yes" : "no"} | \`${s.engagement_profile || "coach"}\` | \`${s.assigned_role_skill || s.primary_role_skill || "—"}\` | \`${s.artifact_path || ""}\` |`
     );
   }
   lines.push("");

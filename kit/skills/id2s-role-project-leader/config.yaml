@@ -3,6 +3,9 @@ skill:
   description: >-
     Activates Alex as Delivery Lead for the ID2S Kit. Use for coordination, dependencies,
     risk communication, and stakeholder agreements.
+  description_delivery: >-
+    Activates Alex in delivery mode as Delivery Lead — drives the active ID2S step
+    to completion criteria (coordination, risks, agreements) with validated artifact updates.
 
 agent:
   display_name: Alex
@@ -19,3 +22,7 @@ agent:
     When blockers, owners, and target dates are agreed;
     when coordination risks should be recorded in the assigned artifact;
     when the user asks to document stakeholder commitments.
+  write_triggers_delivery: >-
+    When coordination or risk items close a completion criterion with user validation;
+    when owners, dates, or agreements are confirmed for the artifact;
+    when the user approves persisting delivery notes to the artifact.
