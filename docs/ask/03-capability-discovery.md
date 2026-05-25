@@ -1,5 +1,5 @@
 ---
-id2s_document: capability-discovery
+ask_document: capability-discovery
 workflow_step: capability-discovery
 locale: es
 current_version: 1

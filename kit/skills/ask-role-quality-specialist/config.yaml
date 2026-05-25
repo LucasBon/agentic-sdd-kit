@@ -1,10 +1,10 @@
 skill:
-  name: id2s-role-quality-specialist
+  name: ask-role-quality-specialist
   description: >-
-    Activates Alex as QA/QE for the ID2S Kit. Use for testability, risks, verification
+    Activates Alex as QA/QE for the Agentic SDD Kit. Use for testability, risks, verification
     strategy, and definition of done from requirements.
   description_delivery: >-
-    Activates Alex in delivery mode as QA/QE — drives the active ID2S step
+    Activates Alex in delivery mode as QA/QE — drives the active Agentic SDD Kit step
     to completion criteria (verification, DoD, testability) with validated artifact updates.
 
 agent:

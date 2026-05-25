@@ -1,9 +1,9 @@
 ---
-name: id2s-doc-business-requirements
-description: Produce or update `business-requirements.md` following the active ID2S workflow step.
+name: ask-doc-business-requirements
+description: Produce or update `business-requirements.md` following the active Agentic SDD Kit workflow step.
 ---
 
-# Skill: Document — Business requirements (`id2s-doc-business-requirements`)
+# Skill: Document — Business requirements (`ask-doc-business-requirements`)
 
 ## Goal
 
@@ -13,7 +13,7 @@ Complete `business-requirements.md` with BR-xxx, testable FR-xxx, minimal glossa
 
 - **Human write**: `{artifactsDir}/business-requirements.md`
 - **Required read**: `{artifactsDir}/product-intent.md` and its `.agent.yaml`
-- **Template**: `kit/templates/id2s/business-requirements.md.template`
+- **Template**: `kit/templates/ask/business-requirements.md.template`
 
 ## Sources of truth (order)
 
@@ -25,7 +25,7 @@ Complete `business-requirements.md` with BR-xxx, testable FR-xxx, minimal glossa
 ## Versioning and sync
 
 - Bump `current_version` on substantial changes.
-- `npm run sync-agent-ready -- docs/id2s/business-requirements.md`
+- `npm run sync-agent-ready -- docs/ask/business-requirements.md`
 
 ## Preconditions
 

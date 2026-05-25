@@ -1,6 +1,6 @@
 meta:
   id: architecture-adrs
-  source_path: docs/id2s/06-architecture-adrs.md
+  source_path: docs/ask/06-architecture-adrs.md
   source_version: 1
   locale: es
   workflow_step: architecture-adrs

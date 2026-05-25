@@ -1,5 +1,5 @@
 ---
-id2s_document: domain-model
+ask_document: domain-model
 workflow_step: domain-model
 locale: es
 current_version: 1

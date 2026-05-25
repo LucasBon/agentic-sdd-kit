@@ -3,18 +3,18 @@ version: 1.0.0
 title: Vision and scope
 objective: Align desired outcome, success metrics, non-goals, and product assumptions.
 
-primary_role_skill: id2s-role-product-manager
-doc_skill: id2s-doc-vision-scope
+primary_role_skill: ask-role-product-manager
+doc_skill: ask-doc-vision-scope
 
 inputs:
   - kind: artifact
-    path: docs/id2s/01-project-brief.md
+    path: docs/ask/01-project-brief.md
     required: true
     description: Project brief must exist to anchor vision and scope.
 
 outputs:
-  - path: docs/id2s/02-vision-and-scope.md
-    template: kit/templates/id2s/02-vision-and-scope.md.template
+  - path: docs/ask/02-vision-and-scope.md
+    template: kit/templates/ask/02-vision-and-scope.md.template
 
 completion_criteria:
   - Business objectives and success metrics are prioritized (top 3).

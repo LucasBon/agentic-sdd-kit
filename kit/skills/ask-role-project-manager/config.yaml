@@ -1,8 +1,8 @@
 # Orchestrator role — SKILL.md is authored directly (not generated from role-agent template).
 skill:
-  name: id2s-role-project-manager
+  name: ask-role-project-manager
   description: >-
-    Activates Sebastian, Project Manager orchestrator for the ID2S Kit. Use to define
+    Activates Sebastian, Project Manager orchestrator for the Agentic SDD Kit. Use to define
     the workflow, configure the project, track progress, and route work to specialists.
 
 agent:

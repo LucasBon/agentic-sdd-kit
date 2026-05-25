@@ -3,18 +3,18 @@ version: 1.0.0
 title: Domain model (lightweight strategy)
 objective: Stabilize ubiquitous language, candidate bounded contexts, and relationships without exhaustive tactical design.
 
-primary_role_skill: id2s-role-business-analyst
-doc_skill: id2s-doc-domain-model
+primary_role_skill: ask-role-business-analyst
+doc_skill: ask-doc-domain-model
 
 inputs:
   - kind: artifact
-    path: docs/id2s/03-capability-discovery.md
+    path: docs/ask/03-capability-discovery.md
     required: true
     description: Capabilities and journeys as modeling input.
 
 outputs:
-  - path: docs/id2s/04-domain-model.md
-    template: kit/templates/id2s/04-domain-model.md.template
+  - path: docs/ask/04-domain-model.md
+    template: kit/templates/ask/04-domain-model.md.template
 
 completion_criteria:
   - Glossary with business terms and definitions without critical ambiguity.

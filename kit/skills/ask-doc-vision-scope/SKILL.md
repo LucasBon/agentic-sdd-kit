@@ -1,9 +1,9 @@
 ---
-name: id2s-doc-vision-scope
+name: ask-doc-vision-scope
 description: Produce or update `02-vision-and-scope.md` anchored to the project brief.
 ---
 
-# Skill: Document — Vision and scope (`id2s-doc-vision-scope`)
+# Skill: Document — Vision and scope (`ask-doc-vision-scope`)
 
 ## Goal
 
@@ -11,14 +11,14 @@ Define **vision**, **measurable objectives**, **non-goals**, and **assumptions**
 
 ## Paths
 
-- Write: `{artifactsDir}/02-vision-and-scope.md` (see `id2s-kit.config.yaml`)
+- Write: `{artifactsDir}/02-vision-and-scope.md` (see `ask-kit.config.yaml`)
 - Read: `{agentReadyDir}/02-vision-and-scope.agent.yaml`, `_INDEX.yaml`
-- Template: `kit/templates/id2s/02-vision-and-scope.md.template`
+- Template: `kit/templates/ask/02-vision-and-scope.md.template`
 
 ## Preconditions
 
 - `{artifactsDir}/01-project-brief.md` must exist.
-- If the brief is incomplete, complete `id2s-doc-project-brief` first.
+- If the brief is incomplete, complete `ask-doc-project-brief` first.
 
 ## Sources of truth (order)
 
@@ -30,7 +30,7 @@ Define **vision**, **measurable objectives**, **non-goals**, and **assumptions**
 ## Versioning and sync
 
 - Increment `current_version` + `versions` on substantial changes.
-- `npm run sync-agent-ready -- docs/id2s/02-vision-and-scope.md`
+- `npm run sync-agent-ready -- docs/ask/02-vision-and-scope.md`
 
 ## Procedure
 

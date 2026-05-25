@@ -1,9 +1,9 @@
 ---
-name: id2s-doc-architecture-adrs
+name: ask-doc-architecture-adrs
 description: Produce or update `06-architecture-adrs.md` (C4 + ADRs) aligned to requirements and technical risks.
 ---
 
-# Skill: Document — Architecture and ADRs (`id2s-doc-architecture-adrs`)
+# Skill: Document — Architecture and ADRs (`ask-doc-architecture-adrs`)
 
 ## Goal
 
@@ -13,7 +13,7 @@ Document **C4**, **integrations**, and **ADRs** with an executable handoff.
 
 - Write: `{artifactsDir}/06-architecture-adrs.md`
 - Read: `{agentReadyDir}/06-architecture-adrs.agent.yaml`, `_INDEX.yaml`
-- Template: `kit/templates/id2s/06-architecture-adrs.md.template`
+- Template: `kit/templates/ask/06-architecture-adrs.md.template`
 
 ## Preconditions
 
@@ -28,7 +28,7 @@ Document **C4**, **integrations**, and **ADRs** with an executable handoff.
 
 ## Versioning and sync
 
-- Bump version + `npm run sync-agent-ready -- docs/id2s/06-architecture-adrs.md`
+- Bump version + `npm run sync-agent-ready -- docs/ask/06-architecture-adrs.md`
 
 ## Procedure
 

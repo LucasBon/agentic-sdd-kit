@@ -1,5 +1,5 @@
 ---
-id2s_document: architecture-adrs
+ask_document: architecture-adrs
 workflow_step: architecture-adrs
 locale: en
 current_version: 1

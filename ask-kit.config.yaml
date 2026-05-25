@@ -1,10 +1,10 @@
 agentConversationLanguage: en
 documentationLanguage: en
 workflowFile: kit/workflows/green-field.v2.yaml
-artifactsDir: docs/id2s
-agentReadyDir: agent-ready-docs/id2s
+artifactsDir: docs/ask
+agentReadyDir: agent-ready-docs/ask
 skillsTargetDir: .cursor/skills
 projectWorkflowsDir: workflows
 projectStepsDir: steps
-projectTemplatesDir: templates/id2s
+projectTemplatesDir: templates/ask
 kitVersion: 2.0.0

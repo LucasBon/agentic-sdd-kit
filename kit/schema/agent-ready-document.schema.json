@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://intive.local/schemas/id2s-agent-ready-document.schema.json",
-  "title": "ID2S Agent-Ready Document",
+  "$id": "https://intive.local/schemas/ask-agent-ready-document.schema.json",
+  "title": "Agentic SDD Kit Agent-Ready Document",
   "type": "object",
   "additionalProperties": false,
   "required": ["meta", "content"],

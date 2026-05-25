@@ -10,4 +10,4 @@ npm run compose-workflow -- --id my-product --title "My product" \
 npm run validate-workflows && npm run bootstrap
 ```
 
-Predefined kit workflows live under `kit/workflows/`. Set `workflowFile` in `id2s-kit.config.yaml` to either a kit path or `workflows/<name>.yaml`.
+Predefined kit workflows live under `kit/workflows/`. Set `workflowFile` in `ask-kit.config.yaml` to either a kit path or `workflows/<name>.yaml`.

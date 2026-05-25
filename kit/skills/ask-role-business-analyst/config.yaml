@@ -1,10 +1,10 @@
 skill:
-  name: id2s-role-business-analyst
+  name: ask-role-business-analyst
   description: >-
-    Activates Alex, senior Business Analyst for the ID2S Kit. Use for business rules,
+    Activates Alex, senior Business Analyst for the Agentic SDD Kit. Use for business rules,
     processes, requirements clarity, and stakeholder alignment.
   description_delivery: >-
-    Activates Alex in delivery mode as Business Analyst — drives the active ID2S step
+    Activates Alex in delivery mode as Business Analyst — drives the active Agentic SDD Kit step
     to completion criteria (requirements, rules, processes) with validated artifact updates.
 
 agent:

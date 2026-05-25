@@ -1,9 +1,9 @@
 ---
-name: id2s-doc-capability-discovery
+name: ask-doc-capability-discovery
 description: Produce or update `03-capability-discovery.md` connecting vision to modeling.
 ---
 
-# Skill: Document — Capability discovery (`id2s-doc-capability-discovery`)
+# Skill: Document — Capability discovery (`ask-doc-capability-discovery`)
 
 ## Goal
 
@@ -13,7 +13,7 @@ Prioritize **capabilities** and describe **P0 journeys** with enough detail for 
 
 - Write: `{artifactsDir}/03-capability-discovery.md`
 - Read: `{agentReadyDir}/03-capability-discovery.agent.yaml`, `_INDEX.yaml`
-- Template: `kit/templates/id2s/03-capability-discovery.md.template`
+- Template: `kit/templates/ask/03-capability-discovery.md.template`
 
 ## Preconditions
 
@@ -28,7 +28,7 @@ Prioritize **capabilities** and describe **P0 journeys** with enough detail for 
 
 ## Versioning and sync
 
-- Bump `current_version` + `versions`; then `npm run sync-agent-ready -- docs/id2s/03-capability-discovery.md`
+- Bump `current_version` + `versions`; then `npm run sync-agent-ready -- docs/ask/03-capability-discovery.md`
 
 ## Procedure
 

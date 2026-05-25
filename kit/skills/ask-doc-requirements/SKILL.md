@@ -1,9 +1,9 @@
 ---
-name: id2s-doc-requirements
+name: ask-doc-requirements
 description: Produce or update `05-requirements.md` (FR/NFR/rules) traceable to capabilities and glossary.
 ---
 
-# Skill: Document — Requirements (`id2s-doc-requirements`)
+# Skill: Document — Requirements (`ask-doc-requirements`)
 
 ## Goal
 
@@ -13,7 +13,7 @@ description: Produce or update `05-requirements.md` (FR/NFR/rules) traceable to 
 
 - Write: `{artifactsDir}/05-requirements.md`
 - Read: `{agentReadyDir}/05-requirements.agent.yaml`, `_INDEX.yaml`
-- Template: `kit/templates/id2s/05-requirements.md.template`
+- Template: `kit/templates/ask/05-requirements.md.template`
 
 ## Preconditions
 
@@ -28,7 +28,7 @@ description: Produce or update `05-requirements.md` (FR/NFR/rules) traceable to 
 
 ## Versioning and sync
 
-- Bump version + `npm run sync-agent-ready -- docs/id2s/05-requirements.md`
+- Bump version + `npm run sync-agent-ready -- docs/ask/05-requirements.md`
 
 ## Procedure
 

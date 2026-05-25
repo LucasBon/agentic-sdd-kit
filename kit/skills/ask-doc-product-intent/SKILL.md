@@ -1,9 +1,9 @@
 ---
-name: id2s-doc-product-intent
-description: Produce or update `product-intent.md` following the active ID2S workflow step.
+name: ask-doc-product-intent
+description: Produce or update `product-intent.md` following the active Agentic SDD Kit workflow step.
 ---
 
-# Skill: Document — Product intent (`id2s-doc-product-intent`)
+# Skill: Document — Product intent (`ask-doc-product-intent`)
 
 ## Goal
 
@@ -11,22 +11,22 @@ Complete `product-intent.md` in a **minimal but complete** way, with an actionab
 
 ## Paths (from config)
 
-- Read `id2s-kit.config.yaml`: `artifactsDir`, `agentReadyDir`, `documentationLanguage`.
+- Read `ask-kit.config.yaml`: `artifactsDir`, `agentReadyDir`, `documentationLanguage`.
 - **Human write**: `{artifactsDir}/product-intent.md`
 - **Read**: `{agentReadyDir}/product-intent.agent.yaml`, `_INDEX.yaml` (`active_step_bindings`, `workflow_state`)
-- **Template**: `kit/templates/id2s/product-intent.md.template`
+- **Template**: `kit/templates/ask/product-intent.md.template`
 
 ## Sources of truth (order)
 
-1. `agent-ready-docs/id2s/_INDEX.yaml` and `product-intent.agent.yaml`
-2. `docs/id2s/_INDEX.md` — aligned runtime state
+1. `agent-ready-docs/ask/_INDEX.yaml` and `product-intent.agent.yaml`
+2. `docs/ask/_INDEX.md` — aligned runtime state
 3. `kit/steps/product-intent.step.yaml` — completion criteria (not duplicated in the index)
 4. User interview; mark **TBD** with an explicit question when data is missing
 
 ## Versioning and sync
 
 - On substantial edits, increment `current_version` and add a `versions` entry.
-- Run `npm run sync-agent-ready -- docs/id2s/product-intent.md`
+- Run `npm run sync-agent-ready -- docs/ask/product-intent.md`
 
 ## Preconditions
 

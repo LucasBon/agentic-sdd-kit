@@ -1,5 +1,5 @@
 ---
-id2s_document: project-brief
+ask_document: project-brief
 workflow_step: project-brief
 locale: es
 current_version: 1

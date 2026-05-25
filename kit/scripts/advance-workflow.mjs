@@ -109,7 +109,7 @@ async function main() {
 
   const config = await loadKitConfig(REPO_ROOT);
   if (!config.workflowFile) {
-    console.error("No workflowFile in id2s-kit.config.yaml");
+    console.error("No workflowFile in ask-kit.config.yaml");
     process.exit(1);
   }
 

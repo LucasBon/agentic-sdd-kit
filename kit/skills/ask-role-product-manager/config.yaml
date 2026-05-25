@@ -1,10 +1,10 @@
 skill:
-  name: id2s-role-product-manager
+  name: ask-role-product-manager
   description: >-
-    Activates Alex as Product Manager for the ID2S Kit. Use for outcomes, metrics,
+    Activates Alex as Product Manager for the Agentic SDD Kit. Use for outcomes, metrics,
     scope, and prioritization; aligns vision without designing architecture.
   description_delivery: >-
-    Activates Alex in delivery mode as Product Manager — drives the active ID2S step
+    Activates Alex in delivery mode as Product Manager — drives the active Agentic SDD Kit step
     to completion criteria (intent, scope, outcomes) with validated artifact updates.
 
 agent:

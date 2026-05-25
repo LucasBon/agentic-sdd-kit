@@ -34,7 +34,7 @@ async function main() {
     );
   }
 
-  console.log("\nSet active workflow in id2s-kit.config.yaml:");
+  console.log("\nSet active workflow in ask-kit.config.yaml:");
   console.log("  workflowFile: <path from list above>");
   console.log("Then: npm run validate-workflows && npm run bootstrap");
 }

@@ -1,9 +1,9 @@
 ---
-name: id2s-doc-domain-model
+name: ask-doc-domain-model
 description: Produce or update `04-domain-model.md` (ubiquitous language and lightweight bounded contexts).
 ---
 
-# Skill: Document — Domain model (`id2s-doc-domain-model`)
+# Skill: Document — Domain model (`ask-doc-domain-model`)
 
 ## Goal
 
@@ -13,7 +13,7 @@ Stabilize **ubiquitous language** and candidate **bounded contexts** with a lite
 
 - Write: `{artifactsDir}/04-domain-model.md`
 - Read: `{agentReadyDir}/04-domain-model.agent.yaml`, `_INDEX.yaml`
-- Template: `kit/templates/id2s/04-domain-model.md.template`
+- Template: `kit/templates/ask/04-domain-model.md.template`
 
 ## Preconditions
 
@@ -28,7 +28,7 @@ Stabilize **ubiquitous language** and candidate **bounded contexts** with a lite
 
 ## Versioning and sync
 
-- Bump version + `npm run sync-agent-ready -- docs/id2s/04-domain-model.md`
+- Bump version + `npm run sync-agent-ready -- docs/ask/04-domain-model.md`
 
 ## Procedure
 

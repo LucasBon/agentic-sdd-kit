@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Resolves ID2S role skills: domain specialists (coach + delivery) from templates + config;
+ * Resolves Agentic SDD Kit role skills: domain specialists (coach + delivery) from templates + config;
  * project manager orchestrator from static SKILL.md.
  */
 
@@ -128,7 +128,7 @@ function applyTemplate(template, data, kitConfig, { mode = "coach" } = {}) {
 function defaultDeliveryDescription(cfg) {
   const title = cfg.agent?.title || "specialist";
   const name = cfg.agent?.display_name || "the specialist";
-  return `Activates ${name} in delivery mode as ${title} for the ID2S Kit — drives the active workflow step to completion criteria with validated artifact updates.`;
+  return `Activates ${name} in delivery mode as ${title} for the Agentic SDD Kit — drives the active workflow step to completion criteria with validated artifact updates.`;
 }
 
 /**
@@ -189,7 +189,7 @@ export async function resolveRoleSkills({ kitRoot, skillsSrc, skillsDest, dryRun
   const coachTemplate = await fs.readFile(coachTemplatePath, "utf8");
   const deliveryTemplate = await fs.readFile(deliveryTemplatePath, "utf8");
   const entries = await fs.readdir(skillsSrc, { withFileTypes: true });
-  const roleDirs = entries.filter((e) => e.isDirectory() && e.name.startsWith("id2s-role-"));
+  const roleDirs = entries.filter((e) => e.isDirectory() && e.name.startsWith("ask-role-"));
 
   await copyOrchestratorSkill({ skillsSrc, skillsDest, dryRun });
 
@@ -225,7 +225,7 @@ export async function resolveRoleSkills({ kitRoot, skillsSrc, skillsDest, dryRun
 
 export async function copyDocSkills({ skillsSrc, skillsDest, dryRun }) {
   const entries = await fs.readdir(skillsSrc, { withFileTypes: true });
-  const docDirs = entries.filter((e) => e.isDirectory() && e.name.startsWith("id2s-doc-"));
+  const docDirs = entries.filter((e) => e.isDirectory() && e.name.startsWith("ask-doc-"));
 
   for (const ent of docDirs) {
     const srcDir = path.join(skillsSrc, ent.name);

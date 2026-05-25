@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * ID2S Kit bootstrap: resuelve skills de rol, copia skills de documento,
- * inicializa plantillas en docs/id2s, genera índices y agent-ready stubs.
+ * Agentic SDD Kit bootstrap: resuelve skills de rol, copia skills de documento,
+ * inicializa plantillas en docs/ask, genera índices y agent-ready stubs.
  *
  * Uso: node kit/bootstrap/bootstrap.mjs [--force] [--dry-run] [--repo-root <path>]
  */
@@ -74,21 +74,36 @@ async function loadExistingAgentIndex(agentIndexPath) {
 }
 
 async function ensureProjectConfig(repoRoot, dryRun) {
-  const legacy = path.join(repoRoot, "sdd-kit.config.yaml");
-  const target = path.join(repoRoot, "id2s-kit.config.yaml");
-  const example = path.join(repoRoot, "kit", "bootstrap", "id2s-kit.config.example.yaml");
+  const legacySdd = path.join(repoRoot, "sdd-kit.config.yaml");
+  const legacyId2s = path.join(repoRoot, "id2s-kit.config.yaml");
+  const target = path.join(repoRoot, "ask-kit.config.yaml");
+  const example = path.join(repoRoot, "kit", "bootstrap", "ask-kit.config.example.yaml");
 
-  if ((await pathExists(legacy)) && !(await pathExists(target))) {
+  if ((await pathExists(legacyId2s)) && !(await pathExists(target))) {
     if (dryRun) {
-      console.log(`[dry-run] would migrate ${legacy} -> ${target}`);
+      console.log(`[dry-run] would migrate ${legacyId2s} -> ${target}`);
     } else {
-      const raw = await fs.readFile(legacy, "utf8");
+      const raw = await fs.readFile(legacyId2s, "utf8");
       const migrated = raw
-        .replace(/sdd-kit/g, "id2s-kit")
-        .replace(/docs\/sdd/g, "docs/id2s")
-        .replace(/agentReadyDir:.*/g, "agentReadyDir: agent-ready-docs/id2s");
-      await fs.writeFile(target, migrated.includes("agentReadyDir") ? migrated : `${migrated.trim()}\nagentReadyDir: agent-ready-docs/id2s\n`, "utf8");
-      console.log(`Migrated ${path.relative(repoRoot, legacy)} -> id2s-kit.config.yaml`);
+        .replace(/id2s-kit/g, "ask-kit")
+        .replace(/docs\/id2s/g, "docs/ask")
+        .replace(/templates\/id2s/g, "templates/ask")
+        .replace(/agentReadyDir:.*/g, "agentReadyDir: agent-ready-docs/ask");
+      await fs.writeFile(target, migrated, "utf8");
+      console.log(`Migrated ${path.relative(repoRoot, legacyId2s)} -> ask-kit.config.yaml`);
+    }
+  } else if ((await pathExists(legacySdd)) && !(await pathExists(target))) {
+    if (dryRun) {
+      console.log(`[dry-run] would migrate ${legacySdd} -> ${target}`);
+    } else {
+      const raw = await fs.readFile(legacySdd, "utf8");
+      const migrated = raw
+        .replace(/sdd-kit/g, "ask-kit")
+        .replace(/docs\/sdd/g, "docs/ask")
+        .replace(/templates\/sdd/g, "templates/ask")
+        .replace(/agentReadyDir:.*/g, "agentReadyDir: agent-ready-docs/ask");
+      await fs.writeFile(target, migrated, "utf8");
+      console.log(`Migrated ${path.relative(repoRoot, legacySdd)} -> ask-kit.config.yaml`);
     }
   }
 
@@ -103,38 +118,38 @@ async function ensureProjectConfig(repoRoot, dryRun) {
 }
 
 async function ensureCursorRule(repoRoot, dryRun) {
-  const rulePath = path.join(repoRoot, ".cursor", "rules", "id2s-kit.mdc");
+  const rulePath = path.join(repoRoot, ".cursor", "rules", "ask-kit.mdc");
   const body = `---
-description: When working with ID2S kit artifacts, respect human docs and sync agent-ready.
+description: When working with Agentic SDD Kit artifacts, respect human docs and sync agent-ready.
 globs:
-  - docs/id2s/**
-  - agent-ready-docs/id2s/**
+  - docs/ask/**
+  - agent-ready-docs/ask/**
 alwaysApply: false
 ---
 
-# ID2S Kit (Intive Domain To Spec Driven Develop)
+# Agentic SDD Kit
 
-## Human artifacts (\`docs/id2s/\`)
+## Human artifacts (\`docs/ask/\`)
 
-1. Use \`docs/id2s/_INDEX.md\` for workflow **runtime state** (aligned with agent-ready index).
+1. Use \`docs/ask/_INDEX.md\` for workflow **runtime state** (aligned with agent-ready index).
 2. Step definitions live in \`kit/workflows/\` and \`kit/steps/\` — not duplicated in the index.
 3. On substantial edits, bump \`current_version\` in frontmatter and add a \`versions\` entry.
 4. Do not contradict prior documented decisions; update artifacts and handoff when they change.
 
-## Agent-ready (\`agent-ready-docs/id2s/\`)
+## Agent-ready (\`agent-ready-docs/ask/\`)
 
 1. After editing a human artifact, run \`npm run sync-agent-ready -- <path-to-md>\` (or \`--all\`).
-2. Agents read **agent-ready** for context; humans edit **docs/id2s** as source of truth.
+2. Agents read **agent-ready** for context; humans edit **docs/ask** as source of truth.
 3. Each \`.agent.yaml\` should reference \`meta.source_version\` aligned to the source \`current_version\`.
 
 ## Skills
 
-- Documents: \`id2s-doc-*\` to produce each artifact (domain specialists).
-- Orchestrator: \`id2s-role-project-manager\` (Sebastian) — workflow config and index state only.
-- Domain specialists: \`id2s-role-*\` (coach) and \`id2s-role-*-delivery\` from \`role-agent.SKILL.md.template\` / \`role-agent-delivery.SKILL.md.template\`.
+- Documents: \`ask-doc-*\` to produce each artifact (domain specialists).
+- Orchestrator: \`ask-role-project-manager\` (Sebastian) — workflow config and index state only.
+- Domain specialists: \`ask-role-*\` (coach) and \`ask-role-*-delivery\` from \`role-agent.SKILL.md.template\` / \`role-agent-delivery.SKILL.md.template\`.
 - Step \`engagement_profile\` in \`kit/steps/*.step.yaml\` (\`coach\` | \`delivery\`); runtime override via \`npm run set-step-profile\`.
 
-## Languages (\`id2s-kit.config.yaml\`)
+## Languages (\`ask-kit.config.yaml\`)
 
 - \`agentConversationLanguage\` — coaching dialogue.
 - \`documentationLanguage\` — human artifact content.
@@ -202,7 +217,7 @@ async function main() {
       console.log(`Workflow resolved (${format}): ${workflow.steps.length} step(s)`);
     }
   } else {
-    console.log("No workflowFile in config — index stub; use id2s-role-project-manager (Sebastian).");
+    console.log("No workflowFile in config — index stub; use ask-role-project-manager (Sebastian).");
   }
 
   const skillsSrc = path.join(kitRoot, "skills");

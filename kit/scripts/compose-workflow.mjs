@@ -5,7 +5,7 @@
  * Usage:
  *   npm run compose-workflow -- --id my-flow --title "My flow" --steps a,b,c
  *   npm run compose-workflow -- --id my-flow --title "My flow" --steps a,b --parallel-stage review
- *   npm run compose-workflow -- --set-config   # also set workflowFile in id2s-kit.config.yaml
+ *   npm run compose-workflow -- --set-config   # also set workflowFile in ask-kit.config.yaml
  */
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -81,14 +81,14 @@ async function main() {
   console.log(`Wrote workflow: ${rel}`);
 
   if (args.setConfig) {
-    const configPath = path.join(REPO_ROOT, "id2s-kit.config.yaml");
+    const configPath = path.join(REPO_ROOT, "ask-kit.config.yaml");
     const cfg = parseYaml(await fs.readFile(configPath, "utf8"));
     cfg.workflowFile = rel;
     await fs.writeFile(configPath, stringifyYaml(cfg), "utf8");
-    console.log(`Updated id2s-kit.config.yaml workflowFile: ${rel}`);
+    console.log(`Updated ask-kit.config.yaml workflowFile: ${rel}`);
     console.log("Run: npm run validate-workflows && npm run bootstrap");
   } else {
-    console.log(`Add to id2s-kit.config.yaml: workflowFile: ${rel}`);
+    console.log(`Add to ask-kit.config.yaml: workflowFile: ${rel}`);
   }
 }
 

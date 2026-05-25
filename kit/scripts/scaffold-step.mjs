@@ -4,7 +4,7 @@
  *
  * Usage:
  *   npm run scaffold-step -- --id security-review --title "Security review" \
- *     --role id2s-role-architect --artifact docs/id2s/security-review.md
+ *     --role ask-role-architect --artifact docs/ask/security-review.md
  */
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -33,14 +33,14 @@ function parseArgs(argv) {
 }
 
 function docSkillId(stepId) {
-  return `id2s-doc-${stepId}`;
+  return `ask-doc-${stepId}`;
 }
 
 async function main() {
   const args = parseArgs(process.argv);
   if (!args.id || !args.title || !args.role || !args.artifact) {
     console.error(
-      "Usage: scaffold-step --id <kebab-id> --title <title> --role id2s-role-* --artifact docs/id2s/<file>.md [--profile coach|delivery] [--objective <text>] [--input path]"
+      "Usage: scaffold-step --id <kebab-id> --title <title> --role ask-role-* --artifact docs/ask/<file>.md [--profile coach|delivery] [--objective <text>] [--input path]"
     );
     process.exit(1);
   }
@@ -88,7 +88,7 @@ async function main() {
   await fs.writeFile(stepPath, stringifyYaml(step), "utf8");
 
   const templateBody = `---
-id2s_document: ${baseName}
+ask_document: ${baseName}
 current_version: 1
 locale: ${config.documentationLanguage}
 workflow_step: ${args.id}

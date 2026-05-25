@@ -1,10 +1,10 @@
 skill:
-  name: id2s-role-project-leader
+  name: ask-role-project-leader
   description: >-
-    Activates Alex as Delivery Lead for the ID2S Kit. Use for coordination, dependencies,
+    Activates Alex as Delivery Lead for the Agentic SDD Kit. Use for coordination, dependencies,
     risk communication, and stakeholder agreements.
   description_delivery: >-
-    Activates Alex in delivery mode as Delivery Lead — drives the active ID2S step
+    Activates Alex in delivery mode as Delivery Lead — drives the active Agentic SDD Kit step
     to completion criteria (coordination, risks, agreements) with validated artifact updates.
 
 agent:

@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * Sincroniza docs/id2s/*.md → agent-ready-docs/id2s/*.agent.yaml
+ * Sincroniza docs/ask/*.md → agent-ready-docs/ask/*.agent.yaml
  *
  * Uso:
  *   node kit/scripts/sync-agent-ready.mjs --all
- *   node kit/scripts/sync-agent-ready.mjs docs/id2s/01-project-brief.md
+ *   node kit/scripts/sync-agent-ready.mjs docs/ask/01-project-brief.md
  */
 
 import fs from "node:fs/promises";
@@ -96,11 +96,11 @@ function extractOpenQuestions(sections) {
 }
 
 async function loadConfig(repoRoot) {
-  const cfgPath = path.join(repoRoot, "id2s-kit.config.yaml");
+  const cfgPath = path.join(repoRoot, "ask-kit.config.yaml");
   if (!(await pathExists(cfgPath))) {
     return {
-      artifactsDir: "docs/id2s",
-      agentReadyDir: "agent-ready-docs/id2s",
+      artifactsDir: "docs/ask",
+      agentReadyDir: "agent-ready-docs/ask",
       documentationLanguage: "en",
     };
   }
@@ -112,15 +112,15 @@ export async function syncOne(mdPath, { repoRoot, config }) {
   const { meta, body } = parseFrontmatter(raw);
   const sections = parseSections(body);
   const base = path.basename(mdPath, ".md");
-  const agentPath = path.join(repoRoot, config.agentReadyDir || "agent-ready-docs/id2s", `${base}.agent.yaml`);
+  const agentPath = path.join(repoRoot, config.agentReadyDir || "agent-ready-docs/ask", `${base}.agent.yaml`);
 
   const doc = {
     meta: {
-      id: meta.id2s_document || meta.sdd_document || base.replace(/^\d+-/, ""),
+      id: meta.ask_document || meta.id2s_document || meta.sdd_document || base.replace(/^\d+-/, ""),
       source_path: path.relative(repoRoot, mdPath).replace(/\\/g, "/"),
       source_version: meta.current_version ?? 1,
       locale: meta.locale ?? config.documentationLanguage ?? "en",
-      workflow_step: meta.workflow_step || meta.id2s_document,
+      workflow_step: meta.workflow_step || meta.ask_document || meta.id2s_document,
       updated_at: new Date().toISOString(),
     },
     content: sections,
@@ -137,7 +137,7 @@ export async function syncOne(mdPath, { repoRoot, config }) {
 async function main() {
   const { all, files, repoRoot } = parseArgs(process.argv);
   const config = await loadConfig(repoRoot);
-  const artifactsDir = path.join(repoRoot, config.artifactsDir || "docs/id2s");
+  const artifactsDir = path.join(repoRoot, config.artifactsDir || "docs/ask");
 
   let targets = files;
   if (all) {

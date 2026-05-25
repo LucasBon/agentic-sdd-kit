@@ -3,18 +3,18 @@ version: 1.0.0
 title: Business requirements
 objective: Formalize rules, business FR/NFR, minimal glossary, and verifiable criteria anchored to product intent.
 
-primary_role_skill: id2s-role-business-analyst
-doc_skill: id2s-doc-business-requirements
+primary_role_skill: ask-role-business-analyst
+doc_skill: ask-doc-business-requirements
 
 inputs:
   - kind: artifact
-    path: docs/id2s/product-intent.md
+    path: docs/ask/product-intent.md
     required: true
     description: Agreed product intent as input.
 
 outputs:
-  - path: docs/id2s/business-requirements.md
-    template: kit/templates/id2s/business-requirements.md.template
+  - path: docs/ask/business-requirements.md
+    template: kit/templates/ask/business-requirements.md.template
 
 completion_criteria:
   - Problem and scope referenced without contradicting product-intent.

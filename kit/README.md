@@ -1,6 +1,6 @@
-# ID2S Kit
+# Agentic SDD Kit
 
-Kit for **Intive Domain To Spec Driven Develop**: workflows, step catalog, templates, agent-ready layer, and Cursor skills.
+Kit for **Agentic Spec Driven Develop**: workflows, step catalog, templates, agent-ready layer, and Cursor skills.
 
 ## Layers
 
@@ -8,8 +8,8 @@ Kit for **Intive Domain To Spec Driven Develop**: workflows, step catalog, templ
 |-------|----------|---------|
 | **Steps** | `kit/steps/*.step.yaml` | Canonical reusable step (objective, role, inputs, outputs) |
 | **Workflows** | `kit/workflows/*.yaml` | Composition: legacy (`steps` inline) or v2 (`stages` + refs) |
-| **Artifacts** | `docs/id2s/*.md` | Human source of truth |
-| **Agent-ready** | `agent-ready-docs/id2s/*.agent.yaml` | Structured context for agents |
+| **Artifacts** | `docs/ask/*.md` | Human source of truth |
+| **Agent-ready** | `agent-ready-docs/ask/*.agent.yaml` | Structured context for agents |
 | **Indices** | `_INDEX.md` / `_INDEX.yaml` | Runtime workflow state (Sebastian); definitions stay in workflow/steps |
 
 ## Minimal workflow (v2)
@@ -25,23 +25,23 @@ Kit for **Intive Domain To Spec Driven Develop**: workflows, step catalog, templ
 ```bash
 npm run validate-workflows   # steps + workflows
 npm run bootstrap            # skills, templates, indices
-npm run sync-agent-ready -- docs/id2s/<file>.md
+npm run sync-agent-ready -- docs/ask/<file>.md
 ```
 
 ## Project configuration
 
-At repo root, `id2s-kit.config.yaml`:
+At repo root, `ask-kit.config.yaml`:
 
 ```yaml
 agentConversationLanguage: en
 documentationLanguage: en
 workflowFile: kit/workflows/green-field-minimal.v2.yaml
-artifactsDir: docs/id2s
-agentReadyDir: agent-ready-docs/id2s
+artifactsDir: docs/ask
+agentReadyDir: agent-ready-docs/ask
 ```
 
-- **Orchestrator**: `id2s-role-project-manager` (Sebastian) — static `SKILL.md`, updates indices.
-- **Domain specialists**: `id2s-role-*` (coach) and `id2s-role-*-delivery` — from `role-agent.SKILL.md.template` and `role-agent-delivery.SKILL.md.template` (same `config.yaml` per role).
+- **Orchestrator**: `ask-role-project-manager` (Sebastian) — static `SKILL.md`, updates indices.
+- **Domain specialists**: `ask-role-*` (coach) and `ask-role-*-delivery` — from `role-agent.SKILL.md.template` and `role-agent-delivery.SKILL.md.template` (same `config.yaml` per role).
 - **Engagement profile**: each step sets `engagement_profile: coach | delivery` in `kit/steps/<id>.step.yaml` (default `coach`). Index exposes `assigned_role_skill` for the skill to invoke.
 
 | Script | Purpose |

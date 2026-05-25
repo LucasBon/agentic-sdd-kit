@@ -91,7 +91,7 @@ export function initialWorkflowState(steps, stagesMeta) {
       status: "not_started",
       active_step_ids: [],
       completed_step_ids: [],
-      notes: "No workflow configured. Use id2s-role-project-manager (Sebastian) to select a workflow.",
+      notes: "No workflow configured. Use ask-role-project-manager (Sebastian) to select a workflow.",
     };
   }
 
@@ -239,7 +239,7 @@ export function renderHumanIndex({
 }) {
   const lines = [];
   lines.push("---");
-  lines.push(`id2s_kit_version: "${config.kitVersion}"`);
+  lines.push(`ask_kit_version: "${config.kitVersion}"`);
   if (workflow) {
     lines.push(`workflow_id: "${workflow.id}"`);
     lines.push(`workflow_version: "${workflow.version}"`);
@@ -253,17 +253,17 @@ export function renderHumanIndex({
   lines.push(`generated_by: bootstrap`);
   lines.push("---");
   lines.push("");
-  lines.push("# ID2S workflow index (`_INDEX`)");
+  lines.push("# Agentic SDD Kit workflow index (`_INDEX`)");
   lines.push("");
   if (!workflow) {
     lines.push(
-      "Workflow **pending**. Use Sebastian (`id2s-role-project-manager`) or the commands below."
+      "Workflow **pending**. Use Sebastian (`ask-role-project-manager`) or the commands below."
     );
     lines.push("");
     lines.push("### Path A — predefined workflow");
     lines.push("");
     lines.push("1. `npm run list-catalog`");
-    lines.push("2. Set `workflowFile` in `id2s-kit.config.yaml` (kit or project workflow)");
+    lines.push("2. Set `workflowFile` in `ask-kit.config.yaml` (kit or project workflow)");
     lines.push("3. `npm run validate-workflows && npm run bootstrap`");
     lines.push("");
     lines.push("### Path B — compose with Sebastian");
@@ -352,7 +352,7 @@ export function renderHumanIndex({
   } else {
     lines.push("- Legacy workflow: inline steps in the workflow YAML file");
   }
-  lines.push("- Agent mirror: `agent-ready-docs/id2s/_INDEX.yaml` (same state and transitions)");
+  lines.push("- Agent mirror: `agent-ready-docs/ask/_INDEX.yaml` (same state and transitions)");
   lines.push("");
   lines.push("## Global decisions (fill in)");
   lines.push("");
@@ -378,7 +378,7 @@ export function renderAgentReadyIndex({
   catalog,
 }) {
   const doc = {
-    id2s_kit_version: config.kitVersion,
+    ask_kit_version: config.kitVersion,
     agent_conversation_language: config.agentConversationLanguage,
     documentation_language: config.documentationLanguage,
     artifacts_dir: config.artifactsDir,
@@ -387,7 +387,7 @@ export function renderAgentReadyIndex({
   };
 
   if (!workflow) {
-    doc.workflow = { status: "pending", hint: "Invoke id2s-role-project-manager (Sebastian)" };
+    doc.workflow = { status: "pending", hint: "Invoke ask-role-project-manager (Sebastian)" };
     doc.workflow_state = initialWorkflowState([], null);
     doc.transitions = [];
     doc.step_sequence = [];
@@ -397,8 +397,8 @@ export function renderAgentReadyIndex({
     }
     doc.path_b = {
       list: "npm run list-catalog",
-      compose: "npm run compose-workflow -- --id <id> --title <title> --steps a,b,c [--set-config]",
-      scaffold_step: "npm run scaffold-step -- --id <id> --title <t> --role id2s-role-* --artifact docs/id2s/<f>.md",
+      scaffold_step: "npm run scaffold-step -- --id <id> --title <title> --steps a,b,c [--set-config]",
+      scaffold_step: "npm run scaffold-step -- --id <id> --title <t> --role ask-role-* --artifact docs/ask/<f>.md",
     };
     return doc;
   }
@@ -415,6 +415,6 @@ export function renderAgentReadyIndex({
   doc.transitions = transitions;
   doc.workflow_state = workflowState;
   doc.active_step_bindings = activeBindings;
-  doc.orchestrator_skill = "id2s-role-project-manager";
+  doc.orchestrator_skill = "ask-role-project-manager";
   return doc;
 }

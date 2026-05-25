@@ -1,9 +1,9 @@
 {
-  "name": "intive-id2s-agents-kit",
+  "name": "agentic-sdd-kit",
   "private": true,
   "version": "2.0.0",
   "type": "module",
-  "description": "Intive Domain To Spec Driven Develop (ID2S): workflows, plantillas, agent-ready docs y skills para Cursor",
+  "description": "Agentic SDD Kit: workflows, plantillas, agent-ready docs y skills para Cursor",
   "scripts": {
     "bootstrap": "node kit/bootstrap/bootstrap.mjs",
     "validate-workflows": "node kit/scripts/validate-workflows.mjs",

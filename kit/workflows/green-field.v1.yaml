@@ -8,12 +8,12 @@ steps:
     title: Brief del proyecto
     objective: Fijar problema, usuarios, restricciones, stakeholders y riesgos iniciales sin solución técnica.
     preconditions: []
-    primary_template: kit/templates/id2s/01-project-brief.md.template
+    primary_template: kit/templates/ask/01-project-brief.md.template
     outputs:
-      - path: docs/id2s/01-project-brief.md
-        template: kit/templates/id2s/01-project-brief.md.template
-    doc_skill: id2s-doc-project-brief
-    primary_role_skill: id2s-role-product-manager
+      - path: docs/ask/01-project-brief.md
+        template: kit/templates/ask/01-project-brief.md.template
+    doc_skill: ask-doc-project-brief
+    primary_role_skill: ask-role-product-manager
     completion_criteria:
       - El problema y el usuario principal están definidos en una o dos frases verificables.
       - Hay al menos 3 restricciones o supuestos explícitos (negocio, compliance, tiempo, presupuesto o políticas).
@@ -25,14 +25,14 @@ steps:
     objective: Alinear resultado deseado, métricas de éxito, no-objetivos y supuestos de producto.
     preconditions:
       - type: file_exists
-        path: docs/id2s/01-project-brief.md
+        path: docs/ask/01-project-brief.md
         description: Debe existir el brief para anclar visión y alcance.
-    primary_template: kit/templates/id2s/02-vision-and-scope.md.template
+    primary_template: kit/templates/ask/02-vision-and-scope.md.template
     outputs:
-      - path: docs/id2s/02-vision-and-scope.md
-        template: kit/templates/id2s/02-vision-and-scope.md.template
-    doc_skill: id2s-doc-vision-scope
-    primary_role_skill: id2s-role-product-manager
+      - path: docs/ask/02-vision-and-scope.md
+        template: kit/templates/ask/02-vision-and-scope.md.template
+    doc_skill: ask-doc-vision-scope
+    primary_role_skill: ask-role-product-manager
     completion_criteria:
       - Objetivos de negocio y métricas de éxito están priorizados (top 3).
       - No-objetivos explícitos evitan deriva de alcance.
@@ -44,14 +44,14 @@ steps:
     objective: Traducir visión en capacidades priorizadas y journeys mínimos para guiar diseño y entrega.
     preconditions:
       - type: file_exists
-        path: docs/id2s/02-vision-and-scope.md
+        path: docs/ask/02-vision-and-scope.md
         description: Visión y alcance acordados por escrito.
-    primary_template: kit/templates/id2s/03-capability-discovery.md.template
+    primary_template: kit/templates/ask/03-capability-discovery.md.template
     outputs:
-      - path: docs/id2s/03-capability-discovery.md
-        template: kit/templates/id2s/03-capability-discovery.md.template
-    doc_skill: id2s-doc-capability-discovery
-    primary_role_skill: id2s-role-business-analyst
+      - path: docs/ask/03-capability-discovery.md
+        template: kit/templates/ask/03-capability-discovery.md.template
+    doc_skill: ask-doc-capability-discovery
+    primary_role_skill: ask-role-business-analyst
     completion_criteria:
       - Capacidades priorizadas (P0/P1) con valor esperado cada una.
       - Al menos un journey end-to-end por capacidad P0.
@@ -63,14 +63,14 @@ steps:
     objective: Estabilizar lenguaje ubicuo, bounded contexts candidatos y relaciones sin diseño táctico exhaustivo.
     preconditions:
       - type: file_exists
-        path: docs/id2s/03-capability-discovery.md
+        path: docs/ask/03-capability-discovery.md
         description: Capacidades y journeys como insumo de modelado.
-    primary_template: kit/templates/id2s/04-domain-model.md.template
+    primary_template: kit/templates/ask/04-domain-model.md.template
     outputs:
-      - path: docs/id2s/04-domain-model.md
-        template: kit/templates/id2s/04-domain-model.md.template
-    doc_skill: id2s-doc-domain-model
-    primary_role_skill: id2s-role-business-analyst
+      - path: docs/ask/04-domain-model.md
+        template: kit/templates/ask/04-domain-model.md.template
+    doc_skill: ask-doc-domain-model
+    primary_role_skill: ask-role-business-analyst
     completion_criteria:
       - Glosario con términos de negocio y definiciones sin ambigüedad crítica.
       - Contextos delimitados candidatos con responsabilidad en una frase cada uno.
@@ -82,14 +82,14 @@ steps:
     objective: FR/NFR priorizados, reglas de negocio citables y criterios de aceptación alineados a capacidades.
     preconditions:
       - type: file_exists
-        path: docs/id2s/04-domain-model.md
+        path: docs/ask/04-domain-model.md
         description: Modelo de dominio liviano como fuente de términos y límites.
-    primary_template: kit/templates/id2s/05-requirements.md.template
+    primary_template: kit/templates/ask/05-requirements.md.template
     outputs:
-      - path: docs/id2s/05-requirements.md
-        template: kit/templates/id2s/05-requirements.md.template
-    doc_skill: id2s-doc-requirements
-    primary_role_skill: id2s-role-business-analyst
+      - path: docs/ask/05-requirements.md
+        template: kit/templates/ask/05-requirements.md.template
+    doc_skill: ask-doc-requirements
+    primary_role_skill: ask-role-business-analyst
     completion_criteria:
       - Requisitos funcionales priorizados con identificador estable (FR-xxx).
       - NFRs críticos (seguridad, rendimiento, disponibilidad, observabilidad) listados con umbral o método de verificación.
@@ -101,14 +101,14 @@ steps:
     objective: Decidir estructura del sistema (C4 contexto/contenedor), interfaces externas e índice de ADRs.
     preconditions:
       - type: file_exists
-        path: docs/id2s/05-requirements.md
+        path: docs/ask/05-requirements.md
         description: Requisitos priorizados para fundamentar decisiones arquitectónicas.
-    primary_template: kit/templates/id2s/06-architecture-adrs.md.template
+    primary_template: kit/templates/ask/06-architecture-adrs.md.template
     outputs:
-      - path: docs/id2s/06-architecture-adrs.md
-        template: kit/templates/id2s/06-architecture-adrs.md.template
-    doc_skill: id2s-doc-architecture-adrs
-    primary_role_skill: id2s-role-architect
+      - path: docs/ask/06-architecture-adrs.md
+        template: kit/templates/ask/06-architecture-adrs.md.template
+    doc_skill: ask-doc-architecture-adrs
+    primary_role_skill: ask-role-architect
     completion_criteria:
       - Diagrama o descripción C4 nivel sistema y contenedores con responsabilidades.
       - Lista de integraciones externas con propósito y dueño técnico/nombre de servicio.

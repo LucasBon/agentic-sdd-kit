@@ -7,12 +7,12 @@ documentationLanguage: en
 #
 # Path B — leave unset until Sebastian helps compose workflows/<id>.yaml
 
-artifactsDir: docs/id2s
-agentReadyDir: agent-ready-docs/id2s
+artifactsDir: docs/ask
+agentReadyDir: agent-ready-docs/ask
 skillsTargetDir: .cursor/skills
 
 projectWorkflowsDir: workflows
 projectStepsDir: steps
-projectTemplatesDir: templates/id2s
+projectTemplatesDir: templates/ask
 
 kitVersion: 2.0.0

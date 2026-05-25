@@ -3,11 +3,11 @@ name: {{skill.name}}
 description: {{skill.description}}
 ---
 
-# Role: {{agent.icon}} {{agent.display_name}} — {{agent.title}} (ID2S Kit)
+# Role: {{agent.icon}} {{agent.display_name}} — {{agent.title}} (Agentic SDD Kit)
 
 ## Language
 
-Read `id2s-kit.config.yaml` at the repository root:
+Read `ask-kit.config.yaml` at the repository root:
 
 - **Agent conversation**: `agentConversationLanguage` — use this language with the user for all coaching dialogue.
 - **Documentation**: `documentationLanguage` — write and update human artifacts only in this language.
@@ -78,18 +78,18 @@ When interacting:
 ### Initialization (mandatory)
 Before generating any meaningful response, build context by reading:
 
-- `id2s-kit.config.yaml` — languages, `workflowFile`, `artifactsDir`, `agentReadyDir`.
-- `agent-ready-docs/id2s/_INDEX.yaml`
+- `ask-kit.config.yaml` — languages, `workflowFile`, `artifactsDir`, `agentReadyDir`.
+- `agent-ready-docs/ask/_INDEX.yaml`
   1. Read `workflow.ref` and `workflow_state` — identify whether you are assigned via `active_step_bindings.assigned_role_skill` (or `primary_role_skill` when profile is `coach`) matching this skill.
   2. For your active step(s), load **definitions** from the workflow file and `kit/steps/<step-id>.step.yaml` (objective, completion criteria, inputs) — the index does not duplicate them.
   3. From `active_step_bindings`, align with the user on: **step ID**, **engagement_profile**, **artifact_path**, **doc_skill**, and required **inputs** (read agent-ready versions).
-- `agent-ready-docs/id2s/project_context.md` — project background, goals, and constraints.
+- `agent-ready-docs/ask/project_context.md` — project background, goals, and constraints.
 
 ### Source of Truth
-- **Workflow state and routing**: `agent-ready-docs/id2s/_INDEX.yaml` (maintained by Sebastian / bootstrap).
+- **Workflow state and routing**: `agent-ready-docs/ask/_INDEX.yaml` (maintained by Sebastian / bootstrap).
 - **Step definitions**: workflow YAML + `kit/steps/` catalog.
-- **Agent-ready content**: `id2s-kit.config.yaml` → `agentReadyDir`.
-- **Human artifacts**: `id2s-kit.config.yaml` → `artifactsDir` (when extra context is needed).
+- **Agent-ready content**: `ask-kit.config.yaml` → `agentReadyDir`.
+- **Human artifacts**: `ask-kit.config.yaml` → `artifactsDir` (when extra context is needed).
 
 ### Reading Guidelines
 - Prefer agent-ready documents over human-oriented ones.

@@ -6,12 +6,12 @@ import { parse as parseYaml } from "yaml";
 export const CONFIG_DEFAULTS = {
   agentConversationLanguage: "en",
   documentationLanguage: "en",
-  artifactsDir: "docs/id2s",
-  agentReadyDir: "agent-ready-docs/id2s",
+  artifactsDir: "docs/ask",
+  agentReadyDir: "agent-ready-docs/ask",
   skillsTargetDir: ".cursor/skills",
   projectWorkflowsDir: "workflows",
   projectStepsDir: "steps",
-  projectTemplatesDir: "templates/id2s",
+  projectTemplatesDir: "templates/ask",
   kitVersion: "2.0.0",
 };
 
@@ -28,7 +28,7 @@ export async function pathExists(p) {
  * @param {string} repoRoot
  */
 export async function loadKitConfig(repoRoot) {
-  const configPath = path.join(repoRoot, "id2s-kit.config.yaml");
+  const configPath = path.join(repoRoot, "ask-kit.config.yaml");
   let userCfg = {};
   if (await pathExists(configPath)) {
     userCfg = parseYaml(await fs.readFile(configPath, "utf8"));

@@ -1,4 +1,4 @@
-id2s_kit_version: 2.0.0
+ask_kit_version: 2.0.0
 agent_conversation_language: en
 documentation_language: en
 artifacts_dir: docs/id2s
@@ -16,110 +16,110 @@ workflow:
       steps:
         - id: project-brief
           order: 1
-          primary_role_skill: id2s-role-product-manager
+          primary_role_skill: ask-role-product-manager
           engagement_profile: coach
-          artifact_path: docs/id2s/01-project-brief.md
-          doc_skill: id2s-doc-project-brief
+          artifact_path: docs/ask/01-project-brief.md
+          doc_skill: ask-doc-project-brief
     - id: vision
       parallel: false
       steps:
         - id: vision-scope
           order: 2
-          primary_role_skill: id2s-role-product-manager
+          primary_role_skill: ask-role-product-manager
           engagement_profile: coach
-          artifact_path: docs/id2s/02-vision-and-scope.md
-          doc_skill: id2s-doc-vision-scope
+          artifact_path: docs/ask/02-vision-and-scope.md
+          doc_skill: ask-doc-vision-scope
     - id: discovery
       parallel: false
       steps:
         - id: capability-discovery
           order: 3
-          primary_role_skill: id2s-role-business-analyst
+          primary_role_skill: ask-role-business-analyst
           engagement_profile: coach
-          artifact_path: docs/id2s/03-capability-discovery.md
-          doc_skill: id2s-doc-capability-discovery
+          artifact_path: docs/ask/03-capability-discovery.md
+          doc_skill: ask-doc-capability-discovery
     - id: domain
       parallel: false
       steps:
         - id: domain-model
           order: 4
-          primary_role_skill: id2s-role-business-analyst
+          primary_role_skill: ask-role-business-analyst
           engagement_profile: coach
-          artifact_path: docs/id2s/04-domain-model.md
-          doc_skill: id2s-doc-domain-model
+          artifact_path: docs/ask/04-domain-model.md
+          doc_skill: ask-doc-domain-model
     - id: specify
       parallel: false
       steps:
         - id: requirements
           order: 5
-          primary_role_skill: id2s-role-business-analyst
+          primary_role_skill: ask-role-business-analyst
           engagement_profile: coach
-          artifact_path: docs/id2s/05-requirements.md
-          doc_skill: id2s-doc-requirements
+          artifact_path: docs/ask/05-requirements.md
+          doc_skill: ask-doc-requirements
     - id: design
       parallel: false
       steps:
         - id: architecture-adrs
           order: 6
-          primary_role_skill: id2s-role-architect
+          primary_role_skill: ask-role-architect
           engagement_profile: coach
-          artifact_path: docs/id2s/06-architecture-adrs.md
-          doc_skill: id2s-doc-architecture-adrs
+          artifact_path: docs/ask/06-architecture-adrs.md
+          doc_skill: ask-doc-architecture-adrs
 step_sequence:
   - id: project-brief
     order: 1
     stage_id: brief
     stage_parallel: false
-    primary_role_skill: id2s-role-product-manager
+    primary_role_skill: ask-role-product-manager
     engagement_profile: coach
-    artifact_path: docs/id2s/01-project-brief.md
-    doc_skill: id2s-doc-project-brief
-    assigned_role_skill: id2s-role-product-manager
+    artifact_path: docs/ask/01-project-brief.md
+    doc_skill: ask-doc-project-brief
+    assigned_role_skill: ask-role-product-manager
   - id: vision-scope
     order: 2
     stage_id: vision
     stage_parallel: false
-    primary_role_skill: id2s-role-product-manager
+    primary_role_skill: ask-role-product-manager
     engagement_profile: coach
-    artifact_path: docs/id2s/02-vision-and-scope.md
-    doc_skill: id2s-doc-vision-scope
-    assigned_role_skill: id2s-role-product-manager
+    artifact_path: docs/ask/02-vision-and-scope.md
+    doc_skill: ask-doc-vision-scope
+    assigned_role_skill: ask-role-product-manager
   - id: capability-discovery
     order: 3
     stage_id: discovery
     stage_parallel: false
-    primary_role_skill: id2s-role-business-analyst
+    primary_role_skill: ask-role-business-analyst
     engagement_profile: coach
-    artifact_path: docs/id2s/03-capability-discovery.md
-    doc_skill: id2s-doc-capability-discovery
-    assigned_role_skill: id2s-role-business-analyst
+    artifact_path: docs/ask/03-capability-discovery.md
+    doc_skill: ask-doc-capability-discovery
+    assigned_role_skill: ask-role-business-analyst
   - id: domain-model
     order: 4
     stage_id: domain
     stage_parallel: false
-    primary_role_skill: id2s-role-business-analyst
+    primary_role_skill: ask-role-business-analyst
     engagement_profile: coach
-    artifact_path: docs/id2s/04-domain-model.md
-    doc_skill: id2s-doc-domain-model
-    assigned_role_skill: id2s-role-business-analyst
+    artifact_path: docs/ask/04-domain-model.md
+    doc_skill: ask-doc-domain-model
+    assigned_role_skill: ask-role-business-analyst
   - id: requirements
     order: 5
     stage_id: specify
     stage_parallel: false
-    primary_role_skill: id2s-role-business-analyst
+    primary_role_skill: ask-role-business-analyst
     engagement_profile: coach
-    artifact_path: docs/id2s/05-requirements.md
-    doc_skill: id2s-doc-requirements
-    assigned_role_skill: id2s-role-business-analyst
+    artifact_path: docs/ask/05-requirements.md
+    doc_skill: ask-doc-requirements
+    assigned_role_skill: ask-role-business-analyst
   - id: architecture-adrs
     order: 6
     stage_id: design
     stage_parallel: false
-    primary_role_skill: id2s-role-architect
+    primary_role_skill: ask-role-architect
     engagement_profile: coach
-    artifact_path: docs/id2s/06-architecture-adrs.md
-    doc_skill: id2s-doc-architecture-adrs
-    assigned_role_skill: id2s-role-architect
+    artifact_path: docs/ask/06-architecture-adrs.md
+    doc_skill: ask-doc-architecture-adrs
+    assigned_role_skill: ask-role-architect
 transitions:
   - type: stage
     stage_id: brief
@@ -185,11 +185,11 @@ workflow_state:
 active_step_bindings:
   - step_id: vision-scope
     title: Vision and scope
-    primary_role_skill: id2s-role-product-manager
+    primary_role_skill: ask-role-product-manager
     engagement_profile: coach
-    artifact_path: docs/id2s/02-vision-and-scope.md
-    agent_ready_path: agent-ready-docs/id2s/02-vision-and-scope.agent.yaml
-    doc_skill: id2s-doc-vision-scope
+    artifact_path: docs/ask/02-vision-and-scope.md
+    agent_ready_path: agent-ready-docs/ask/02-vision-and-scope.agent.yaml
+    doc_skill: ask-doc-vision-scope
     definition_ref: kit/steps/vision-scope.step.yaml
-    assigned_role_skill: id2s-role-product-manager
-orchestrator_skill: id2s-role-project-manager
+    assigned_role_skill: ask-role-product-manager
+orchestrator_skill: ask-role-project-manager

@@ -1,9 +1,9 @@
 ---
-name: id2s-doc-project-brief
-description: Produce or update `01-project-brief.md` following the active ID2S workflow step.
+name: ask-doc-project-brief
+description: Produce or update `01-project-brief.md` following the active Agentic SDD Kit workflow step.
 ---
 
-# Skill: Document — Project brief (`id2s-doc-project-brief`)
+# Skill: Document — Project brief (`ask-doc-project-brief`)
 
 ## Goal
 
@@ -11,22 +11,22 @@ Complete `01-project-brief.md` in a **minimal but complete** way, with an action
 
 ## Paths (from config)
 
-- Read `id2s-kit.config.yaml`: `artifactsDir`, `agentReadyDir`, `documentationLanguage`.
+- Read `ask-kit.config.yaml`: `artifactsDir`, `agentReadyDir`, `documentationLanguage`.
 - **Human write**: `{artifactsDir}/01-project-brief.md`
 - **Read**: `{agentReadyDir}/01-project-brief.agent.yaml`, `_INDEX.yaml`
-- **Template**: `kit/templates/id2s/01-project-brief.md.template`
+- **Template**: `kit/templates/ask/01-project-brief.md.template`
 
 ## Sources of truth (order)
 
-1. `agent-ready-docs/id2s/_INDEX.yaml` and `01-project-brief.agent.yaml`
-2. `docs/id2s/_INDEX.md` — runtime state aligned with agent-ready
+1. `agent-ready-docs/ask/_INDEX.yaml` and `01-project-brief.agent.yaml`
+2. `docs/ask/_INDEX.md` — runtime state aligned with agent-ready
 3. `kit/workflows/` + step definition for `project-brief` — completion criteria
 4. User interview; mark **TBD** with explicit questions — do not invent stakeholders or metrics
 
 ## Versioning and sync
 
 - On substantial edits, increment `current_version` and add a `versions` entry.
-- Run `npm run sync-agent-ready -- docs/id2s/01-project-brief.md`
+- Run `npm run sync-agent-ready -- docs/ask/01-project-brief.md`
 
 ## Preconditions
 

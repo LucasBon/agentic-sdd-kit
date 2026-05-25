@@ -1,10 +1,10 @@
 skill:
-  name: id2s-role-technical-leader
+  name: ask-role-technical-leader
   description: >-
-    Activates Alex as Tech Lead for the ID2S Kit. Use for team standards, executable
+    Activates Alex as Tech Lead for the Agentic SDD Kit. Use for team standards, executable
     decomposition, delivery risks, and engineering quality.
   description_delivery: >-
-    Activates Alex in delivery mode as Tech Lead — drives the active ID2S step
+    Activates Alex in delivery mode as Tech Lead — drives the active Agentic SDD Kit step
     to completion criteria (engineering plan, standards, risks) with validated updates.
 
 agent:

@@ -3,18 +3,18 @@ version: 1.0.0
 title: Capability discovery
 objective: Translate vision into prioritized capabilities and minimal journeys for design and delivery.
 
-primary_role_skill: id2s-role-business-analyst
-doc_skill: id2s-doc-capability-discovery
+primary_role_skill: ask-role-business-analyst
+doc_skill: ask-doc-capability-discovery
 
 inputs:
   - kind: artifact
-    path: docs/id2s/02-vision-and-scope.md
+    path: docs/ask/02-vision-and-scope.md
     required: true
     description: Vision and scope agreed in writing.
 
 outputs:
-  - path: docs/id2s/03-capability-discovery.md
-    template: kit/templates/id2s/03-capability-discovery.md.template
+  - path: docs/ask/03-capability-discovery.md
+    template: kit/templates/ask/03-capability-discovery.md.template
 
 completion_criteria:
   - Capabilities prioritized (P0/P1) with expected value each.

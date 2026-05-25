@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://intive.local/schemas/id2s-workflow.schema.json",
-  "title": "ID2S Kit Workflow",
+  "$id": "https://intive.local/schemas/ask-workflow.schema.json",
+  "title": "Agentic SDD Kit Workflow",
   "oneOf": [
     { "$ref": "#/$defs/legacyWorkflow" },
     { "$ref": "#/$defs/composedWorkflow" }
@@ -148,7 +148,7 @@
         "primary_template": { "type": "string" },
         "primary_role_skill": {
           "type": "string",
-          "pattern": "^id2s-role-(?!project-manager$)[a-z][a-z0-9-]*(?<!-delivery)$"
+          "pattern": "^ask-role-(?!project-manager$)[a-z][a-z0-9-]*(?<!-delivery)$"
         },
         "engagement_profile": {
           "type": "string",
@@ -157,7 +157,7 @@
         },
         "doc_skill": {
           "type": "string",
-          "pattern": "^id2s-doc-[a-z][a-z0-9-]*$"
+          "pattern": "^ask-doc-[a-z][a-z0-9-]*$"
         },
         "completion_criteria": {
           "type": "array",

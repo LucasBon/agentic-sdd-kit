@@ -3,14 +3,14 @@ version: 1.0.0
 title: Product intent
 objective: Capture problem, users, outcome, metrics, non-goals, and constraints without a technical solution.
 
-primary_role_skill: id2s-role-product-manager
-doc_skill: id2s-doc-product-intent
+primary_role_skill: ask-role-product-manager
+doc_skill: ask-doc-product-intent
 
 inputs: []
 
 outputs:
-  - path: docs/id2s/product-intent.md
-    template: kit/templates/id2s/product-intent.md.template
+  - path: docs/ask/product-intent.md
+    template: kit/templates/ask/product-intent.md.template
 
 completion_criteria:
   - Problem and primary user are defined in one or two verifiable sentences.

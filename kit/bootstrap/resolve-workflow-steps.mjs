@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Resolves ID2S workflows: composed (stages + step catalog) or legacy (inline steps).
+ * Resolves Agentic SDD Kit workflows: composed (stages + step catalog) or legacy (inline steps).
  * Step catalog: project steps override kit steps.
  */
 

@@ -1,6 +1,6 @@
 meta:
   id: vision-scope
-  source_path: docs/id2s/02-vision-and-scope.md
+  source_path: docs/ask/02-vision-and-scope.md
   source_version: 1
   locale: es
   workflow_step: vision-scope

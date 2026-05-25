@@ -3,18 +3,18 @@ version: 1.0.0
 title: System design
 objective: C4 views, integrations, ADRs, and technical handoff from business requirements.
 
-primary_role_skill: id2s-role-architect
-doc_skill: id2s-doc-system-design
+primary_role_skill: ask-role-architect
+doc_skill: ask-doc-system-design
 
 inputs:
   - kind: artifact
-    path: docs/id2s/business-requirements.md
+    path: docs/ask/business-requirements.md
     required: true
     description: Business requirements as input.
 
 outputs:
-  - path: docs/id2s/system-design.md
-    template: kit/templates/id2s/system-design.md.template
+  - path: docs/ask/system-design.md
+    template: kit/templates/ask/system-design.md.template
 
 completion_criteria:
   - Context and container views with responsibilities.

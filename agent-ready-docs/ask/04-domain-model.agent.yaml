@@ -1,6 +1,6 @@
 meta:
   id: domain-model
-  source_path: docs/id2s/04-domain-model.md
+  source_path: docs/ask/04-domain-model.md
   source_version: 1
   locale: es
   workflow_step: domain-model

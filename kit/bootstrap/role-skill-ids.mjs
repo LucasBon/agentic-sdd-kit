@@ -5,7 +5,7 @@
 
 export const ENGAGEMENT_PROFILES = ["coach", "delivery"];
 export const DELIVERY_SKILL_SUFFIX = "-delivery";
-export const ORCHESTRATOR_ROLE = "id2s-role-project-manager";
+export const ORCHESTRATOR_ROLE = "ask-role-project-manager";
 
 /**
  * @param {string | null | undefined} value
@@ -25,7 +25,7 @@ export function normalizeEngagementProfile(value) {
 export function isDeliverySkillId(skillId) {
   return (
     typeof skillId === "string" &&
-    skillId.startsWith("id2s-role-") &&
+    skillId.startsWith("ask-role-") &&
     skillId.endsWith(DELIVERY_SKILL_SUFFIX)
   );
 }

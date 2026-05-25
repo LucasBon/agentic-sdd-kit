@@ -1,9 +1,9 @@
 ---
-name: id2s-doc-system-design
-description: Produce or update `system-design.md` (system design and ADRs) following the active ID2S workflow step.
+name: ask-doc-system-design
+description: Produce or update `system-design.md` (system design and ADRs) following the active Agentic SDD Kit workflow step.
 ---
 
-# Skill: Document — System design (`id2s-doc-system-design`)
+# Skill: Document — System design (`ask-doc-system-design`)
 
 ## Goal
 
@@ -13,7 +13,7 @@ Complete `system-design.md` with C4 (context/containers), integrations, indexed 
 
 - **Human write**: `{artifactsDir}/system-design.md`
 - **Required read**: `{artifactsDir}/business-requirements.md` and agent-ready
-- **Template**: `kit/templates/id2s/system-design.md.template`
+- **Template**: `kit/templates/ask/system-design.md.template`
 
 ## Sources of truth (order)
 
@@ -25,7 +25,7 @@ Complete `system-design.md` with C4 (context/containers), integrations, indexed 
 ## Versioning and sync
 
 - Bump `current_version` on substantial changes.
-- `npm run sync-agent-ready -- docs/id2s/system-design.md`
+- `npm run sync-agent-ready -- docs/ask/system-design.md`
 
 ## Preconditions
 

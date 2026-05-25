@@ -3,18 +3,18 @@ version: 1.0.0
 title: Architecture and ADRs
 objective: Decide system structure (C4 context/container), external interfaces, and ADR index.
 
-primary_role_skill: id2s-role-architect
-doc_skill: id2s-doc-architecture-adrs
+primary_role_skill: ask-role-architect
+doc_skill: ask-doc-architecture-adrs
 
 inputs:
   - kind: artifact
-    path: docs/id2s/05-requirements.md
+    path: docs/ask/05-requirements.md
     required: true
     description: Prioritized requirements to ground architectural decisions.
 
 outputs:
-  - path: docs/id2s/06-architecture-adrs.md
-    template: kit/templates/id2s/06-architecture-adrs.md.template
+  - path: docs/ask/06-architecture-adrs.md
+    template: kit/templates/ask/06-architecture-adrs.md.template
 
 completion_criteria:
   - C4 system and container level diagram or description with responsibilities.

@@ -1,10 +1,10 @@
 skill:
-  name: id2s-role-devops
+  name: ask-role-devops
   description: >-
-    Activates Alex as DevOps/SRE for the ID2S Kit. Use for continuous delivery,
+    Activates Alex as DevOps/SRE for the Agentic SDD Kit. Use for continuous delivery,
     environments, observability, operational security, and run cost.
   description_delivery: >-
-    Activates Alex in delivery mode as DevOps/SRE — drives the active ID2S step
+    Activates Alex in delivery mode as DevOps/SRE — drives the active Agentic SDD Kit step
     to completion criteria (pipelines, environments, ops readiness) with validated updates.
 
 agent:

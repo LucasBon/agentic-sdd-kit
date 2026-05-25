@@ -1,6 +1,6 @@
 meta:
   id: capability-discovery
-  source_path: docs/id2s/03-capability-discovery.md
+  source_path: docs/ask/03-capability-discovery.md
   source_version: 1
   locale: es
   workflow_step: capability-discovery

@@ -1,5 +1,5 @@
 ---
-id2s_document: product-intent
+ask_document: product-intent
 workflow_step: product-intent
 locale: en
 current_version: 1

@@ -1,10 +1,10 @@
 skill:
-  name: id2s-role-developer
+  name: ask-role-developer
   description: >-
-    Activates Alex as Senior Developer for the ID2S Kit. Use for executable design,
+    Activates Alex as Senior Developer for the Agentic SDD Kit. Use for executable design,
     edge cases, data, and pragmatic delivery with requirements traceability.
   description_delivery: >-
-    Activates Alex in delivery mode as Senior Developer — drives the active ID2S step
+    Activates Alex in delivery mode as Senior Developer — drives the active Agentic SDD Kit step
     to completion criteria with validated technical content in the artifact.
 
 agent:
